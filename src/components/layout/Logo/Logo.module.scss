@@ -1,0 +1,12 @@
+@import '../../../styles/animations.scss';
+
+.root {
+  font-family: var(--font-decorative);
+  font-size: 4rem;
+  color: var(--font-cl-primary);
+  text-decoration: none;
+
+  &:hover {
+    animation: pulsate 1.2s infinite;
+  }
+}

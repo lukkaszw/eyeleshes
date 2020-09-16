@@ -1,0 +1,27 @@
+@import '../../../../../styles/animations.scss';
+
+.root {
+  display: inline-block;
+  
+  &:not(:last-child) {
+    margin-right: 3rem;
+  }
+
+  .link {
+    display: inline-block;
+    font-size: 3rem;
+    font-family: var(--font-decorative);
+    text-decoration: none;
+    line-height: 0.75;
+    color: var(--font-cl-primary);
+    transition: 0.2s;
+
+    &:hover:not(.active) {
+      animation: pulsate 1s infinite;
+    }
+
+    &.active {
+      text-decoration: underline;
+    }
+  }
+}

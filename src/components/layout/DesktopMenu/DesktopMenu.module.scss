@@ -1,0 +1,7 @@
+.root {
+  list-style: none;
+
+  @media (max-width: 820px) {
+    display: none;
+  }
+}
