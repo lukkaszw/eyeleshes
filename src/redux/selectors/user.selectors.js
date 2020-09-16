@@ -1,0 +1,1 @@
+export const checkAuth = ({ user }) => !!user.token;
