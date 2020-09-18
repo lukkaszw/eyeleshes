@@ -1,7 +1,41 @@
 :root {
   //Colors
-  --font-cl-primary: #000;
+  --black: #000;
 
+  --grey: #777;
+  --grey-dark: #555;
+
+  --purple: #BD3381;
+  --purple-dark: #6d0640;
+
+  --red: #da1f15;
+  --red-dark: #901414;
+  --red-light: #e2caca;
+
+  --green: #28a745;
+  --green-dark: #0e6823;
+
+  --yellow: #e5ff00;
+
+  //Font colors
+  --font-cl-primary: var(--black);
+  --font-cl-error: var(--red);
+  --font-cl-green: var(--green);
+  --font-cl-link: var(--purple-dark); 
+
+  //Buttons colors
+  --button-cl-primary: linear-gradient(to right, var(--purple-dark), var(--purple));
+  --button-cl-primary-hover: linear-gradient(to left, var(--purple) 75%, var(--purple-dark));
+
+  --button-cl-secondary: linear-gradient(to right, var(--red-dark), var(--red));
+  --button-cl-secondary-hover: linear-gradient(to left, var(--red) 75%, var(--red-dark));
+
+  --button-cl-tertiary: linear-gradient(to right, var(--green-dark), var(--green));
+  --button-cl-tertiary-hover: linear-gradient(to left, var(--green) 75%, var(--green-dark));
+
+  --button-cl-disabled: linear-gradient(to right, var(--grey-dark), var(--grey));
+
+  --button-cl-loader: var(--yellow);
 
   //Fonts
   --font-main: 'Lato', sans-serif;

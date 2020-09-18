@@ -9,4 +9,12 @@
 html {
   font-size: 62.5%;
   font-family: var(--font-main);
+
+  @media (max-width: 1280px) {
+    font-size: 56.25%;
+  }
+
+  @media (max-width: 800px) {
+    font-size: 50%;
+  }
 }

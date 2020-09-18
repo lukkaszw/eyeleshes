@@ -1,0 +1,103 @@
+@import '../../../styles/mixins.scss';
+@import '../../../styles/animations.scss';
+
+.root {
+  position: relative;
+  display: inline-block;
+  border: none;
+  background: var(--button-cl-primary);
+  color: #fff;
+  font-family: var(--font-main);
+  font-size: 16px;
+  height: 34px;
+  line-height: 34px;
+  text-decoration: none;
+  padding: 0 28px;
+  border-radius: 20px;
+  cursor: pointer;
+  outline: none;
+  box-shadow: 1px 1px 4px #555;
+  transition: all .2s;
+
+  &::before,
+  &::after {
+    content: '';
+    display: 'block';
+    position: absolute;
+    visibility: hidden;
+    border-radius: 50%;
+  }
+
+  &::before {
+    top: calc(50% - 7px);
+    right: 9px;
+    width: 14px;
+    height: 14px;
+    border: 1px solid var(--button-cl-loader);
+    animation: buttonLoader .8s .8s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+  }
+
+  &::after {
+    top: calc(50% - 3px);
+    right: 13px;
+    width: 6px;
+    height: 6px;
+    border: 2px solid var(--button-cl-loader);
+    animation: buttonLoader .8s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+  }
+
+
+  &:hover,
+  &:focus {
+    box-shadow: 1px 1px 6px 2px #555;
+    background: var(--button-cl-primary-hover);
+  }
+
+  &:active {
+    box-shadow: 1px 1px 4px #555;
+    background: var(--button-cl-primary);
+  }
+
+
+
+  &.secondary {
+    background: var(--button-cl-secondary);
+
+    &:hover,
+    &:focus {
+      background: var(--button-cl-secondary-hover);
+    }
+  
+    &:active {
+      background: var(--button-cl-secondary);
+    }
+  }
+
+  &.tertiary {
+    background: var(--button-cl-tertiary);
+
+    &:hover,
+    &:focus {
+      background: var(--button-cl-tertiary-hover);
+    }
+  
+    &:active {
+      background: var(--button-cl-tertiary);
+    }
+  }
+
+  &:disabled,
+  &.disabled,
+  &:disabled:hover {
+    box-shadow: 1px 1px 4px #555;
+    background: var(--button-cl-disabled);
+    cursor: not-allowed;
+  }
+
+  &.loading {
+    &::before,
+    &::after {
+      visibility: visible;
+    }
+  }
+}
