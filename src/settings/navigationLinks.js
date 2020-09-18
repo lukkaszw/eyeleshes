@@ -9,6 +9,11 @@ export const NOT_AUTH_LINKS = [
     title: 'O nas',
     to: '/about',
   },
+  {
+    id: 3,
+    title: 'Zaloguj/Zarejestruj się',
+    to: '/auth',
+  },
 ];
 
 export const AUTH_LINKS = [

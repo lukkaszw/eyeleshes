@@ -11,7 +11,6 @@ import SELECTORS from './redux/selectors';
 import MainLayout from './components/layout/MainLayout';
 
 import Main from './components/pages/Main';
-import About from './components/pages/About';
 import Account from './components/pages/Account';
 import Clients from './components/pages/Clients';
 import Client from './components/pages/Client';
@@ -24,13 +23,9 @@ function App({ isAuth }) {
   const routing = !isAuth ? 
     (
       <Switch>
-        <Route exact path="/">
+        <Route path="/">
           <Main />
         </Route>
-        <Route exact path="/about">
-          <About />
-        </Route>
-        <Redirect to="/" />
       </Switch>
     )
     :
