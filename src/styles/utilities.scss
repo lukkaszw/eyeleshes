@@ -1,0 +1,46 @@
+$spaces: ("s": .5rem, "m": 1rem, "l": 2rem, "x": 3rem, "xl": 4rem, "xxl": 5rem);
+
+//utility classes for margins and paddings
+@each $name, $value in $spaces {
+  .m-#{$name} {
+    margin: $value;
+  }
+
+  .m-top-#{$name} {
+    margin-top: $value;
+  }
+
+  .m-bottom-#{$name} {
+    margin-bottom: $value;
+  }
+
+  .m-left-#{$name} {
+    margin-left: $value;
+  }
+
+  .m-right-#{$name} {
+    margin-right: $value;
+  }
+
+  .p-#{$name} {
+    padding: $value;
+  }
+
+  .p-top-#{$name} {
+    padding-top: $value;
+  }
+
+  .p-bottom-#{$name} {
+    padding-bottom: $value;
+  }
+
+  .p-left-#{$name} {
+    padding-left: $value;
+  }
+
+  .p-right-#{$name} {
+    padding-right: $value;
+  }
+}
+
+
