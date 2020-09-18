@@ -1,0 +1,36 @@
+.root {
+  width: 230px;
+  padding: 4rem 0;
+  text-align: center;
+
+  .formField:not(:last-child) {
+    margin-bottom: .5rem;
+    text-align: inherit;
+  }
+
+  .buttonWrapper {
+    margin-top: 2rem;
+    text-align: center;
+  }
+
+  .question {
+    margin-top: 2rem;
+    font-size: 14px;
+  }
+
+  @media (max-height: 340px) {
+    .formField:not(:last-child) {
+      margin-bottom: 1px;
+    }
+
+    .buttonWrapper {
+      margin-top: .8rem;
+      text-align: center;
+    }
+
+    .question {
+      margin-top: 1rem;
+      font-size: 14px;
+    }
+  }
+}
