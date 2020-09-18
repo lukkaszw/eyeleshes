@@ -7,4 +7,14 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  @media (max-width: 1600px) {
+    padding: 0 5rem;
+  }
+
+  @media (max-width: 825px) {
+    height: 0;
+    top: 3rem;
+    padding: 0 2rem;
+  }
 }

@@ -10,7 +10,7 @@ const Logo = ({ isAuth }) => {
       to={isAuth ? '/' : '/clients'}
       className={styles.root} 
     >
-      EyelashNote
+      Logo
     </Link>
   );
 }

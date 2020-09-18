@@ -15,6 +15,7 @@
     line-height: 0.75;
     color: var(--font-cl-primary);
     transition: 0.2s;
+    backface-visibility: hidden;
 
     &:hover:not(.active) {
       animation: pulsate 1s infinite;
