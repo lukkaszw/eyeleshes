@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import {
   BrowserRouter as Router,
@@ -17,11 +18,13 @@ import Client from './components/pages/Client';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import PropTypes from 'prop-types';
+import { ReactQueryConfigProvider } from 'react-query';
 
-toast.configure({
-
-});
+toast.configure();
+const queryConfig = {
+  suspense: true,
+  cacheTime: -1,
+};
 
 
 function App({ isAuth }) {
@@ -51,11 +54,13 @@ function App({ isAuth }) {
     );
 
   return (
-    <Router>
-      <MainLayout>
-        {routing}
-      </MainLayout>
-    </Router>
+    <ReactQueryConfigProvider config={queryConfig}>
+      <Router>
+        <MainLayout>
+          {routing}
+        </MainLayout>
+      </Router>
+    </ReactQueryConfigProvider>
   );
 }
 
