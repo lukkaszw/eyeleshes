@@ -100,4 +100,12 @@
       visibility: visible;
     }
   }
+
+  &.big {
+    font-size: 2rem;
+    height: 4.2rem;
+    line-height: 4.2rem;
+    padding: 0 3.4rem;
+    border-radius: 2.6rem;
+  }
 }

@@ -16,6 +16,7 @@ const Button = (props) => {
     isLoading,
     classes,
     color,
+    size,
     ...others
   } = props;
 
@@ -25,6 +26,7 @@ const Button = (props) => {
     disabled && styles.disabled, 
     isLoading && styles.loading, 
     styles[color],
+    styles[size],
     ...classes
   ];
 
@@ -69,6 +71,7 @@ Button.propTypes = {
   isLoading: PropTypes.bool,
   classes: PropTypes.array,
   color: PropTypes.oneOf(['primary', 'secondary']),
+  size: PropTypes.string,
 };
 
 Button.defaultProps = {
