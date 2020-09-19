@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import styles from './AuthForm.module.scss';
 
@@ -7,20 +7,48 @@ import Button from '../../common/Button';
 import InlineLink from '../../common/InlineLink';
 import CheckboxField from '../../common/CheckboxField';
 import AcceptRegulations from './components/AcceptRegulations';
+import { toast } from 'react-toastify';
 
+import { useMutation } from 'react-query';
 import useAuthForm from './useAuthForm';
 
-const AuthForm = ({ submitAction, isForRegister, switchAction }) => {
+const AuthForm = ({ apiAction, onLogin, isForRegister, switchAction }) => {
 
   const { 
-    submitForm,
+    checkForm,
     fields,
+    values,
     onChangeFor,
-  } = useAuthForm(submitAction, isForRegister);
+  } = useAuthForm({ isForRegister });
+
+  const [submitAction, { isLoading: isSending }] = useMutation(apiAction, {
+    onSuccess: data => {
+      const { token, user } = data;
+      onLogin({ token, user });
+      localStorage.setItem('tkn', token);
+    },
+    onError: data => {
+      toast.error();
+    }
+  });
+
+
+  const onSubmitForm = useCallback((e) => {
+    e.preventDefault();
+
+    const isError = checkForm();
+    if(isError) {
+      return;
+    }
+
+    submitAction(values);
+
+  }, [checkForm, submitAction, values]);
+
 
   return ( 
     <div className={styles.root}>
-      <form onSubmit={submitForm}>
+      <form onSubmit={onSubmitForm}>
         <div className={styles.formField}>
           <InputField 
             label="Login"
@@ -70,6 +98,8 @@ const AuthForm = ({ submitAction, isForRegister, switchAction }) => {
         <div className={styles.buttonWrapper}>
           <Button
             type="submit"
+            disabled={isSending}
+            isLoading={isSending}
           >
             {isForRegister ? 'Zarejestruj się' : 'Zaloguj się'}
           </Button>
@@ -92,7 +122,8 @@ const AuthForm = ({ submitAction, isForRegister, switchAction }) => {
 }
 
 AuthForm.propTypes = {
-  submitAction: PropTypes.func.isRequired,
+  apiAction: PropTypes.func.isRequired,
+  onLogin: PropTypes.func.isRequired,
   isForRegister: PropTypes.bool,
   switchAction: PropTypes.func,
 }

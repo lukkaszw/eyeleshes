@@ -1,12 +1,12 @@
 import { useState, useCallback } from 'react';
 import { authValidators } from '../../../utils/validators';
 
-const useAuthForm = (submitAction, isForRegister) => {
+const useAuthForm = ({ isForRegister }) => {
 
   const [login, changeLogin] = useState({ value: '', error: false});
   const [password, changePassword] = useState({ value: '', error: false});
   const [confirmPassword, changeConfirmPassword] = useState({ value: '', error: false});
-  const [regulationsAgreement, changeRegulationAgreement] = useState({ checked: false, error: false});
+  const [regulationsAgreement, changeRegulationAgreement] = useState({ value: false, error: false});
 
   const onChangeLogin = useCallback((e) => 
     changeLogin({
@@ -50,6 +50,15 @@ const useAuthForm = (submitAction, isForRegister) => {
     fields.regulationsAgreement = regulationsAgreement;
   }
 
+  const values = {
+    login: login.value,
+    password: password.value,
+  };
+
+  if(isForRegister) {
+    values.confirmPassword = confirmPassword.value;
+  }
+
   const onChangeFor = {
     login: onChangeLogin,
     password: onChangePassword,
@@ -60,9 +69,8 @@ const useAuthForm = (submitAction, isForRegister) => {
     onChangeFor.regulationsAgreement = onChangeRegulationsAgreement;
   }
 
-  const submitForm = useCallback((e) => {
-    e.preventDefault();
-
+  const checkForm = useCallback(() => {
+    
     let isError = false;
 
     Object.entries(fields).forEach(([key, data]) => {
@@ -90,17 +98,15 @@ const useAuthForm = (submitAction, isForRegister) => {
       }
     });
 
-    if(isError) return;
-
-    console.log(fields);
-
+    return isError;
 
   },[fields]);
 
   return {
     fields,
+    values,
     onChangeFor,
-    submitForm,
+    checkForm,
   }
 
 };

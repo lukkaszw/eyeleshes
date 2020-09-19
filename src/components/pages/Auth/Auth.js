@@ -3,7 +3,8 @@ import { useLocation } from 'react-router-dom';
 import clsx from 'clsx';
 import styles from './Auth.module.scss';
 
-import AuthForm from '../../features/AuthForm';
+import SignUpForm from '../../features/AuthForm/AuthForm.signup.container';
+import SignInForm from '../../features/AuthForm/AuthForm.signin.container';
 
 const Auth = () => {
 
@@ -26,16 +27,14 @@ const Auth = () => {
     <div className={styles.root}>
       <div className={clsx([styles.wrapper, formNr === 2 && styles.register])}>
         <div className={styles.form}>
-          <AuthForm 
+          <SignInForm 
             switchAction={switchToRegister}
           />
         </div>
         <div className={styles.form}>
-          <AuthForm 
+          <SignUpForm 
             switchAction={switchToLogin}
-            isForRegister
           />
-          
         </div>
       </div>
     </div>
