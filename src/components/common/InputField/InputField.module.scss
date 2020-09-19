@@ -8,9 +8,9 @@
   .input {
     display: inline-block;
     padding: 6px 10px;
-    border: 1px solid #BD3381;
-    box-shadow: 0 2px 0 -1px #BD3381;
-    background-color: #fff;
+    border: 1px solid var(--input-cl);
+    box-shadow: 0 2px 0 -1px var(--input-cl);
+    background-color: var(--input-cl-bg);
     border-radius: 4px;
     font-size: 18px;
     width: 220px;
@@ -24,8 +24,8 @@
 
     &:focus {
       outline: none;
-      border-bottom: 1px solid var(--green);
-      box-shadow: 0 2px 0px -1px  var(--green);
+      border-bottom: 1px solid var(--input-cl-active);
+      box-shadow: 0 2px 0px -1px  var(--input-cl-active);
     }
   }
 
@@ -48,7 +48,7 @@
   }
 
   .input:focus + .label {
-    color: var(--font-cl-green);
+    color: var(--input-cl-active);
   }
 
   .message {
@@ -69,22 +69,22 @@
 
   &.error {
     .input {
-      background-color: var(--red-light);
-      border: 1px solid var(--red);
-      box-shadow: 0 2px 0px var(--red);
+      background-color: var(--input-cl-error-bg);
+      border: 1px solid var(--input-cl-error);
+      box-shadow: 0 2px 0px var(--input-cl-error);
 
       &:focus {
-        border: 1px solid var(--red);
-        box-shadow: 0 2px 0px -1px  var(--red);
+        border: 1px solid var(--input-cl-error);
+        box-shadow: 0 2px 0px -1px  var(--input-cl-error);
       }
     }
 
     .label {
-      color: var(--font-cl-error);
+      color: var(--input-cl-error);
     }
 
     .message {
-      color: var(--font-cl-error);
+      color: var(--input-cl-error);
     }
   }
 }

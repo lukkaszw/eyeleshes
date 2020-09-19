@@ -1,6 +1,7 @@
 :root {
   //Colors
   --black: #000;
+  --white: #fff;
 
   --grey: #777;
   --grey-dark: #555;
@@ -40,9 +41,17 @@
 
   //Checkbox colors 
   --checkbox-cl: var(--purple);
+  --checkbox-cl-bg: var(--white);
   --checkbox-cl-error: var(--red);
   --checkbox-cl-disabled: var(--grey);
   --checkbox-cl-disabled-bg: var(--grey-light);
+
+  //Input colors
+  --input-cl: var(--purple);
+  --input-cl-bg: var(--white);
+  --input-cl-active: var(--green);
+  --input-cl-error: var(--red);
+  --input-cl-error-bg: var(--red-light);
 
   //Fonts
   --font-main: 'Lato', sans-serif;
