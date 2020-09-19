@@ -9,13 +9,19 @@ import {
 import SELECTORS from './redux/selectors';
 
 import MainLayout from './components/layout/MainLayout';
-
 import Main from './components/pages/Main';
 import Account from './components/pages/Account';
 import Clients from './components/pages/Clients';
 import Client from './components/pages/Client';
 
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import PropTypes from 'prop-types';
+
+toast.configure({
+
+});
 
 
 function App({ isAuth }) {
