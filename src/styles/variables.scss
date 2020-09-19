@@ -4,6 +4,7 @@
 
   --grey: #777;
   --grey-dark: #555;
+  --grey-light: #ccc;
 
   --purple: #BD3381;
   --purple-dark: #6d0640;
@@ -36,6 +37,12 @@
   --button-cl-disabled: linear-gradient(to right, var(--grey-dark), var(--grey));
 
   --button-cl-loader: var(--yellow);
+
+  //Checkbox colors 
+  --checkbox-cl: var(--purple);
+  --checkbox-cl-error: var(--red);
+  --checkbox-cl-disabled: var(--grey);
+  --checkbox-cl-disabled-bg: var(--grey-light);
 
   //Fonts
   --font-main: 'Lato', sans-serif;
