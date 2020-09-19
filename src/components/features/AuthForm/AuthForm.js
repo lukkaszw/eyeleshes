@@ -1,10 +1,12 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
 import styles from './AuthForm.module.scss';
 
 import InputField from '../../common/InputField';
 import Button from '../../common/Button';
 import InlineLink from '../../common/InlineLink';
+import CheckboxField from '../../common/CheckboxField';
+import AcceptRegulations from './components/AcceptRegulations';
 
 const AuthForm = ({ submitAction, isForRegister, switchAction }) => {
 
@@ -13,9 +15,13 @@ const AuthForm = ({ submitAction, isForRegister, switchAction }) => {
     console.log('hej');
   },[]);
 
+  const [checked, checking] = useState(true);
+
+  const onChange = useCallback(() => checking(prevChecked => !prevChecked), [checking]);
+
   return ( 
     <div className={styles.root}>
-      <form onClick={submitForm}>
+      <form onSubmit={submitForm}>
         <div className={styles.formField}>
           <InputField 
             label="Login"
@@ -24,17 +30,32 @@ const AuthForm = ({ submitAction, isForRegister, switchAction }) => {
         <div className={styles.formField}>
           <InputField 
             label="Hasło"
+            message={isForRegister && 'Minimum 8 znaków!'}
             type="password"
           />
         </div>
         {
           isForRegister &&
-          <div className={styles.formField}>
-            <InputField 
-              label="Potwierdź hasło"
-              type="password"
-            />
-          </div>
+          <>
+            <div className={styles.formField}>
+              <InputField 
+                label="Potwierdź hasło"
+                type="password"
+              />
+            </div>
+            <div className={styles.formField}>
+              <CheckboxField 
+                id="name"
+                checked={checked}
+                onChange={onChange}
+                label={
+                  <AcceptRegulations 
+                    inheritColor={checked}
+                  />
+                }
+              />
+            </div>
+          </>
         }
         <div className={styles.buttonWrapper}>
           <Button

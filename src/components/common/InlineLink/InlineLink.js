@@ -4,13 +4,13 @@ import { Link } from 'react-router-dom';
 import styles from './InlineLink.module.scss';
 import clsx from 'clsx';
 
-const InlineLink = ({ children, classes, component, href, to, ...others }) => {
+const InlineLink = ({ children, classes, inheritColor, component, href, to, ...others }) => {
 
   const Component = href ? 'a' : Link;
 
   return ( 
     <Component
-      className={clsx([styles.root, ...classes])}
+      className={clsx([styles.root, ...classes, inheritColor && styles.inherit])}
       href={href}
       to={to}
       {...others}
@@ -25,6 +25,7 @@ InlineLink.propTypes = {
   to: PropTypes.string,
   component: PropTypes.oneOf([Link, 'a']),
   classes: PropTypes.array,
+  inheritColor: PropTypes.bool,
 };
 
 InlineLink.defaultProps = {

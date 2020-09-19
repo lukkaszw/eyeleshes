@@ -9,10 +9,16 @@
   &:visited {
     color: var(--font-cl-link);
   }
-
+  
   &:hover,
   &:focus {
     outline: none;
     animation: pulsate 1s infinite;
   }
+
+  &.inherit:link,
+  &.inherit:visited {
+    color: inherit;
+  }
+
 }
