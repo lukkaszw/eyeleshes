@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './AuthForm.module.scss';
 
@@ -8,16 +8,15 @@ import InlineLink from '../../common/InlineLink';
 import CheckboxField from '../../common/CheckboxField';
 import AcceptRegulations from './components/AcceptRegulations';
 
+import useAuthForm from './useAuthForm';
+
 const AuthForm = ({ submitAction, isForRegister, switchAction }) => {
 
-  const submitForm = useCallback((e) => {
-    e.preventDefault();
-    console.log('hej');
-  },[]);
-
-  const [checked, checking] = useState(true);
-
-  const onChange = useCallback(() => checking(prevChecked => !prevChecked), [checking]);
+  const { 
+    submitForm,
+    fields,
+    onChangeFor,
+  } = useAuthForm(submitAction, isForRegister);
 
   return ( 
     <div className={styles.root}>
@@ -25,13 +24,20 @@ const AuthForm = ({ submitAction, isForRegister, switchAction }) => {
         <div className={styles.formField}>
           <InputField 
             label="Login"
+            value={fields.login.value}
+            error={fields.login.error}
+            onChange={onChangeFor.login}
+            message={isForRegister && 'od 3 do 12 znaków!'}
           />
         </div>
         <div className={styles.formField}>
           <InputField 
             label="Hasło"
-            message={isForRegister && 'Minimum 8 znaków!'}
+            message={isForRegister && 'minimum 8 znaków!'}
             type="password"
+            value={fields.password.value}
+            error={fields.password.error}
+            onChange={onChangeFor.password}
           />
         </div>
         {
@@ -41,16 +47,20 @@ const AuthForm = ({ submitAction, isForRegister, switchAction }) => {
               <InputField 
                 label="Potwierdź hasło"
                 type="password"
+                value={fields.confirmPassword.value}
+                error={fields.confirmPassword.error}
+                onChange={onChangeFor.confirmPassword}
               />
             </div>
             <div className={styles.formField}>
               <CheckboxField 
                 id="name"
-                checked={checked}
-                onChange={onChange}
+                checked={fields.regulationsAgreement.value}
+                onChange={onChangeFor.regulationsAgreement}
+                error={fields.regulationsAgreement.error}
                 label={
                   <AcceptRegulations 
-                    inheritColor={checked}
+                    inheritColor={true}
                   />
                 }
               />
