@@ -16,10 +16,13 @@ app.use(compression());
 app.use(express.static(path.join(__dirname, '..', 'build')));
 app.use(mongoSanitize());
 
+
+app.listen(port, () => console.log(`Server is listening on port ${port}!`));
+
+const userRouter = require('./routes/user.routes');
+
+app.use('/api/user', userRouter);
+
 app.get('*', (req, res) => {                       
   res.sendFile(path.resolve(__dirname, '..', 'build', 'index.html'));                               
 });
-
-app.listen(() => {
-  console.log(`Server is litening on port ${port}.`);
-})
