@@ -36,7 +36,7 @@ const signIn = async (req, res) => {
     res.json({ token, user });
   } catch (error) {
     if(error.message === 'Nieprawidłowy login lub hasło!') {
-      res.json({
+      res.status(400).json({
         error: error.message,
       });
       return;
