@@ -7,6 +7,9 @@ const useAuthForm = ({ isForRegister }) => {
   const [password, changePassword] = useState({ value: '', error: false});
   const [confirmPassword, changeConfirmPassword] = useState({ value: '', error: false});
   const [regulationsAgreement, changeRegulationAgreement] = useState({ value: false, error: false});
+  const [apiError, setApiError] = useState('');
+
+  const onResetApiError = useCallback(() => setApiError(''), [setApiError]);
 
   const onChangeLogin = useCallback((e) => 
     changeLogin({
@@ -105,8 +108,11 @@ const useAuthForm = ({ isForRegister }) => {
   return {
     fields,
     values,
+    apiError,
+    setApiError,
     onChangeFor,
     checkForm,
+    onResetApiError,
   }
 
 };

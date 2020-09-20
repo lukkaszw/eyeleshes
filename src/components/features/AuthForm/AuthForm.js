@@ -7,31 +7,39 @@ import Button from '../../common/Button';
 import InlineLink from '../../common/InlineLink';
 import CheckboxField from '../../common/CheckboxField';
 import AcceptRegulations from './components/AcceptRegulations';
-import { toast } from 'react-toastify';
+import Alert from '../../common/Alert';
 
 import { useMutation } from 'react-query';
 import useAuthForm from './useAuthForm';
+import { toast } from 'react-toastify';
 
 const AuthForm = ({ apiAction, onLogin, isForRegister, switchAction }) => {
 
   const { 
     checkForm,
     fields,
+    apiError,
+    setApiError,
+    onResetApiError,
     values,
     onChangeFor,
   } = useAuthForm({ isForRegister });
 
   const [submitAction, { isLoading: isSending }] = useMutation(apiAction, {
     onSuccess: data => {
+      console.log('jest tu');
       const { token, user } = data;
       onLogin({ token, user });
       localStorage.setItem('tkn', token);
+      toast.success(isForRegister ? 'Zostałeś pomyślnie zarejestrowany!' : 'Zostałeś pomyślnie zalogowany!', {
+        className: 'toast-success-custom toast-background',
+        bodyClassName: 'toast-custom-body',
+      });
     },
     onError: data => {
-      toast.error();
+      setApiError(data.response.data.error);
     }
   });
-
 
   const onSubmitForm = useCallback((e) => {
     e.preventDefault();
@@ -98,7 +106,7 @@ const AuthForm = ({ apiAction, onLogin, isForRegister, switchAction }) => {
         <div className={styles.buttonWrapper}>
           <Button
             type="submit"
-            disabled={isSending}
+            disabled={isSending || !!apiError}
             isLoading={isSending}
           >
             {isForRegister ? 'Zarejestruj się' : 'Zaloguj się'}
@@ -117,6 +125,13 @@ const AuthForm = ({ apiAction, onLogin, isForRegister, switchAction }) => {
           }
         </InlineLink>
       </p>
+      {
+        apiError &&
+          <Alert 
+            message={apiError}
+            onClick={onResetApiError}
+          />
+      }
     </div>
   );
 }
