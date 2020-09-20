@@ -62,6 +62,11 @@
   --alert-cl: var(--black-light);
   --alert-cl-font: var(--font-cl-light);
 
+  //custom toasts colors
+  --toast-cl-error: linear-gradient(to bottom right, var(--red-dark), var(--red));
+  --toast-cl-success: linear-gradient(to bottom right, var(--green-dark), var(--green));
+  --toast-shadow: 2px 2px 6px #555;
+
   //Fonts
   --font-main: 'Lato', sans-serif;
   --font-decorative: 'Italianno', cursive;

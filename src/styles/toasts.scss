@@ -1,0 +1,13 @@
+.toast-error-custom.toast-background {
+  background-image: var(--toast-cl-error);
+  box-shadow: var(--toast-shadow);
+}
+
+.toast-success-custom.toast-background {
+  background-image: var(--toast-cl-success);
+  box-shadow: var(--toast-shadow);
+}
+
+.toast-custom-body {
+  font-size: 1.6rem;
+}
