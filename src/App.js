@@ -14,6 +14,7 @@ import Main from './components/pages/Main';
 import Account from './components/pages/Account';
 import Clients from './components/pages/Clients';
 import Client from './components/pages/Client';
+import Logout from './components/pages/Logout';
 
 import API from './api';
 
@@ -54,6 +55,9 @@ function App({ isAuth, onTryLoginOnStart }) {
         </Route>
         <Route exact path="/account">
           <Account />
+        </Route>
+        <Route exact path="/logout">
+          <Logout />
         </Route>
         <Redirect to="/clients"/>
       </Switch>

@@ -27,4 +27,9 @@ export const AUTH_LINKS = [
     title: 'Moje konto',
     to: '/account',
   },
+  {
+    id: 3,
+    title: 'Wyloguj się',
+    to: '/logout',
+  },
 ];

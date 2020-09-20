@@ -51,3 +51,23 @@ export const tryLoginOnStart = () => {
     return null;
   }
 };
+
+export const logout = (token) => {
+  localStorage.removeItem('tkn');
+
+return dispatch => {
+    dispatch(ACTION_CREATORS.user.logout());
+
+    const url = `${api.baseUrl}/${api.endpoints.user.logout}`;
+
+    const config = generateAuthConfig(token);
+
+    axios.put(url, {}, config)
+      .then(res => {
+        console.log('Pomyślne wylogowanie również na serwerze!');
+      })
+      .catch(() => {
+        console.warn('Error - logowanie nie powiodło się na serwerze. Logowanie lokalne zakończone sukcesem!');
+      });
+  }
+}
