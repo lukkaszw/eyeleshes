@@ -1,6 +1,7 @@
 :root {
   //Colors
   --black: #000;
+  --black-light: #222;
   --white: #fff;
 
   --grey: #777;
@@ -21,6 +22,7 @@
 
   //Font colors
   --font-cl-primary: var(--black);
+  --font-cl-light: var(--white);
   --font-cl-error: var(--red);
   --font-cl-green: var(--green);
   --font-cl-link: var(--purple-dark); 
@@ -52,6 +54,13 @@
   --input-cl-active: var(--green);
   --input-cl-error: var(--red);
   --input-cl-error-bg: var(--red-light);
+
+  //backdrop colors
+  --backdrop-cl: rgba(0, 0, 0, .7);
+
+  //alert colors
+  --alert-cl: var(--black-light);
+  --alert-cl-font: var(--font-cl-light);
 
   //Fonts
   --font-main: 'Lato', sans-serif;
