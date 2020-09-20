@@ -5,7 +5,7 @@ import styles from './InputField.module.scss';
 
 const InputField = ({ 
   id, value, label, type, inputProps,
-  onChange, error, message,
+  onChange, error, message, autoComplete,
   fullWidth }) => {
   return ( 
     <div className={clsx([
@@ -21,6 +21,7 @@ const InputField = ({
         type={type}
         onChange={onChange}
         placeholder={label}
+        autoComplete={autoComplete}
       />
       <label 
         className={styles.label}
@@ -46,6 +47,7 @@ InputField.propTypes = {
   error: PropTypes.bool,
   message: PropTypes.string,
   fullWidth: PropTypes.bool,
+  autoComplete: PropTypes.string,
 }
 
 InputField.defaultProps = {

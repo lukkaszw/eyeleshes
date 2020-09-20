@@ -71,6 +71,7 @@ const AuthForm = ({ apiAction, onLogin, isForRegister, switchAction }) => {
             label="Hasło"
             message={isForRegister && 'minimum 8 znaków!'}
             type="password"
+            autoComplete="off"
             value={fields.password.value}
             error={fields.password.error}
             onChange={onChangeFor.password}
@@ -83,6 +84,7 @@ const AuthForm = ({ apiAction, onLogin, isForRegister, switchAction }) => {
               <InputField 
                 label="Potwierdź hasło"
                 type="password"
+                autoComplete="off"
                 value={fields.confirmPassword.value}
                 error={fields.confirmPassword.error}
                 onChange={onChangeFor.confirmPassword}
