@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import {
@@ -15,6 +15,8 @@ import Account from './components/pages/Account';
 import Clients from './components/pages/Clients';
 import Client from './components/pages/Client';
 
+import API from './api';
+
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -27,7 +29,11 @@ const queryConfig = {
 };
 
 
-function App({ isAuth }) {
+function App({ isAuth, onTryLoginOnStart }) {
+
+  useEffect(() => {
+    onTryLoginOnStart();
+  }, [onTryLoginOnStart]);
 
   const routing = !isAuth ? 
     (
@@ -66,10 +72,15 @@ function App({ isAuth }) {
 
 App.propTypes = {
   isAuth: PropTypes.bool.isRequired,
+  onTryLoginOnStart: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   isAuth: SELECTORS.user.checkAuth(state),
 });
 
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = (dispatch) => ({
+  onTryLoginOnStart: () => dispatch(API.user.tryLoginOnStart()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

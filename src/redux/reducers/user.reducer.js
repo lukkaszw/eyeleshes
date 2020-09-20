@@ -9,6 +9,18 @@ const userReducer = (statePart = {}, action = {}) => {
         data: action.payload.user,
       }
     }
+    case ACTIONS.user.SET_USER_DATA: {
+      return {
+        ...statePart,
+        data: action.payload,
+      }
+    }
+    case ACTIONS.user.LOGOUT: {
+      return {
+        token: null,
+        data: {},
+      }
+    }
     default: 
       return statePart;
   }

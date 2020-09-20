@@ -4,6 +4,7 @@ const api = {
     user: {
       register: 'user',
       login: 'user/login',
+      getData: 'user/data',
     }
   }
 };
