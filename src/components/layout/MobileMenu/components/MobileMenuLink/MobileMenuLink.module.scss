@@ -1,0 +1,30 @@
+.root {
+  margin: 20px 0;
+  display: block;
+  text-align: center;
+
+  .link {
+    display: inline-block;
+    padding: 7px;
+    border-radius: 5px;
+    transform: translate(-2px, -2px);
+    box-shadow: 4px 4px 6px #222;
+   
+    font-size: 1.6rem;
+    text-decoration: none;
+    color: var(--mobile-menu-link-font-cl);
+    font-weight: bold;
+    text-transform: uppercase;
+    width: 100%;
+    background-color: var(--mobile-menu-link-cl);
+    transition: .2s;
+
+    &.active {  
+      box-shadow: 2px 2px 4px #222;
+      transform: translate(0, 0);
+      background-color: var(--mobile-menu-link-active-cl);
+      color: var(--mobile-menu-link-font-active-cl);
+    }
+  }
+
+}

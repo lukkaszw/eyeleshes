@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 
 import Header from '../Header';
 import Main from '../../pages/Main';
+import MobileMenu from '../MobileMenu';
 
 const AppNotAuth = () => {
   return ( 
@@ -13,6 +14,7 @@ const AppNotAuth = () => {
         </Route>
       </Switch>
       <Header />
+      <MobileMenu />
     </>
   );
 }

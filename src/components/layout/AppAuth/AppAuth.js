@@ -8,14 +8,15 @@ import Client from '../../pages/Client';
 import Logout from '../../pages/Logout';
 import Header from '../Header';
 import Footer from '../Footer';
+import MobileMenu from '../MobileMenu';
 
 
 const AppAuth = () => {
   return ( 
     <div className={styles.root}>
       <Header />
-      <main className={styles.wrapper}>
-        <div className={styles.container}>
+      <div className={styles.wrapper}>
+        <main className={styles.container}>
           <Switch>
             <Route exact path="/clients">
               <Clients />
@@ -31,9 +32,10 @@ const AppAuth = () => {
             </Route>
             <Redirect to="/clients"/>
           </Switch>
-        </div>
+        </main>
         <Footer/>
-      </main>
+      </div>
+      <MobileMenu />
     </div>
   );
 }

@@ -15,11 +15,11 @@ const MainContent = () => {
         <span className={styles.descriptionPart2}> Sama skup się na tym co ważne!</span>
       </p>
       <Button
-        to='/auth'
+        to='/auth#register'
         component={Link}
         size="big"
       >
-        Zaloguj się
+        Zapisz się
       </Button>
     </div>
   );

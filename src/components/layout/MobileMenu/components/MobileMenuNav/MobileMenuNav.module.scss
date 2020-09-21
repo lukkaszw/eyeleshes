@@ -1,0 +1,18 @@
+@import '../../../../../styles/animations.scss';
+
+.root {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 200px;
+  transform: translate(300%, -700%);
+  backface-visibility: hidden;
+
+  ul {
+    list-style: none;
+  }
+
+  &.open {
+    animation: mobileNav 1.5s ease both;
+  }
+}

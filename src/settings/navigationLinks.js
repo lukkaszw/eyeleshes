@@ -11,8 +11,8 @@ export const NOT_AUTH_LINKS = [
   },
   {
     id: 3,
-    title: 'Zaloguj/Zarejestruj się',
-    to: '/auth',
+    title: 'Zaloguj się',
+    to: '/auth/#login',
   },
 ];
 
