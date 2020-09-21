@@ -10,14 +10,6 @@
     font-weight: 400;
     font-family: var(--font-decorative);
     font-size: 10rem;
-
-    @media (max-width: 359px), (max-height: 450px) {
-      font-size: 7rem;
-    }
-
-    @media (min-width: 600px) and (orientation: portrait) {
-      font-size: 12rem;
-    }
   }
 
   .description {
@@ -44,22 +36,66 @@
     }
   }
 
-  @media (max-width: 520px) {
+
+  @media (max-width: 620px) {
     .descriptionPart2 {
       display: block;
     }
   }
 
-  @media (max-height: 450px) {
+  @media (max-width: 360px) {
+    .description {
+      font-size: 2rem;
+    } 
+  }
+
+  @media (max-width: 420px) {
+    .title {
+      font-size: 8rem;
+    }
+  }
+
+  @media (max-width: 330px) {
+    .title {
+      font-size: 7rem;
+    }
 
     .description {
-      margin-top: 1.5rem;
-      margin-bottom: 4rem;
+      font-size: 1.8rem;
+    }
+  }
+
+  @media (max-height: 450px) {
+    .title {
+      font-size: 7rem;
+    }
+
+    .description {
+      font-size: 2rem;
+      margin-top: 1.3rem;
+      margin-bottom: 3.5rem;
+    }
+  }
+
+  @media (max-height: 320px) {
+    .title {
+      font-size: 5.5rem;
+    }
+
+    .description {
+      font-size: 1.6rem;
+      margin-top: 1rem;
+      margin-bottom: 3rem;
     }
   }
 
   @media (min-width: 600px) and (orientation: portrait) {
+    .title {
+      font-size: 12rem;
+    }
+
     .description {
+      font-size: 2.4rem;
       margin-top: 7rem;
       margin-bottom: 10rem;
     }

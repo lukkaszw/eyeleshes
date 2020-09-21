@@ -4,9 +4,13 @@
   left: 0;
   padding: 0 30rem;
   width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
 
   @media (max-width: 1600px) {
     padding: 0 5rem;
@@ -14,7 +18,41 @@
 
   @media (max-width: 825px) {
     height: 0;
-    top: 3rem;
+    top: 30px;
     padding: 0 2rem;
+
+    .container {
+      height: 0;
+    }
+  }
+
+  &.auth {
+    position: sticky;
+    top: 0;
+    height: 40px;
+    background: var(--auth-nav-bg-cl);
+    box-shadow: 0 4px 6px #555;
+    
+    .container {
+      height: 100%;
+      width: 1024px;
+      margin: 0 auto;
+      max-width: 100%;
+    }
+
+      
+    @media (max-width: 1600px) {
+      padding: 0;
+    }
+
+    @media (max-width: 825px) {
+      top: 20px;
+      height: 0;
+      padding-left: 10px;
+
+      .container {
+        height: 0;
+      }
+    }
   }
 }

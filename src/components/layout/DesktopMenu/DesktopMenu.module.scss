@@ -1,7 +1,11 @@
 .root {
   list-style: none;
 
-  @media (max-width: 820px) {
+  &.auth {
+    height: 100%;
+  }
+
+  @media (max-width: 825px) {
     display: none;
   }
 }

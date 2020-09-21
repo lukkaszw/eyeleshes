@@ -3,18 +3,11 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import {
   BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect
 } from "react-router-dom";
 import SELECTORS from './redux/selectors';
 
-import MainLayout from './components/layout/MainLayout';
-import Main from './components/pages/Main';
-import Account from './components/pages/Account';
-import Clients from './components/pages/Clients';
-import Client from './components/pages/Client';
-import Logout from './components/pages/Logout';
+import AppNotAuth from './components/layout/AppNotAuth';
+import AppAuth from './components/layout/AppAuth';
 
 import API from './api';
 
@@ -36,39 +29,15 @@ function App({ isAuth, onTryLoginOnStart }) {
     onTryLoginOnStart();
   }, [onTryLoginOnStart]);
 
-  const routing = !isAuth ? 
-    (
-      <Switch>
-        <Route path="/">
-          <Main />
-        </Route>
-      </Switch>
-    )
+  const content = !isAuth ? 
+    <AppNotAuth />
     :
-    (
-      <Switch>
-        <Route exact path="/clients">
-          <Clients />
-        </Route>
-        <Route exact path="/clients/:id">
-          <Client />
-        </Route>
-        <Route exact path="/account">
-          <Account />
-        </Route>
-        <Route exact path="/logout">
-          <Logout />
-        </Route>
-        <Redirect to="/clients"/>
-      </Switch>
-    );
+    <AppAuth />
 
   return (
     <ReactQueryConfigProvider config={queryConfig}>
       <Router>
-        <MainLayout>
-          {routing}
-        </MainLayout>
+        {content}
       </Router>
     </ReactQueryConfigProvider>
   );

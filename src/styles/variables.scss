@@ -9,6 +9,7 @@
   --grey-light: #ccc;
 
   --purple: #BD3381;
+  --purple-v-light: #f0eef5;
   --purple-dark: #6d0640;
 
   --red: #da1f15;
@@ -26,6 +27,13 @@
   --font-cl-error: var(--red);
   --font-cl-green: var(--green);
   --font-cl-link: var(--purple-dark); 
+
+  //Layout elements colors
+  --auth-page-bg-cl: var(--purple-v-light);
+  --auth-nav-bg-cl: linear-gradient(to top right, var(--purple-dark), var(--purple));
+  --auth-nav-link-hover-cl: var(--purple-dark);
+  --auth-nav-link-font-cl: var(--grey-light);
+  --auth-nav-link-font-hover-cl: var(--white);
 
   //Buttons colors
   --button-cl-primary: linear-gradient(to right, var(--purple-dark), var(--purple));

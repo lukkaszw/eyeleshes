@@ -6,6 +6,7 @@ import DesktopMenuLink from './components/DesktopMenuLink';
 
 import PropTypes from 'prop-types';
 import styles from './DesktopMenu.module.scss';
+import clsx from 'clsx';
 
 const DesktopMenu = ({ isAuth }) => {
 
@@ -13,10 +14,11 @@ const DesktopMenu = ({ isAuth }) => {
 
   return ( 
     <nav>
-      <ul className={styles.root}>
+      <ul className={clsx([styles.root, isAuth && styles.auth])}>
         {
           links.map(link => (
             <DesktopMenuLink 
+              isAuth={isAuth}
               key={link.id}
               {...link} 
             />
