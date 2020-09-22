@@ -22,9 +22,11 @@ app.listen(port, () => console.log(`Server is listening on port ${port}!`));
 
 const userRouter = require('./routes/user.routes');
 const clientRouter = require('./routes/client.routes');
+const visitRouter = require('./routes/visit.routes');
 
 app.use('/api/user', userRouter);
 app.use('/api/clients', auth, clientRouter);
+app.use('/api/visits', auth, visitRouter);
 
 app.get('*', (req, res) => {                       
   res.sendFile(path.resolve(__dirname, '..', 'build', 'index.html'));                               

@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Visit = require('../models/visit');
 
 const clientSchema = mongoose.Schema({
   name: {
@@ -16,15 +17,6 @@ const clientSchema = mongoose.Schema({
     ref: 'User',
     required: true,
   },
-  visits: {
-    type: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Visit',
-      }
-    ],
-    default: [],
-  }
 }, {
   timestamps: true,
 });
@@ -32,7 +24,7 @@ const clientSchema = mongoose.Schema({
 clientSchema.pre('remove', async function (next) {
   const client = this;
 
-  //removing related visits
+  await Visit.deleteMany({ clientId: client._id });
 
   next();
 });
