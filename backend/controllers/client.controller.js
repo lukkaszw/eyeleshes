@@ -1,5 +1,6 @@
 const Client = require('../models/client');
-const clientErrors = require('../middlewares/clientErrors');
+const ERRORS = require('../errors/errors');
+const sendErrors = require('../errors/sendErrors');
 
 const createOne = async (req, res) => {
   const userId = req.user._id;
@@ -14,7 +15,7 @@ const createOne = async (req, res) => {
     res.json(client);
 
   } catch (error) {
-    clientErrors.sendPostErrors(error, res);
+    sendErrors.sendPostErrors(error, res, ERRORS.FORMS.client.post);
   }
 }
 
@@ -28,7 +29,7 @@ const getAll = async (req, res) => {
     res.json(clients);
   } catch (error) {
     res.status(500).json({
-      error: 'Problemy z serwerem! Spróbuj ponownie później.',
+      error: ERRORS.BAD_SERVER,
     });
   }
 }
@@ -39,11 +40,10 @@ const getOne = async (req, res) => {
 
   try {
     const client = await Client.findOne({ _id, userId });
-      // .populate('visits');
 
     if(!client) {
       res.status(404).json({
-        error: 'Klient nie znaleziony! Błędny link do zasobu!',
+        error: ERRORS.NOT_FOUND,
       });
       return;
     }
@@ -51,7 +51,7 @@ const getOne = async (req, res) => {
     res.json(client);
 
   } catch (error) {
-    clientErrors.sendGetErrors(error, res);
+    sendErrors.sendGetErrors(error, res);
   }
 }
 
@@ -67,7 +67,7 @@ const updateOne = async (req, res) => {
 
   if(!isMatch) {
     res.status(400).json({
-      error: 'Nieprawidłowa próba edycji. Można edytować tylko pola: name, surname',
+      error: ERRORS.FORMS.client.update,
     });
     return;
   }
@@ -77,7 +77,7 @@ const updateOne = async (req, res) => {
 
     if(!client) {
       res.status(404).json({
-        error: 'Klient nie odnaleziony! Sprawdź poprawność zapytania i spróbuj ponownie!',
+        error: ERRORS.NOT_FOUND,
       }); 
       return;
     }
@@ -91,7 +91,7 @@ const updateOne = async (req, res) => {
     res.json(client);
 
   } catch (error) {
-    clientErrors.sendPutErrors(error, res);
+    sendErrors.sendPutErrors(error, res, ERRORS.FORMS.client.update);
   }
 }
 
@@ -104,7 +104,7 @@ const deleteOne = async (req, res) => {
 
     if(!client) {
       res.status(404).json({
-        error: 'Klient nie odnaleziony! Sprawdź poprawność zapytania i spróbuj ponownie!',
+        error: ERRORS.NOT_FOUND,
       }); 
       return;
     }
@@ -114,7 +114,7 @@ const deleteOne = async (req, res) => {
     res.json(client);
 
   } catch (error) {
-    clientErrors.sendGetErrors(error, res);
+    sendErrors.sendGetErrors(error, res);
   }
 }
 
