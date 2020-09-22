@@ -37,5 +37,5 @@ clientSchema.pre('remove', async function (next) {
   next();
 });
 
-const User = mongoose.model('Client', clientSchema);
-module.exports = User;
+const Client = mongoose.model('Client', clientSchema);
+module.exports = Client;
