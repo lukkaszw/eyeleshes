@@ -22,7 +22,6 @@ const visitSchema = mongoose.Schema({
   comment: {
     type: String,
     maxlength: 500,
-    required: true,
     trim: true,
   }
 }, {

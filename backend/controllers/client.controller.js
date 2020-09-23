@@ -1,6 +1,7 @@
 const Client = require('../models/client');
 const ERRORS = require('../errors/errors');
 const sendErrors = require('../errors/sendErrors');
+const { getClientsWithLastVisits } = require('../utils/findLastVisit');
 
 const createOne = async (req, res) => {
   const userId = req.user._id;
@@ -24,9 +25,10 @@ const getAll = async (req, res) => {
 
   try {
     const clients = await Client.find({ userId, })
-      .select('-visits');
 
-    res.json(clients);
+    const clientsWithLastVisit = await getClientsWithLastVisits(clients);
+
+    res.json(clientsWithLastVisit);
   } catch (error) {
     res.status(500).json({
       error: ERRORS.BAD_SERVER,
