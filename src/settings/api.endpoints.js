@@ -6,7 +6,8 @@ const api = {
       login: 'user/login',
       logout: 'user/logout',
       getData: 'user/data',
-    }
+    },
+    clients: 'clients',
   }
 };
 
