@@ -13,6 +13,7 @@
   --purple-dark: #6d0640;
 
   --red: #da1f15;
+  --red-secondary: #f50057;
   --red-dark: #901414;
   --red-light: #e2caca;
 
@@ -48,6 +49,8 @@
   --mobile-menu-link-active-cl: var(--purple);
   --mobile-menu-link-font-active-cl: var(--white);
 
+  //Loader colors
+  --loader-cl: var(--red-secondary);
 
 
   //Buttons colors
