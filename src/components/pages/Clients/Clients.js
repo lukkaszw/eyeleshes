@@ -8,6 +8,7 @@ import ClientsFilters from '../../features/ClientsFilters';
 import ClientsList from '../../features/ClientsList';
 
 const Clients = ({ token }) => {
+  
   return ( 
     <div>
       <ClientsFilters />

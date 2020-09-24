@@ -4,11 +4,12 @@ import { useQuery } from 'react-query';
 import styles from './ClientsList.module.scss';
 
 import ClientItem from './components/ClientItem';
+import ClientsSort from '../ClientsSorts';
 
 import API from '../../../api';
 
 const ClientsList = ({ token }) => {
-
+  
   const { data } = useQuery(['clients', { token } ], 
     API.clients.getAll,  
     { suspense: true, cacheTime: 0 }
@@ -17,6 +18,7 @@ const ClientsList = ({ token }) => {
 
   return ( 
     <div className={styles.root}>
+      <ClientsSort />
       <ul className={styles.list}>
         {
           data.map(client => (
