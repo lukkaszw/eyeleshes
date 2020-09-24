@@ -80,6 +80,13 @@
   --icon-button-icon-cl: var(--purple);
   --icon-button-icon-cl-hover: var(--purple-light);
 
+  --icon-button-secondary-bg-cl: transparent;
+  --icon-button-secondary-bg-cl-hover: var(--grey-light);
+  --icon-button-secondary-icon-cl: var(--grey-dark);
+  --icon-button-secondary-icon-cl-hover: var(--black);
+
+  --icon-button-bg-cl-fill: var(--white);
+
   //Checkbox colors 
   --checkbox-cl: var(--purple);
   --checkbox-cl-bg: var(--white);
