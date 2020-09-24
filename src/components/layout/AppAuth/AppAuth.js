@@ -9,6 +9,7 @@ import Logout from '../../pages/Logout';
 import Header from '../Header';
 import Footer from '../Footer';
 import MobileMenu from '../MobileMenu';
+import LoaderIndicator from '../../common/LoaderIndicator';
 
 
 const AppAuth = () => {
@@ -17,21 +18,23 @@ const AppAuth = () => {
       <Header />
       <div className={styles.wrapper}>
         <main className={styles.container}>
-          <Switch>
-            <Route exact path="/clients">
-              <Clients />
-            </Route>
-            <Route exact path="/clients/:id">
-              <Client />
-            </Route>
-            <Route exact path="/account">
-              <Account />
-            </Route>
-            <Route exact path="/logout">
-              <Logout />
-            </Route>
-            <Redirect to="/clients"/>
-          </Switch>
+          <React.Suspense fallback={<LoaderIndicator isOpen={true}/>}>
+            <Switch>
+              <Route exact path="/clients">
+                <Clients />
+              </Route>
+              <Route exact path="/clients/:id">
+                <Client />
+              </Route>
+              <Route exact path="/account">
+                <Account />
+              </Route>
+              <Route exact path="/logout">
+                <Logout />
+              </Route>
+              <Redirect to="/clients"/>
+            </Switch>
+          </React.Suspense>
         </main>
         <Footer/>
       </div>

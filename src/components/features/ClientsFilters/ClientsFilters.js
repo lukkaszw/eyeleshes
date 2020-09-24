@@ -1,11 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styles from './ClientsFilters.module.scss';
 
 import InputField from '../../common/InputField';
 import Button from '../../common/Button';
 
 
-const ClientsFilters = () => {
+const ClientsFilters = ({ searchBy, onChangeSearchBy }) => {
   return ( 
     <div className={styles.root}>
       <div className={styles.inputWrapper}>
@@ -13,6 +14,8 @@ const ClientsFilters = () => {
           fullWidth
           label="Szukaj"
           placeholder="Szukaj"
+          value={searchBy}
+          onChange={(e) => onChangeSearchBy(e.target.value)}
         />
       </div>
 
@@ -23,6 +26,11 @@ const ClientsFilters = () => {
       </Button>
     </div>
   );
+}
+
+ClientsFilters.propTypes = {
+  searchBy: PropTypes.string.isRequired,
+  onChangeSearchBy: PropTypes.func.isRequired,
 }
  
 export default ClientsFilters;

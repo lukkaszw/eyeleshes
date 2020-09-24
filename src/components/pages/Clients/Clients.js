@@ -3,22 +3,27 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import SELECTORS from '../../../redux/selectors';
 
-import SuspenseErrorBundary from '../../common/SuspenseErrorBundary';
-import ClientsFilters from '../../features/ClientsFilters';
-import ClientsList from '../../features/ClientsList';
+import API from '../../../api';
+import { useQuery } from 'react-query';
 
-const Clients = ({ token }) => {
+import DisplayClients from './components/DisplayClients';
+
+
+const Clients = ({ 
+  token,
+}) => {
+
+  const { data } = useQuery(['clients', { token } ], 
+    API.clients.getAll,  
+    { suspense: true }
+  );
   
   return ( 
-    <div>
-      <ClientsFilters />
-      <SuspenseErrorBundary>
-        <ClientsList 
-          token={token}
-        />
-      </SuspenseErrorBundary>
-    </div>
-   );
+    <DisplayClients 
+      data={data}
+      token={token}
+    />
+  );
 }
 
 Clients.propTypes = {
@@ -28,9 +33,5 @@ Clients.propTypes = {
 const mapStateToProps = (state) => ({
   token: SELECTORS.user.getToken(state),
 });
-
-const mapDispatchToProps = (dispatch) => ({
-
-});
  
-export default connect(mapStateToProps, mapDispatchToProps)(Clients);
+export default connect(mapStateToProps)(Clients);
