@@ -1,0 +1,12 @@
+.root {
+  display: flex;
+  align-items: center;
+  font-size: 1.8rem;
+
+  .pages {
+    display: inline-block;
+    min-width: 60px;
+    padding: 0 5px;
+    text-align: center;
+  }
+}
