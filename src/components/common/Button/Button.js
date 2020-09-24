@@ -2,7 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styles from './Button.module.scss';
+
 
 const Button = (props) => {
   const {
@@ -11,30 +13,40 @@ const Button = (props) => {
     onClick,
     children,
     ariaLabel,
+    variant,
     target,
     disabled,
     isLoading,
     classes,
     color,
     size,
+    component,
+    icon,
     ...others
   } = props;
 
-  const EnhancedComponent = props.component || 'button';
+  const EnhancedComponent = component || 'button';
 
   const enhancedStyles = [
     disabled && styles.disabled, 
     isLoading && styles.loading, 
     styles[color],
     styles[size],
+    variant && styles[variant],
     ...classes
   ];
+
+  const content = icon ? (
+    <FontAwesomeIcon icon={icon}/>
+  )
+  :
+  children;
 
   if(EnhancedComponent !== 'button') {
     return ( 
       <EnhancedComponent
         className={clsx([
-          styles.root, 
+          icon ? styles.iconRoot : styles.root, 
           ...enhancedStyles,
         ])}
         href={href}
@@ -42,19 +54,19 @@ const Button = (props) => {
         aria-label={ariaLabel}
         target={target}
       > 
-        {children}
+        {content}
       </EnhancedComponent>
     );
   } else {
     return (
       <EnhancedComponent
         disabled={disabled}
-        className={clsx([styles.root, ...enhancedStyles])}
+        className={clsx([icon ? styles.iconRoot : styles.root, ...enhancedStyles])}
         onClick={onClick}
         aria-label={ariaLabel}
         {...others}
       >
-        {children}
+        {content}
       </EnhancedComponent>
     )
   }
@@ -62,6 +74,7 @@ const Button = (props) => {
 
 Button.propTypes = {
   component: PropTypes.oneOf([Link, 'a', 'button']),
+  icon: PropTypes.object,
   to: PropTypes.string,
   href: PropTypes.string,
   onClick: PropTypes.func,
@@ -72,6 +85,7 @@ Button.propTypes = {
   classes: PropTypes.array,
   color: PropTypes.oneOf(['primary', 'secondary']),
   size: PropTypes.string,
+  variant: PropTypes.string,
 };
 
 Button.defaultProps = {

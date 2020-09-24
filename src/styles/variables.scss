@@ -3,13 +3,16 @@
   --black: #000;
   --black-light: #222;
   --white: #fff;
+  --white-darker: #eee;
 
   --grey: #777;
   --grey-dark: #555;
   --grey-light: #ccc;
 
   --purple: #BD3381;
+  --purple-light: #fd00b1;
   --purple-v-light: #f0eef5;
+  --purple-v-light-2: #fbe5f5;
   --purple-dark: #6d0640;
 
   --red: #da1f15;
@@ -51,9 +54,13 @@
 
   //Loader colors
   --loader-cl: var(--red-secondary);
+  
+  /* layout end*/
 
 
   //Buttons colors
+  --button-font-cl: var(--white);
+
   --button-cl-primary: linear-gradient(to right, var(--purple-dark), var(--purple));
   --button-cl-primary-hover: linear-gradient(to left, var(--purple) 75%, var(--purple-dark));
 
@@ -66,6 +73,12 @@
   --button-cl-disabled: linear-gradient(to right, var(--grey-dark), var(--grey));
 
   --button-cl-loader: var(--yellow);
+
+  //Icon buttons
+  --icon-button-bg-cl: var(--white);
+  --icon-button-bg-cl-hover: var(--white-darker);
+  --icon-button-icon-cl: var(--purple);
+  --icon-button-icon-cl-hover: var(--purple-light);
 
   //Checkbox colors 
   --checkbox-cl: var(--purple);
