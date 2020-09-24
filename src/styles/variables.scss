@@ -106,6 +106,15 @@
   --toast-cl-success: linear-gradient(to bottom right, var(--green-dark), var(--green));
   --toast-shadow: 2px 2px 6px #555;
 
+  //ClientItem colors
+  --client-item-bg-cl: linear-gradient(to bottom right, var(--white), var(--purple-v-light-2));
+  --client-item-bg-cl-hover: linear-gradient(to bottom right, var(--purple), var(--purple-dark));
+  --client-item-name-cl: var(--purple);
+  --client-item-name-cl-hover: var(--white);
+  --client-item-last-visit-cl: var(--grey);
+  --client-item-last-visit-cl-hover: var(--grey-light);
+
+
   //Fonts
   --font-main: 'Lato', sans-serif;
   --font-decorative: 'Italianno', cursive;

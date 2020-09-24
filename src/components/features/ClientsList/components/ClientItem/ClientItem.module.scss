@@ -1,0 +1,63 @@
+.root {
+  position: relative;
+  margin-bottom: 1rem;
+
+  .link {
+    font-size: 1.6rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 1.4rem 1rem;
+    border-radius: 6px;
+    border: 1px solid #aaa;
+    background: var(--client-item-bg-cl);
+    padding-right: 40px;
+    text-decoration: none;
+    color: var(--client-item-name-cl);
+    box-shadow: 2px 2px 4px #999;
+    transition: .2s all;
+
+    .name {
+      flex: 0 0 250px;
+      font-weight: bold;
+    }
+  
+    .lastVisit {
+      color: var(--client-item-last-visit-cl);
+      flex: 0 1 250px;
+      font-size: 1.2rem;
+      font-style: italic;
+    }
+
+    &:hover,
+    &:focus {
+      outline: none;
+      background: var(--client-item-bg-cl-hover);
+      color: var(--client-item-name-cl-hover);
+
+      .lastVisit {
+        color: var(--client-item-last-visit-cl-hover);
+      }
+    }
+
+    @media (max-width: 600px) {
+      padding: .6rem 1rem;
+      font-size: 1.5rem;
+
+      .lastVisit {
+        font-size: 1.1rem;
+      }
+    }
+  }
+
+
+  .iconButton {
+    position: absolute;
+    height: 100%;
+    width: 30px;
+    top: 40%;
+    right: 0;
+    transform: translateY(-40%);
+  }
+}
