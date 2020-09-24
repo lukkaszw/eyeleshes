@@ -87,4 +87,10 @@
       color: var(--input-cl-error);
     }
   }
+
+  &.transparent {
+    .input {
+      background-color: transparent;
+    }
+  }
 }

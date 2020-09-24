@@ -6,11 +6,12 @@ import styles from './InputField.module.scss';
 const InputField = ({ 
   id, value, label, type, inputProps,
   onChange, error, message, autoComplete,
-  fullWidth }) => {
+  fullWidth, transparent }) => {
   return ( 
     <div className={clsx([
         styles.root, 
         error && styles.error,
+        transparent && styles.transparent,
         fullWidth && styles.fullWidth
       ])}>
       <input 
@@ -47,6 +48,7 @@ InputField.propTypes = {
   error: PropTypes.bool,
   message: PropTypes.string,
   fullWidth: PropTypes.bool,
+  transparent: PropTypes.bool,
   autoComplete: PropTypes.string,
 }
 
