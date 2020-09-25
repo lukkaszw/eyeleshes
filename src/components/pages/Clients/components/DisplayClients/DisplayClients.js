@@ -3,19 +3,22 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import SELECTORS from '../../../../../redux/selectors';
 import ACTION_CREATORS from '../../../../../redux/actionCreators';
-import PAGES from '../../../../../settings/pages';
 
 import ClientsFilters from '../../../../features/ClientsFilters';
 import ClientsSorts from '../../../../features/ClientsSorts';
 import ClientsList from '../../../../features/ClientsList';
+
+import useClientsFilters from '../../useClientsFilter';
 
 
 const Clients = ({ 
   token, data,
   sortBy, page, searchBy,
   onChangeSortBy, onChangePage, onChangeSearchBy,
+  onStartAdding,
 }) => {
 
+  const { clientsOnPage, pagesAmount  } = useClientsFilters({ data, sortBy, searchBy, page });
   
   return ( 
     <>
@@ -23,17 +26,18 @@ const Clients = ({
         <ClientsFilters 
           onChangeSearchBy={onChangeSearchBy}
           searchBy={searchBy}
+          onStartAdding={onStartAdding}
         />
         <ClientsSorts 
           sortBy={sortBy}
           onChangePage={onChangePage}
           onChangeSortBy={onChangeSortBy}
           page={page}
-          pagesAmount={10}
+          pagesAmount={pagesAmount}
         />
       </div>
       <ClientsList 
-        clients={data}
+        clients={clientsOnPage}
         token={token}
         page={page}
         searchBy={searchBy}
@@ -53,6 +57,7 @@ Clients.propTypes = {
   searchBy: PropTypes.string.isRequired,
   onChangeSortBy: PropTypes.func.isRequired, 
   onChangePage: PropTypes.func.isRequired, 
+  onStartAdding: PropTypes.func.isRequired,
   onChangeSearchBy: PropTypes.func.isRequired,
 };
 
