@@ -6,7 +6,7 @@ import InputField from '../../common/InputField';
 import Button from '../../common/Button';
 
 
-const ClientsFilters = ({ searchBy, onChangeSearchBy }) => {
+const ClientsFilters = ({ searchBy, onChangeSearchBy, onStartAdding }) => {
   return ( 
     <div className={styles.root}>
       <div className={styles.inputWrapper}>
@@ -20,7 +20,7 @@ const ClientsFilters = ({ searchBy, onChangeSearchBy }) => {
       </div>
 
       <Button 
-
+        onClick={onStartAdding}
       >
         Dodaj
       </Button>
@@ -31,6 +31,7 @@ const ClientsFilters = ({ searchBy, onChangeSearchBy }) => {
 ClientsFilters.propTypes = {
   searchBy: PropTypes.string.isRequired,
   onChangeSearchBy: PropTypes.func.isRequired,
+  onStartAdding: PropTypes.func.isRequired,
 }
  
 export default ClientsFilters;
