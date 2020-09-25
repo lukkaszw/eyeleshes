@@ -83,7 +83,7 @@ Button.propTypes = {
   disabled: PropTypes.bool,
   isLoading: PropTypes.bool,
   classes: PropTypes.array,
-  color: PropTypes.oneOf(['primary', 'secondary']),
+  color: PropTypes.oneOf(['primary', 'secondary', 'tertiary']),
   size: PropTypes.string,
   variant: PropTypes.string,
 };
