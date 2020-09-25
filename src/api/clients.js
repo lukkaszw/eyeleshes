@@ -13,3 +13,13 @@ export const getAll = async (key, { token }) => {
 
   return resp.data;
 }
+
+export const addClient = async ({ token, name, surname }) => {
+  const url = `${api.baseUrl}/${api.endpoints.clients}`;
+
+  const config = generateAuthConfig(token);
+
+  const resp = await axios.post(url, { name, surname }, config);
+
+  return resp.data;
+}

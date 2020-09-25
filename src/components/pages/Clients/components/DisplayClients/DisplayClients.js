@@ -10,7 +10,6 @@ import ClientsList from '../../../../features/ClientsList';
 
 import useClientsFilters from '../../useClientsFilter';
 
-
 const Clients = ({ 
   token, data,
   sortBy, page, searchBy,
