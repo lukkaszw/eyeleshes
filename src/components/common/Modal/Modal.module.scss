@@ -1,0 +1,25 @@
+.root {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(.2) rotate(-45deg);
+  max-width: 95%;
+  max-height: 90vh;
+  overflow-y: auto;
+  background-color: var(--modal-cl);
+  padding: 20px;
+  box-shadow: 6px 6px 8px #000;
+  visibility: hidden;
+  transition: transform .2s;
+
+  .closeBtn {
+    position: absolute;
+    top: 3px;
+    right: 3px;
+  }
+
+  &.open {
+    visibility: visible;
+    transform: translate(-50%, -50%) scale(1) rotate(0);
+  }
+}

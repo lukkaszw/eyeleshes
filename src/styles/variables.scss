@@ -108,6 +108,9 @@
   --alert-cl: var(--black-light);
   --alert-cl-font: var(--font-cl-light);
 
+  //modal colors
+  --modal-cl: var(--white);
+
   //custom toasts colors
   --toast-cl-error: linear-gradient(to bottom right, var(--red-dark), var(--red));
   --toast-cl-success: linear-gradient(to bottom right, var(--green-dark), var(--green));
