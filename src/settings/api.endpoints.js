@@ -8,6 +8,7 @@ const api = {
       getData: 'user/data',
     },
     clients: 'clients',
+    visits: 'visits',
   }
 };
 

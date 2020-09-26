@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { faPen, faCalendar } from '@fortawesome/free-solid-svg-icons';
 import styles from './FastAddVisit.module.scss';
@@ -10,6 +10,7 @@ import Button from '../../common/Button';
 import CalendarModal from '../../common/CalendarModal';
 
 import { printDate } from '../../../utils/dateInternationalization';
+import useAddVisitForm from './useAddVisitForm';
 
 const FastAddVisit = ({ 
   token,
@@ -17,38 +18,32 @@ const FastAddVisit = ({
   chosenClient
   }) => {
 
-    const [isAddingComment, setAddingComment] = useState(false);
-    const [isChangingDate, setChangingDate] = useState(false);
-    const [date, setDate] = useState(new Date());
-    const [comment, setComment] = useState('');
-
-    const handleOpenCalendar = useCallback((e) => {
-      e.preventDefault();
-      setChangingDate(true)
-    }, [setChangingDate]);
-    const handleCloseCalendar = useCallback(() => {
-      setChangingDate(false)
-    }, [setChangingDate]);
-    const handleDate = useCallback((date) => {
-      setDate(date);
-      setChangingDate(false);
-    }, [setDate]);
-
-    const handleToggleComent = useCallback((e) => {
-      e.preventDefault();
-      setAddingComment(prevIsAdding => !prevIsAdding)
-    }, [setAddingComment]);
-    const onChangeComment = useCallback((e) => setComment(e.target.value), [setComment]);
+    const {
+      fields,
+      onChangeFor,
+      handleToggleComment,
+      handleCloseCalendar,
+      handleOpenCalendar,
+      isOpenCalendar,
+      isAddingComment,
+      isSending,
+      handleSubmit,
+      isEmpty,
+    } = useAddVisitForm({ 
+      token,
+      onClose, 
+      clientId: chosenClient ? chosenClient._id : null 
+    });
 
 
 
     const dateString = useMemo(() => {
       const todayDate = new Date();
-      if(todayDate.toLocaleDateString() === date.toLocaleDateString()) {
+      if(todayDate.toLocaleDateString() === fields.date.toLocaleDateString()) {
         return 'dzisiaj';
       }
-      return printDate(date, 'pl-PL');
-    }, [date]);
+      return printDate(fields.date, 'pl-PL');
+    }, [fields.date]);
 
 
   return ( 
@@ -60,12 +55,16 @@ const FastAddVisit = ({
         <p className='m-bottom-m text-centered'>
           {chosenClient && chosenClient.name} {chosenClient && chosenClient.surname}
         </p>
-        <form>
+        <form onSubmit={handleSubmit}>
           <div>
             <InputField 
               placeholder="Parametry"
               label="Parametry"
+              messagePosition="right"
               message="Format: 12-13c-16-12d..."
+              value={fields.parameters.value}
+              onChange={onChangeFor.parameters}
+              error={fields.parameters.error}
             />
           </div>
           <div>
@@ -78,11 +77,17 @@ const FastAddVisit = ({
                 step: "0.01",
                 min: "0.00",
               }}
+              value={fields.price.value}
+              onChange={onChangeFor.price}
+              error={fields.price.error}
             />
           </div>
           <div className={styles.optionField}>
             <span className={styles.option}>
-              data: <span className={styles.optionValue}>{dateString}</span>
+              data: 
+              <span className={styles.optionValue}>
+                {dateString}
+              </span>
             </span>
             <span>
               <Button
@@ -92,33 +97,39 @@ const FastAddVisit = ({
               />
             </span>
             <CalendarModal 
-              isOpen={isChangingDate}
+              isOpen={isOpenCalendar}
               onClose={handleCloseCalendar}
-              value={date}
-              onChange={handleDate}
+              value={fields.date}
+              onChange={onChangeFor.date}
             />
           </div>
           <div className={styles.optionField}>
             <span className={styles.option}>
-              uwagi: <span className={styles.optionValue}>{ comment.length > 0 ? 'dodano' : 'brak'}</span>
+              uwagi: 
+              <span className={styles.optionValue}>
+                { fields.comment.value.length > 0 ? 'dodano' : 'brak'}
+              </span>
             </span>
             <span>
               <Button
                 ariaLabel="Dodaj uwagę"
                 icon={faPen}
-                onClick={handleToggleComent}
+                onClick={handleToggleComment}
                 variant="secondary"
               />
             </span>
           </div>
           <AddComment 
             isOpen={isAddingComment}
-            value={comment}
-            onChange={onChangeComment}
+            value={fields.comment.value}
+            onChange={onChangeFor.comment}
+            error={fields.comment.error}
           />
           <div className="m-top-l">
             <Button
               color="tertiary"
+              disabled={isEmpty || isSending}
+              isLoading={isSending}
             >
               Dodaj wizytę
             </Button>
