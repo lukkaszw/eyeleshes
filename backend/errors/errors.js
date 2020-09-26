@@ -8,8 +8,8 @@ const ERRORS = {
       update: 'Nieprawidłowa próba edycji! Zezwolono edytować: imię i nazwisko!',
     },
     visit: {
-      post: 'Nieprawidłowe dane z formularza! Koniecznie podaj parametry i datę, opcjonalnie komentarz (maksymalnie 500 znaków)',
-      update: 'Nieprawidłowa próba edycji! Zezwolono edytować: parametry, data, komentarz.',
+      post: 'Nieprawidłowe dane z formularza! Koniecznie podaj parametry, datę, cenę, opcjonalnie komentarz (maks. 500 znaków)',
+      update: 'Nieprawidłowa próba edycji! Zezwolono edytować: parametry, data, komentarz, cena.',
     }
   }
 }

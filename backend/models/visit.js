@@ -15,6 +15,14 @@ const visitSchema = mongoose.Schema({
     type: String,
     required: true,
   }],
+  price: {
+    type: Number,
+    validate: {
+      validator: (v) => v >= 0,
+      message: () => 'Cena nie może być wartością ujemną!'
+    },
+    required: true,
+  },
   date: {
     type: Date,
     required: true,
