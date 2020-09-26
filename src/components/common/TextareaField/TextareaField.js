@@ -6,7 +6,7 @@ import clsx from 'clsx';
 const TextareaField = ({
   id, rows, cols, fullWidth,
   placeholder, label, message,
-  error,
+  error, messagePosition,
   value, onChange
 }) => {
   return ( 
@@ -33,7 +33,7 @@ const TextareaField = ({
         {label}
       </label>
       <p
-        className={styles.message}
+        className={clsx([styles.message, messagePosition && styles[messagePosition]])}
       >
         {message ? message : <>&ensp;</>}
       </p>
@@ -52,6 +52,7 @@ TextareaField.propTypes = {
   label: PropTypes.string,
   error: PropTypes.bool,
   message: PropTypes.string,
+  messagePosition: PropTypes.oneOf(['right', 'left', 'center']),
 };
  
 export default TextareaField;

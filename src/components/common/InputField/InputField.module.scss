@@ -78,6 +78,14 @@
     margin-top: 1px;
     font-size: 10px;
     line-height: 1.1;
+    
+    &.right {
+      text-align: right;
+    }
+
+    &.center {
+      text-align: center;
+    }
   }
 
   &.fullWidth {

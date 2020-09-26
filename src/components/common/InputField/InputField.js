@@ -6,7 +6,7 @@ import styles from './InputField.module.scss';
 const InputField = ({ 
   id, value, label, type, inputProps,
   onChange, error, message, autoComplete,
-  unit, variant,
+  unit, variant, messagePosition,
   fullWidth, transparent }) => {
   return ( 
     <div className={clsx([
@@ -38,7 +38,7 @@ const InputField = ({
         </span>
       }
       <p
-        className={styles.message}
+        className={clsx([styles.message,  messagePosition && styles[messagePosition]])}
       >
         {message ? message : <>&ensp;</>}
       </p>
@@ -59,6 +59,7 @@ InputField.propTypes = {
   fullWidth: PropTypes.bool,
   transparent: PropTypes.bool,
   autoComplete: PropTypes.string,
+  messagPosition: PropTypes.oneOf(['left', 'right', 'center']),
 }
 
 InputField.defaultProps = {
