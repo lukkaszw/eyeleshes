@@ -6,6 +6,7 @@ import styles from './InputField.module.scss';
 const InputField = ({ 
   id, value, label, type, inputProps,
   onChange, error, message, autoComplete,
+  unit, variant,
   fullWidth, transparent }) => {
   return ( 
     <div className={clsx([
@@ -16,7 +17,7 @@ const InputField = ({
       ])}>
       <input 
         {...inputProps}
-        className={styles.input}
+        className={clsx([styles.input, unit && styles.withUnit, variant && styles[variant]])}
         id={id} 
         value={value}
         type={type}
@@ -30,6 +31,12 @@ const InputField = ({
       >
         {label}
       </label>
+      {
+        unit &&
+        <span className={styles.unit}>
+          {unit}
+        </span>
+      }
       <p
         className={styles.message}
       >
@@ -45,6 +52,8 @@ InputField.propTypes = {
   inputProps: PropTypes.object,
   type: PropTypes.oneOf(['text', 'number', 'email', 'password']),
   onChange: PropTypes.func,
+  unit: PropTypes.string,
+  variant: PropTypes.oneOf(['normal', 'small']),
   error: PropTypes.bool,
   message: PropTypes.string,
   fullWidth: PropTypes.bool,
