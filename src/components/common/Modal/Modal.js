@@ -8,11 +8,11 @@ import Portal from '../../layout/Portal';
 import Backdrop from '../Backdrop';
 import Button from '../Button';
 
-const Modal = ({ children, isOpen, onClose }) => {
+const Modal = ({ children, isOpen, onClose, domId, transparent }) => {
   return ( 
-    <Portal domId="modal">
+    <Portal domId={domId}>
       <Backdrop isOpen={isOpen} onClose={onClose}/>
-      <div className={clsx([styles.root, isOpen && styles.open])}>
+      <div className={clsx([styles.root, isOpen && styles.open, transparent && styles.transparent])}>
         {children}
         <div className={styles.closeBtn}>
           <Button 
@@ -28,8 +28,14 @@ const Modal = ({ children, isOpen, onClose }) => {
 }
 
 Modal.propTypes = {
+  domId: PropTypes.string,
   isOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
+  transparent: PropTypes.bool,
 }
+
+Modal.defaultProps = {
+  domId: 'modal',
+};
  
 export default Modal;

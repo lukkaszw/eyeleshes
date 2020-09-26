@@ -12,10 +12,22 @@
   visibility: hidden;
   transition: transform .2s;
 
+
+
   .closeBtn {
     position: absolute;
     top: 3px;
     right: 3px;
+  }
+
+  &.transparent {
+    background-color: transparent;
+    box-shadow: none;
+    padding: 0;
+
+    .closeBtn {
+      display: none;
+    }
   }
 
   &.open {
