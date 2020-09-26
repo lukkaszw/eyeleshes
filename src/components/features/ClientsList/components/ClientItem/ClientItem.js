@@ -26,7 +26,7 @@ const ClientItem = ({ _id, name, surname, lastVisit, onAddVisit }) => {
           {
             lastVisit ?
               <span  className={styles.date}>
-                ostatnia wizyta: {printDate(lastVisit.date, 'pl-PL')} ( {printParameters(lastVisit.parameters)})
+                ostatnio: {printDate(lastVisit.date, 'pl-PL')} ( {printParameters(lastVisit.parameters)})
               </span>
               :
               'brak dotychczasowych wizyt'
