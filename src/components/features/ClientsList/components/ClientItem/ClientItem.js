@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import styles from './ClientItem.module.scss';
@@ -9,7 +9,12 @@ import Button from '../../../../common/Button';
 import { printDate } from '../../../../../utils/dateInternationalization';
 import { printParameters } from '../../../../../utils/printParameters';
 
-const ClientItem = ({ _id, name, surname, lastVisit }) => {
+const ClientItem = ({ _id, name, surname, lastVisit, onAddVisit }) => {
+
+  const handleAddVisit = useCallback(() => onAddVisit({ _id, name, surname }),
+    [onAddVisit, _id, name, surname]
+  );
+
   return ( 
     <li className={styles.root}>
       <Link 
@@ -30,6 +35,7 @@ const ClientItem = ({ _id, name, surname, lastVisit }) => {
       </Link>
       <span className={styles.iconButton}>
         <Button 
+          onClick={handleAddVisit}
           icon={faPlus}
         />
       </span>
@@ -42,6 +48,7 @@ ClientItem.propTypes = {
   name: PropTypes.string.isRequired,
   surname: PropTypes.string.isRequired,
   lastVisit: PropTypes.object,
+  onAddVisit: PropTypes.func.isRequired,
 };
  
 export default ClientItem;

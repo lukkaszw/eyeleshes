@@ -1,0 +1,9 @@
+.root {
+  height: 0;
+  overflow: hidden;
+  transition: .2s;
+
+  &.open {
+    height: 100px;
+  }
+}

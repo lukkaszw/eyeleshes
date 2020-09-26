@@ -14,7 +14,7 @@ const Clients = ({
   token, data,
   sortBy, page, searchBy,
   onChangeSortBy, onChangePage, onChangeSearchBy,
-  onStartAdding,
+  onStartAdding, onAddVisit,
 }) => {
 
   const { clientsOnPage, pagesAmount  } = useClientsFilters({ data, sortBy, searchBy, page });
@@ -36,6 +36,7 @@ const Clients = ({
         />
       </div>
       <ClientsList 
+        onAddVisit={onAddVisit}
         clients={clientsOnPage}
         token={token}
         page={page}
@@ -57,6 +58,7 @@ Clients.propTypes = {
   onChangeSortBy: PropTypes.func.isRequired, 
   onChangePage: PropTypes.func.isRequired, 
   onStartAdding: PropTypes.func.isRequired,
+  onAddVisit: PropTypes.func.isRequired,
   onChangeSearchBy: PropTypes.func.isRequired,
 };
 

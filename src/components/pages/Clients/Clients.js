@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import SELECTORS from '../../../redux/selectors';
@@ -8,6 +8,10 @@ import { useQuery } from 'react-query';
 
 import DisplayClients from './components/DisplayClients';
 import AddClient from '../../features/AddClient';
+import FastAddVisit from '../../features/FastAddVisit';
+
+import useAddingClient from './useAddingClient';
+import useAddingVisit from './useAddingVisit';
 
 
 const Clients = ({ 
@@ -19,23 +23,37 @@ const Clients = ({
     { suspense: true }
   );
 
-  const [isAdding, setIsAdding] = useState(false);
+  const {
+    isAddingClient,
+    handleOpenAddingClient,
+    handleCloseAddingClient,
+  } = useAddingClient();
 
-  const handleOpenAddingModal = useCallback(() => setIsAdding(true), [setIsAdding]);
-  const handleCloseAddingModal = useCallback(() => setIsAdding(false), [setIsAdding]);
+  const {
+    clientForAddingVisit,
+    handleOpenAddingVisit,
+    handleCancelAddingVisit,
+  } = useAddingVisit();
   
   return ( 
     <>
       <DisplayClients 
         data={data}
+        onAddVisit={handleOpenAddingVisit}
         token={token}
-        onStartAdding={handleOpenAddingModal}
+        onStartAdding={handleOpenAddingClient}
       />
       <AddClient 
         token={token}
         existingClients={data}
-        isOpen={isAdding}
-        onClose={handleCloseAddingModal}
+        isOpen={isAddingClient}
+        onClose={handleCloseAddingClient}
+      />
+      <FastAddVisit 
+        token={token}
+        isOpen={!!clientForAddingVisit}
+        chosenClient={clientForAddingVisit}
+        onClose={handleCancelAddingVisit}
       />
     </>
   );

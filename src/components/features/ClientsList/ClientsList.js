@@ -5,7 +5,7 @@ import styles from './ClientsList.module.scss';
 import ClientItem from './components/ClientItem';
 
 const ClientsList = ({ 
- clients,
+ clients, onAddVisit,
 }) => {
 
   return ( 
@@ -14,6 +14,7 @@ const ClientsList = ({
         {
           clients.map(client => (
             <ClientItem 
+              onAddVisit={onAddVisit}
               key={client._id}
               {...client}
             />
@@ -26,6 +27,7 @@ const ClientsList = ({
 
 ClientsList.propTypes = ({
   clients: PropTypes.array.isRequired,
+  onAddVisit: PropTypes.func.isRequired,
 });
  
 export default ClientsList;
