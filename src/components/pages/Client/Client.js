@@ -6,6 +6,8 @@ import SELECTORS from '../../../redux/selectors';
 import { useQuery } from 'react-query';
 import API from '../../../api';
 
+import ClientDetails from './components/ClientDetails';
+
 const Client = ({ token }) => {
 
   const { id } = useParams();
@@ -16,9 +18,11 @@ const Client = ({ token }) => {
   );
 
   return ( 
-    <div>
-      {JSON.stringify(data)}
-    </div>
+    <section className="m-top-x">
+      <ClientDetails 
+        {...data}
+      />
+    </section>
   );
 }
 

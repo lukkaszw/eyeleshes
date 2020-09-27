@@ -1,0 +1,65 @@
+.created {
+  text-align: right;
+  font-size: 1.2rem;
+  font-style: italic;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+
+  .left {
+    display: flex;
+    font-size: 1.8rem;
+
+    .personals {
+      margin-right: 4rem;
+    }
+
+    .field {
+      margin-bottom: 1.8rem;
+    }
+
+    .fieldValue {
+      font-weight: bold;
+    }
+
+    .fieldName {
+      display: inline-block;
+      width: 100px;
+    }
+  }
+
+  .right {
+    margin-left: auto;
+    text-align: right;
+  }
+  
+  @media (max-width: 500px) {
+    .left {
+      width: 100%;
+      font-size: 1.7rem;
+
+      .fieldName {
+        width: 80px;
+      }
+
+      .personals {
+        margin-right: auto;
+      }
+    }
+  }
+
+  @media (max-width: 330px) {
+    .left {
+
+      .field {
+        margin-bottom: 1rem;
+      }
+
+      .fieldName {
+        display: none;
+      }
+    }
+  }
+}
