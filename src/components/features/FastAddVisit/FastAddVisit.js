@@ -130,6 +130,7 @@ const FastAddVisit = ({
               color="tertiary"
               disabled={isEmpty || isSending}
               isLoading={isSending}
+              size="small"
             >
               Dodaj wizytę
             </Button>

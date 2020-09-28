@@ -7,6 +7,7 @@ import { useQuery } from 'react-query';
 import API from '../../../api';
 
 import ClientDetails from './components/ClientDetails';
+import TodayVisitAdd from '../../features/TodayVisitAdd';
 
 const Client = ({ token }) => {
 
@@ -22,6 +23,7 @@ const Client = ({ token }) => {
       <ClientDetails 
         {...data}
       />
+      <TodayVisitAdd />
     </section>
   );
 }
