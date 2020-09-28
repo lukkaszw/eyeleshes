@@ -41,14 +41,6 @@ const ClientStats = ({ clientId }) => {
         </p>
         <p>
           <span className={styles.option}>
-            Średnio na rok:
-          </span>
-          <span>
-            2
-          </span>
-        </p>
-        <p>
-          <span className={styles.option}>
             Łączna kwota: 
           </span>
           <span>
