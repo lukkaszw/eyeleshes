@@ -68,7 +68,7 @@ const useAddVisitForm = ({ token, onClose, clientId }) => {
   //useMutation
   const [submitAction, { isLoading: isSending }] = useMutation(API.visits.addVisit, {
     onSuccess: data => {
-      queryCache.invalidateQueries('clients');
+      queryCache.invalidateQueries('clients', 'stats');
       toast.success('Poprawnie dodano wizytę!', TOASTS.success);
       onClose();
       handleResetFields();

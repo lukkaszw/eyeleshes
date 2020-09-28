@@ -1,24 +1,54 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styles from './ClientStats.module.scss';
 
-const ClientStats = ({ clientId }) => {
+import { useQuery } from 'react-query';
+import API from '../../../../../api';
+import { printParameters } from '../../../../../utils/printParameters';
+
+const ClientStats = ({ token, clientId }) => {
+
+  const { data } = useQuery(['stats', { token, clientId } ], 
+  API.visits.getStats,  
+  { suspense: true, cacheTime: 0 }
+);
+
+  const {
+    lastVisit,
+    totalAmount,
+    totalCost,
+    averageCost,
+    thisYearAmount,
+    mostCommonVisit,
+  } = data;
+
   return ( 
     <div className={styles.root}>
       <div className={styles.part}>
-        <p className={styles.centered}>
+        <p>
           <span className={styles.option}>
             Ostatnio:
           </span>
           <span>
-            12-14-15-15-14-12-10
+            {
+              lastVisit ?
+              printParameters(lastVisit)
+              :
+              '-'
+            }
           </span>
         </p>
-        <p className={styles.centered}>
+        <p>
           <span className={styles.option}>
             Najczęściej:
           </span>
           <span>
-            11-13-14-16-14-12-10
+            {
+              mostCommonVisit ?
+              printParameters(mostCommonVisit)
+              :
+              '-'
+            }
           </span>
         </p>
       </div>
@@ -28,7 +58,7 @@ const ClientStats = ({ clientId }) => {
             Łącznie wizyt: 
           </span>
           <span>
-            22
+            {totalAmount}
           </span>
         </p>
         <p>
@@ -36,28 +66,33 @@ const ClientStats = ({ clientId }) => {
             W tym roku: 
           </span>
           <span>
-            3
+            {thisYearAmount}
           </span>
         </p>
         <p>
           <span className={styles.option}>
-            Łączna kwota: 
+            Łącznie wydałą: 
           </span>
           <span>
-            2200 zł
+            {totalCost.toFixed(2)} zł
           </span>
         </p>
         <p>
           <span className={styles.option}>
-            Średni koszt:
+            Średnio/wizytę:
           </span>
           <span>
-            220 zł
+            {averageCost.toFixed(2)} zł
           </span>
         </p>
       </div>
     </div>
   );
 }
+
+ClientStats.propTypes = {
+  token: PropTypes.string.isRequired,
+  clientId: PropTypes.string.isRequired,
+};
  
 export default ClientStats;

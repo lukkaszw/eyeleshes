@@ -9,6 +9,7 @@ const api = {
     },
     clients: 'clients',
     visits: 'visits',
+    visitsStats: 'visits/stats',
   }
 };
 
