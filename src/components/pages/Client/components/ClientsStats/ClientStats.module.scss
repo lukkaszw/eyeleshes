@@ -1,0 +1,47 @@
+.root {
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 1.5rem;
+
+  .part {
+    flex: 0 0 50%;
+  }
+
+  .part:first-child {
+    padding-right: 3rem;
+  }
+
+  .part:nth-child(2) {
+    padding-left: 3rem;
+  }
+
+
+
+  .option {
+    display: inline-block;
+    width: 110px;
+  }
+
+  p {
+    display: flex;
+    justify-content: space-between;
+    margin: 1rem 0;
+    padding-bottom: 3px;
+    box-shadow: 0 1px 1px -1px #aaa;
+  }
+
+  @media (max-width: 600px) {
+    .part {
+      flex: 0 0 100%;
+    }
+
+    .part:first-child {
+      padding-right: 0;
+    }
+  
+    .part:nth-child(2) {
+      padding-left: 0;
+    }
+
+  }
+}

@@ -8,6 +8,7 @@ import API from '../../../api';
 
 import ClientDetails from './components/ClientDetails';
 import TodayVisitAdd from '../../features/TodayVisitAdd';
+import ClientStats from './components/ClientsStats';
 
 const Client = ({ token }) => {
 
@@ -24,6 +25,9 @@ const Client = ({ token }) => {
         {...data}
       />
       <TodayVisitAdd />
+      <ClientStats 
+        clientId={id}
+      />
     </section>
   );
 }
