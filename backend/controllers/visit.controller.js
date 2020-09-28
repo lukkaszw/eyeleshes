@@ -1,4 +1,5 @@
 const Visit = require('../models/visit');
+const mongoose = require('mongoose');
 const ERRORS = require('../errors/errors');
 const sendErrors = require('../errors/sendErrors');
 
@@ -127,10 +128,59 @@ const deleteOne = async (req, res) => {
   }
 }
 
+const getStats = async (req, res) => {
+  const userId = req.user._id;
+  const clientId = req.query.clientId;
+
+  const search = {
+    userId,
+  };
+
+  if(clientId) {
+    search.clientId = clientId;
+  }
+
+  try {
+    const visits = await Visit.find(search);
+    const lastVisit = await Visit.findOne({ clientId }).sort({ date: -1 });
+
+    const aggregateVisits = await Visit.aggregate([
+      { "$match": { "clientId": mongoose.Types.ObjectId(clientId) } },
+      {
+      "$sortByCount": "$parameters",
+    }]);
+
+    //count stats
+    const totalAmount = visits.length;
+    const totalCost = visits.reduce((prevCost, nextVisit) => {
+      return prevCost + nextVisit.price;
+    }, 0);
+    const averageCost = totalCost > 0 ? (totalCost / visits.length) : 0;
+
+    const thisYear = new Date().getFullYear();
+
+    const thisYearAmount = visits.filter(visit => (new Date(visit.date).getFullYear() === thisYear)).length;
+
+    res.json({
+      lastVisit: lastVisit ? lastVisit.parameters : null,
+      totalAmount,
+      totalCost,
+      averageCost,
+      thisYearAmount,
+      mostCommonVisit: aggregateVisits.length > 0 ? aggregateVisits[0]._id : null,
+    });
+
+  } catch (error) {
+    console.log(error);
+    sendErrors.sendGetErrors(error, res);
+  }
+}
+
 module.exports = {
   createOne,
   getAll,
   getOne,
   updateOne,
   deleteOne,
+  getStats,
 };
