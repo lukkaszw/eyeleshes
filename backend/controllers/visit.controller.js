@@ -150,6 +150,8 @@ const getStats = async (req, res) => {
       "$sortByCount": "$parameters",
     }]);
 
+
+
     //count stats
     const totalAmount = visits.length;
     const totalCost = visits.reduce((prevCost, nextVisit) => {
@@ -162,12 +164,18 @@ const getStats = async (req, res) => {
     const thisYearAmount = visits.filter(visit => (new Date(visit.date).getFullYear() === thisYear)).length;
 
     res.json({
-      lastVisit: lastVisit ? lastVisit.parameters : null,
+      lastVisit: lastVisit ? ({ 
+        parameters: lastVisit.parameters,
+        date: lastVisit.date,
+      }) : null,
       totalAmount,
       totalCost,
       averageCost,
       thisYearAmount,
-      mostCommonVisit: aggregateVisits.length > 0 ? aggregateVisits[0]._id : null,
+      mostCommonVisit: aggregateVisits.length > 0 ? ({
+        parameters: aggregateVisits[0]._id,
+        count: aggregateVisits[0].count,
+      }) : null,
     });
 
   } catch (error) {

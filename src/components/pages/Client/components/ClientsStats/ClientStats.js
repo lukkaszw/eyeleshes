@@ -5,6 +5,7 @@ import styles from './ClientStats.module.scss';
 import { useQuery } from 'react-query';
 import API from '../../../../../api';
 import { printParameters } from '../../../../../utils/printParameters';
+import { printDate } from '../../../../../utils/dateInternationalization';
 
 const ClientStats = ({ token, clientId }) => {
 
@@ -32,7 +33,20 @@ const ClientStats = ({ token, clientId }) => {
           <span>
             {
               lastVisit ?
-              printParameters(lastVisit)
+              printParameters(lastVisit.parameters)
+              :
+              '-'
+            }
+          </span>
+        </p>
+        <p className={styles.dependent}>
+          <span className={styles.option}>
+            W dniu:
+          </span>
+          <span>
+            {
+              lastVisit ?
+                printDate(lastVisit.date)
               :
               '-'
             }
@@ -45,7 +59,20 @@ const ClientStats = ({ token, clientId }) => {
           <span>
             {
               mostCommonVisit ?
-              printParameters(mostCommonVisit)
+              printParameters(mostCommonVisit.parameters)
+              :
+              '-'
+            }
+          </span>
+        </p>
+        <p className={styles.dependent}>
+          <span className={styles.option}>
+            Użyto:
+          </span>
+          <span>
+            {
+              mostCommonVisit ?
+              `${mostCommonVisit.count} razy`
               :
               '-'
             }
@@ -61,7 +88,7 @@ const ClientStats = ({ token, clientId }) => {
             {totalAmount}
           </span>
         </p>
-        <p>
+        <p className={styles.dependent}>
           <span className={styles.option}>
             W tym roku: 
           </span>
@@ -71,13 +98,13 @@ const ClientStats = ({ token, clientId }) => {
         </p>
         <p>
           <span className={styles.option}>
-            Łącznie wydałą: 
+            Łączna kwota: 
           </span>
           <span>
             {totalCost.toFixed(2)} zł
           </span>
         </p>
-        <p>
+        <p className={styles.dependent}>
           <span className={styles.option}>
             Średnio/wizytę:
           </span>
