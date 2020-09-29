@@ -124,6 +124,12 @@
   --client-item-last-visit-cl: var(--grey);
   --client-item-last-visit-cl-hover: var(--grey-light);
 
+  //VisitItem colors
+  --visit-item-bg-cl: transparent;
+  --visit-item-bg-cl-hover: linear-gradient(to bottom right, var(--purple), var(--purple-dark));
+  --visit-item-font-cl: inherit;
+  --visit-item-font-cl-hover: var(--white);
+
 
   //Fonts
   --font-main: 'Lato', sans-serif;

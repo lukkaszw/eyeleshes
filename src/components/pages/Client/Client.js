@@ -10,6 +10,7 @@ import ClientDetails from './components/ClientDetails';
 import TodayVisitAdd from '../../features/TodayVisitAdd';
 import ClientStats from './components/ClientsStats';
 import SuspenseErrorBundary from '../../common/SuspenseErrorBundary';
+import ClientVisits from './components/ClientVisits';
 
 const Client = ({ token }) => {
 
@@ -32,6 +33,10 @@ const Client = ({ token }) => {
           clientId={id}
         />
       </SuspenseErrorBundary>
+      <ClientVisits 
+        token={token}
+        clientId={id}
+      />
     </section>
   );
 }

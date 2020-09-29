@@ -1,0 +1,57 @@
+.root {
+  display: flex;
+  align-items: center;
+  padding: 1rem .5rem;
+  border-bottom: 1px solid #ccc;
+  font-size: 1.5rem;
+  background: var(--visit-item-bg-cl);
+  color: var(--visit-item-font-cl);
+  
+  & > * {
+    flex: 1;
+    text-align: center;
+
+    &.price {
+      flex: .5;
+    }
+
+    &:first-child {
+      flex: .7;
+      text-align: left;
+    }
+
+    &:last-child {
+      flex: .5;
+      text-align: right;
+    }
+  }
+
+  .actions {
+    & > button {
+      margin-left: 2rem;
+    }
+  }
+
+  &:hover {
+    background: var(--visit-item-bg-cl-hover);
+    color: var(--visit-item-font-cl-hover);
+  }
+
+  @media (max-width: 460px) {
+    font-size: 1.3rem;
+
+    .price {
+      display: none;
+    }
+
+    & > * {
+      flex: 1.2;
+      text-align: center;
+  
+      &:first-child,
+      &:last-child {
+        flex: .8;
+      }
+    }
+  } 
+}

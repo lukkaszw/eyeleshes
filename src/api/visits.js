@@ -12,6 +12,20 @@ export const addVisit = async ({ token, clientId, parameters, price, comment, da
   return resp.data;
 }
 
+export const getAll = async (key, { token, clientId }) => {
+  const url = `${api.baseUrl}/${api.endpoints.visits}`;
+
+  const config = generateAuthConfig(token);
+
+  if(clientId) {
+    config.params = { clientId };
+  }
+
+  const resp = await axios.get(url, config);
+
+  return resp.data;
+}
+
 export const getStats = async (key, { token, clientId }) => {
   const url = `${api.baseUrl}/${api.endpoints.visitsStats}`;
 
