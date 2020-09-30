@@ -6,10 +6,13 @@ import initialState from './initialState';
 
 import userReducer from './reducers/user.reducer';
 import clientsReducer from './reducers/clients.reducer';
+import visitsReducer from './reducers/visits.reducer';
+
 
 const reducers = {
   user: userReducer,
   clients: clientsReducer,
+  visits: visitsReducer,
 };
 
 Object.keys(initialState).forEach(item => {

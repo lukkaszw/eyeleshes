@@ -11,7 +11,14 @@ const initialState = {
     }
   },
   visits: {
+    queries: {
+      sortCat: 'date',
+      sortBy: 'desc',
+      page: 1,
+      yaerFrom: '',
+      yearTo: '',
 
+    },
   },
 };
 

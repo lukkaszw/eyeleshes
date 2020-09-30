@@ -1,0 +1,12 @@
+.root {
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .btns {
+    button {
+      margin-right: 1.6rem;
+    }
+  }
+}

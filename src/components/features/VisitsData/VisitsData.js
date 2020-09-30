@@ -1,31 +1,40 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './VisitData.module.scss';
 
-import SmallPagination from '../../common/SmallPagination';
 import VisitsList from '../VisitsList';
+import VisitsSorts from '../VisitsSorts';
 
 import { useQuery } from 'react-query';
 import API from '../../../api';
 
-const VisitsData = ({ token, clientId }) => {
+const VisitsData = ({ 
+  token, clientId,
+  page, sortBy, sortCat, yearFrom, yearTo,
+  onChangePage, onChangeSort,
+ }) => {
 
-  const { data } = useQuery(['visits', { token, clientId } ], 
+  const { data: { visits, amount } } = useQuery(
+    ['visits', { 
+        token, clientId,
+        page, sortBy, sortCat, yearFrom, yearTo,
+      }
+    ], 
     API.visits.getAll,  
     { suspense: true, cacheTime: 0 }
   );
 
   return ( 
     <>
-      <div className={styles.pagination}>
-        <SmallPagination 
-          page={1}
-          pagesAmount={10}
-        />
-      </div>
-
+      <VisitsSorts 
+        page={page}
+        onChangePage={onChangePage}
+        sortBy={sortBy}
+        sortCat={sortCat}
+        onChangeSort={onChangeSort}
+        visitsAmount={amount}
+      />
       <VisitsList 
-        visits={data}
+        visits={visits}
       />
     </>
   );
@@ -34,6 +43,13 @@ const VisitsData = ({ token, clientId }) => {
 VisitsData.propTypes = {
   token: PropTypes.string.isRequired,
   clientId: PropTypes.string,
+  page: PropTypes.number.isRequired,
+  sortCat: PropTypes.oneOf(['date', 'price']),
+  sortBy: PropTypes.oneOf(['asc', 'desc']),
+  yearFrom: PropTypes.string,
+  yearTo: PropTypes.string,
+  onChangePage: PropTypes.func.isRequired,
+  onChangeSort: PropTypes.func.isRequired,
 };
  
 export default VisitsData;

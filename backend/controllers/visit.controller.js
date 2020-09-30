@@ -23,20 +23,75 @@ const createOne = async (req, res) => {
 
 const getAll = async (req, res) => {
   const userId = req.user._id;
-  const clientId = req.query.clientId;
+  const { 
+    clientId, 
+    skip,
+    limit,
+    sortBy,
+    years,
+  } = req.query;
 
+  // search options
   const search = {
     userId,
   };
 
+ 
   if(clientId) {
     search.clientId = clientId;
   }
 
-  try {
-    const visits = await Visit.find(search);
+  if(years) {
+    if(years.includes('_')) {
+      const parts = years.split('_');
+      const yearFrom = parts[0] || 'not a year';
+      const yearTo = parts[1] || 'not a yaer';
+      if(!isNaN(yearFrom) || !isNaN(yearTo)) {
+        search.date = {};
+  
+        if(!isNaN(yearFrom)) {
+          search.date.$gte = `${yearFrom}-01-01T00:00:00.001Z`;
+        }
+        if(!isNaN(yearTo)) {
+          search.date.$lte = `${yearTo}-12-31T23:59:59.999Z`;
+        }
+      }
+    } else {
+      if(!isNaN(years)) {
+        search.date = {
+          $gte: `${years}-01-01T00:00:00.001Z`,
+          $lte: `${years}-12-31T23:59:59.999Z`,
+        }
+      }
+    }
+  }
 
-    res.json(visits);
+  // sort options
+  const sort = {
+    date: -1,
+  };
+
+  if(sortBy) {
+    const parts = sortBy.split('_');
+    const allowed = ['date', 'price'];
+
+    if(allowed.includes(parts[0])) {
+      delete sort.date;
+      sort[parts[0]] = parts[1] === 'asc' ? 1 : -1;
+    } 
+  }
+
+  try {
+    const amount = await Visit.count(search);
+
+    const visits = await Visit
+      .find(search)
+      .sort(sort)
+      .skip(parseInt(skip))
+      .limit(parseInt(limit));
+
+
+    res.json({ visits, amount });
 
   } catch (error) {
     sendErrors.sendGetErrors(error, res);
@@ -142,10 +197,14 @@ const getStats = async (req, res) => {
 
   try {
     const visits = await Visit.find(search);
-    const lastVisit = await Visit.findOne({ clientId }).sort({ date: -1 });
+    const lastVisit = await Visit.findOne({ userId, clientId }).sort({ date: -1 });
 
     const aggregateVisits = await Visit.aggregate([
-      { "$match": { "clientId": mongoose.Types.ObjectId(clientId) } },
+      { "$match": { 
+        "clientId": mongoose.Types.ObjectId(clientId), 
+        "userId": mongoose.Types.ObjectId(userId),
+        } 
+      },
       {
       "$sortByCount": "$parameters",
     }]);
