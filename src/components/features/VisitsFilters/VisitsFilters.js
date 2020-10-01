@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const VisitsFilters = ({ yearTo, yearFrom, onChangeYaers }) => {
+const VisitsFilters = ({ yearTo, yearFrom, onChangeYears }) => {
   return ( 
     <div>
       Visit Filters
@@ -10,9 +10,9 @@ const VisitsFilters = ({ yearTo, yearFrom, onChangeYaers }) => {
 }
 
 VisitsFilters.propTypes = {
-  onChangeYaers: PropTypes.func.isRequired,
-  yearTo: PropTypes.string.isRequired,
-  yearFrom: PropTypes.string.isRequired,
+  onChangeYears: PropTypes.func.isRequired,
+  yearTo: PropTypes.string,
+  yearFrom: PropTypes.string,
 };
  
 export default VisitsFilters;

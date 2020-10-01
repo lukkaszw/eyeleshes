@@ -5,14 +5,15 @@ import PropTypes from 'prop-types';
 import VisitsFilters from '../../../../features/VisitsFilters';
 import VisitsData from '../../../../features/VisitsData';
 import SuspenseErrorBundary from '../../../../common/SuspenseErrorBundary';
+import VisitsSorts from '../../../../features/VisitsSorts';
 
 import SELECTORS from '../../../../../redux/selectors';
 import ACTION_CREATORS from '../../../../../redux/actionCreators';
 
 const ClientVisits = ({ 
   token, clientId,
-  page, sortCat, sortBy, yearFrom, yearTo,
-  onChangePage, onChangeSort, onChangeYears,
+  page, sortCat, sortBy, yearFrom, yearTo, pagesAmount,
+  onChangePage, onChangeSort, onChangeYears, onChangePagesAmount,
 }) => {
   return ( 
     <div>
@@ -20,6 +21,14 @@ const ClientVisits = ({
         onChangeYears={onChangeYears}
         yearFrom={yearFrom}
         yearTo={yearTo}
+      />
+      <VisitsSorts 
+        page={page}
+        onChangePage={onChangePage}
+        sortBy={sortBy}
+        sortCat={sortCat}
+        onChangeSort={onChangeSort}
+        pagesAmount={pagesAmount}
       />
       <SuspenseErrorBundary>
         <VisitsData 
@@ -30,8 +39,7 @@ const ClientVisits = ({
           sortBy={sortBy}
           yearFrom={yearFrom}
           yearTo={yearTo}
-          onChangeSort={onChangeSort}
-          onChangePage={onChangePage}
+          onChangePagesAmount={onChangePagesAmount}
         />
       </SuspenseErrorBundary>
     </div>
@@ -46,9 +54,11 @@ ClientVisits.propTypes = {
   sortBy: PropTypes.oneOf(['asc', 'desc']),
   yearFrom: PropTypes.string,
   yearTo: PropTypes.string,
+  pagesAmount: PropTypes.number.isRequired,
   onChangePage: PropTypes.func.isRequired,
   onChangeSort: PropTypes.func.isRequired,
   onChangeYears: PropTypes.func.isRequired,
+  onChangePagesAmount: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -57,6 +67,7 @@ const mapStateToProps = (state) => ({
   sortBy: SELECTORS.visits.getSortBy(state),
   yearFrom: SELECTORS.visits.getYearFrom(state),
   yearTo: SELECTORS.visits.getYearTo(state),
+  pagesAmount: SELECTORS.visits.getPagesAmount(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -65,6 +76,7 @@ const mapDispatchToProps = (dispatch) => ({
   onChangeYears: ({ yearFrom, yearTo }) => dispatch(ACTION_CREATORS.visits.setYears({
     yearFrom, yearTo,
   })),
+  onChangePagesAmount: (pagesAmount) => dispatch(ACTION_CREATORS.visits.setPagesAmount(pagesAmount)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ClientVisits);

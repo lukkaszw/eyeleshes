@@ -1,16 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import VisitsList from '../VisitsList';
-import VisitsSorts from '../VisitsSorts';
 
 import { useQuery } from 'react-query';
 import API from '../../../api';
+import PAGES from '../../../settings/pages';
 
 const VisitsData = ({ 
   token, clientId,
   page, sortBy, sortCat, yearFrom, yearTo,
-  onChangePage, onChangeSort,
+  onChangePagesAmount,
  }) => {
 
   const { data: { visits, amount } } = useQuery(
@@ -23,20 +23,15 @@ const VisitsData = ({
     { suspense: true, cacheTime: 0 }
   );
 
+  useEffect(() => {
+    const pagesAmount = Math.ceil(amount / PAGES.VISITS.MAX_ON_PAGE);
+    onChangePagesAmount(pagesAmount);
+  }, [amount, onChangePagesAmount]);
+
   return ( 
-    <>
-      <VisitsSorts 
-        page={page}
-        onChangePage={onChangePage}
-        sortBy={sortBy}
-        sortCat={sortCat}
-        onChangeSort={onChangeSort}
-        visitsAmount={amount}
-      />
-      <VisitsList 
-        visits={visits}
-      />
-    </>
+    <VisitsList 
+      visits={visits}
+    />
   );
 }
 
@@ -48,8 +43,7 @@ VisitsData.propTypes = {
   sortBy: PropTypes.oneOf(['asc', 'desc']),
   yearFrom: PropTypes.string,
   yearTo: PropTypes.string,
-  onChangePage: PropTypes.func.isRequired,
-  onChangeSort: PropTypes.func.isRequired,
+  onChangePagesAmount: PropTypes.func.isRequired,
 };
  
 export default VisitsData;

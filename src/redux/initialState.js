@@ -17,7 +17,7 @@ const initialState = {
       page: 1,
       yaerFrom: '',
       yearTo: '',
-
+      pagesAmount: 1,
     },
   },
 };

@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import styles from './VisitsSorts.module.scss';
 import { 
@@ -13,17 +13,11 @@ import {
 import Button from '../../common/Button';
 import SmallPagination from '../../common/SmallPagination';
 
-import PAGES from '../../../settings/pages';
-
 const VisitsSorts = ({ 
-  visitsAmount, page,
+  pagesAmount, page,
   sortCat, sortBy,
-  onChangePage, onChangeSort,
+  onChangePage, onChangeSort, 
 }) => {
-
-  const pagesAmount = useMemo(() => {
-    return Math.ceil(visitsAmount / PAGES.VISITS.MAX_ON_PAGE)
-  }, [ visitsAmount ]);
 
   const handlePrevPage = useCallback(() => onChangePage(page === 1 ? 1 : page - 1), [page, onChangePage]);
   const handleNextPage =  useCallback(() => onChangePage(page === pagesAmount ? pagesAmount : page + 1), [page, onChangePage, pagesAmount]);
@@ -74,7 +68,7 @@ const VisitsSorts = ({
 }
 
 VisitsSorts.propTypes = {
-  visitsAmount: PropTypes.number.isRequired,
+  pagesAmount: PropTypes.number.isRequired,
   page: PropTypes.number.isRequired,
   sortCat: PropTypes.oneOf(['date', 'price']),
   sortBy: PropTypes.oneOf(['asc', 'desc']),

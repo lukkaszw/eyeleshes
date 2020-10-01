@@ -32,6 +32,15 @@ const visitsReducer = (statePart = {}, action = {}) => {
         },
       };
     }
+    case ACTIONS.visits.SET_PAGES_AMOUNT: {
+      return {
+        ...statePart,
+        queries: {
+          ...statePart.queries,
+          pagesAmount: action.payload,
+        },
+      };
+    }
 
     default: 
       return statePart;
