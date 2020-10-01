@@ -24,13 +24,18 @@ const VisitsFilters = ({ yearTo, yearFrom, onChangeYears }) => {
     handleChangeYearSecond,
   } = useFilters({ yearFrom, yearTo, onChangeYears, handleCloseModal });
 
-  let filters = 'brak filtrów';
-  if(yearFrom) {
-    filters = `od ${yearFrom} `;
+  let filters = '';
+  if(yearFrom || yearTo) {
+    if(yearFrom) {
+      filters = `od ${yearFrom} `;
+    }
+    if(yearTo) {
+      filters = `${filters} do ${yearTo}`;
+    }
+  } else {
+    filters = 'brak filtrów';
   }
-  if(yearTo) {
-    filters = `${filters} do ${yearTo}`;
-  }
+
 
   return ( 
     <div className='m-top-l m-bottom-m'>
