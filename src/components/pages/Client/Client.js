@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -12,7 +12,9 @@ import ClientStats from './components/ClientsStats';
 import SuspenseErrorBundary from '../../common/SuspenseErrorBundary';
 import ClientVisits from './components/ClientVisits';
 
-const Client = ({ token }) => {
+import ACTION_CREATORS from '../../../redux/actionCreators';
+
+const Client = ({ token, onResetQueries }) => {
 
   const { id } = useParams();
 
@@ -20,6 +22,9 @@ const Client = ({ token }) => {
     API.clients.getOne,  
     { suspense: true }
   );
+
+  useEffect(() => () => onResetQueries()
+  , [onResetQueries]);
 
   return ( 
     <section className="m-top-x">
@@ -48,5 +53,9 @@ Client.propTypes = {
 const mapStateToProps = (state) => ({
   token: SELECTORS.user.getToken(state),
 });
+
+const mapDispatchToProps = (dispatch) => ({
+  onResetQueries: () => dispatch(ACTION_CREATORS.visits.resetQueries()),
+});
  
-export default connect(mapStateToProps)(Client);
+export default connect(mapStateToProps, mapDispatchToProps)(Client);

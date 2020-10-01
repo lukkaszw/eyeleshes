@@ -32,6 +32,18 @@ const visitsReducer = (statePart = {}, action = {}) => {
         },
       };
     }
+    case ACTIONS.visits.RESET_VISITS_QUERIES: {
+      return {
+        ...statePart,
+        queries: {
+          sortCat: 'date',
+          sortBy: 'desc',
+          page: 1,
+          yaerFrom: '',
+          yearTo: '',
+        },
+      }
+    }
     default: 
       return statePart;
   }
