@@ -82,7 +82,7 @@ const getAll = async (req, res) => {
   }
 
   try {
-    const amount = await Visit.count(search);
+    const amount = await Visit.countDocuments(search);
 
     const visits = await Visit
       .find(search)
@@ -90,8 +90,9 @@ const getAll = async (req, res) => {
       .skip(parseInt(skip))
       .limit(parseInt(limit));
 
+    const pages = Math.ceil(amount / parseInt(limit));
 
-    res.json({ visits, amount });
+    res.json({ visits, pages });
 
   } catch (error) {
     sendErrors.sendGetErrors(error, res);

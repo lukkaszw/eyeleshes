@@ -33,7 +33,7 @@ SmallPagination.propTypes = {
   onClickPrev: PropTypes.func.isRequired,
   onClickNext: PropTypes.func.isRequired,
   page: PropTypes.number.isRequired,
-  pagesAmount: PropTypes.number.isRequired,
+  pagesAmount: PropTypes.number,
 };
  
 export default SmallPagination;

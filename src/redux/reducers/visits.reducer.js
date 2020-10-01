@@ -17,8 +17,8 @@ const visitsReducer = (statePart = {}, action = {}) => {
         queries: {
           ...statePart.queries,
           page: 1,
-          yaersFrom: action.payload.yaersFrom,
-          yaersTo: action.payload.yaersTo,
+          yearFrom: action.payload.yearFrom,
+          yearTo: action.payload.yearTo,
         },
       };
     }
@@ -32,16 +32,6 @@ const visitsReducer = (statePart = {}, action = {}) => {
         },
       };
     }
-    case ACTIONS.visits.SET_PAGES_AMOUNT: {
-      return {
-        ...statePart,
-        queries: {
-          ...statePart.queries,
-          pagesAmount: action.payload,
-        },
-      };
-    }
-
     default: 
       return statePart;
   }

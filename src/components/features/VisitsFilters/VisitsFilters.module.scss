@@ -1,0 +1,18 @@
+.form {
+  width: 280px;
+  max-width: 100%;
+  padding: 4rem 1rem 1rem;
+
+  .row { 
+    display: flex;
+    align-items: center;
+  }
+
+  .yearsInputs {
+    display: flex;
+
+    & > * {
+      margin: 0 10px;
+    }
+  }
+}

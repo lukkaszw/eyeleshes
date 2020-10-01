@@ -68,7 +68,7 @@ const VisitsSorts = ({
 }
 
 VisitsSorts.propTypes = {
-  pagesAmount: PropTypes.number.isRequired,
+  pagesAmount: PropTypes.number,
   page: PropTypes.number.isRequired,
   sortCat: PropTypes.oneOf(['date', 'price']),
   sortBy: PropTypes.oneOf(['asc', 'desc']),

@@ -11,3 +11,8 @@ export const visitsValidator = {
   price: v => !/^\d+(.\d{1,2})?$/.test(v),
   comment: v => v.length > 500,
 }
+
+export const yearsValidators = {
+  yearFrom: v => parseInt(v) < 2000,
+  yearTo: (v, firstV) => parseInt(v) < parseInt(firstV),
+}
