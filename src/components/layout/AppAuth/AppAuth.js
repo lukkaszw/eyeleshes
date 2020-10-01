@@ -15,7 +15,7 @@ import LoaderIndicator from '../../common/LoaderIndicator';
 const AppAuth = () => {
   return ( 
     <div className={styles.root}>
-      <Header />
+    
       <div className={styles.wrapper}>
         <main className={styles.container}>
           <React.Suspense fallback={<LoaderIndicator isOpen={true}/>}>
@@ -38,6 +38,7 @@ const AppAuth = () => {
         </main>
         <Footer/>
       </div>
+      <Header />
       <MobileMenu />
     </div>
   );

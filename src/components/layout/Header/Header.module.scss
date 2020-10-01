@@ -27,7 +27,7 @@
   }
 
   &.auth {
-    position: sticky;
+    position: fixed;
     top: 0;
     height: 40px;
     background: var(--auth-nav-bg-cl);
@@ -46,6 +46,7 @@
     }
 
     @media (max-width: 825px) {
+      position: absolute;
       top: 20px;
       height: 0;
       padding-left: 10px;
