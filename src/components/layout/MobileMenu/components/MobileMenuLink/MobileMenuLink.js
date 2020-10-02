@@ -27,7 +27,7 @@ MobileMenuLink.propTypes = {
 };
 
 MobileMenuLink.defaultProps = {
-  exact: true,
+  exact: false,
 }
  
 export default MobileMenuLink;

@@ -21,7 +21,7 @@ const Clients = ({
   
   return ( 
     <>
-      <div className="m-top-x m-bottom-l">
+      <div className="m-top-xxl m-bottom-l">
         <ClientsFilters 
           onChangeSearchBy={onChangeSearchBy}
           searchBy={searchBy}
