@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -16,6 +16,8 @@ import ACTION_CREATORS from '../../../redux/actionCreators';
 
 const Client = ({ token, onResetQueries }) => {
 
+  const mostUsed = useRef();
+
   const { id } = useParams();
 
   const { data } = useQuery(['client', { token, clientId: id } ], 
@@ -31,11 +33,16 @@ const Client = ({ token, onResetQueries }) => {
       <ClientDetails 
         {...data}
       />
-      <TodayVisitAdd />
+      <TodayVisitAdd 
+        token={token}
+        clientId={id}
+        refMostUsed={mostUsed}
+      />
       <SuspenseErrorBundary>
         <ClientStats 
           token={token}
           clientId={id}
+          refMostUsed={mostUsed}
         />
       </SuspenseErrorBundary>
       <ClientVisits 

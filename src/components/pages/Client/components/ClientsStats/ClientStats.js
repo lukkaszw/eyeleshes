@@ -7,7 +7,7 @@ import API from '../../../../../api';
 import { printParameters } from '../../../../../utils/printParameters';
 import { printDate } from '../../../../../utils/dateInternationalization';
 
-const ClientStats = ({ token, clientId }) => {
+const ClientStats = ({ token, clientId, refMostUsed }) => {
 
   const { data } = useQuery(['stats', { token, clientId } ], 
   API.visits.getStats,  
@@ -56,7 +56,7 @@ const ClientStats = ({ token, clientId }) => {
           <span className={styles.option}>
             Najczęściej:
           </span>
-          <span>
+          <span ref={refMostUsed}>
             {
               mostCommonVisit ?
               printParameters(mostCommonVisit.parameters)

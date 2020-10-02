@@ -10,7 +10,7 @@ import Button from '../../common/Button';
 import CalendarModal from '../../common/CalendarModal';
 
 import { printDate } from '../../../utils/dateInternationalization';
-import useAddVisitForm from './useAddVisitForm';
+import useAddVisitForm from '../../../hooks/useAddVisitForm';
 
 const FastAddVisit = ({ 
   token,
