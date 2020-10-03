@@ -114,6 +114,11 @@
     padding: 0 3.4rem;
     border-radius: 2.6rem;
   }
+
+  &.fullWidth:not(.iconRoot) {
+    padding: 0;
+    width: 100%;
+  }
 }
 
 .iconRoot {

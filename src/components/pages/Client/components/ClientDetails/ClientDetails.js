@@ -1,14 +1,26 @@
-import React from 'react';
+import React, { useState, useCallback } from 'react';
 import styles from './ClientDetails.module.scss';
 import PropTypes from 'prop-types';
 import { faCog } from '@fortawesome/free-solid-svg-icons';
 import clsx from 'clsx';
 
 import Button from '../../../../common/Button';
+import Modal from '../../../../common/Modal';
 
 import { printDate } from '../../../../../utils/dateInternationalization';
 
-const ClientDetails = ({ name, surname, createdAt }) => {
+const ClientDetails = ({ name, surname, onOpenAddingModal, createdAt }) => {
+
+  const [areOpenOptions, setAreOpenOptions] = useState(false);
+
+  const handleOpenOptions = useCallback(() => setAreOpenOptions(true), [setAreOpenOptions]);
+  const handleCloseOptions = useCallback(() => setAreOpenOptions(false), [setAreOpenOptions]);
+
+  const handleOpenFastAdd = useCallback(() => {
+    onOpenAddingModal();
+    handleCloseOptions();
+  }, [onOpenAddingModal, handleCloseOptions])
+
   return ( 
     <header className="m-bottom-m">
       <p className={clsx([styles.created, 'm-bottom-l'])}>
@@ -36,18 +48,45 @@ const ClientDetails = ({ name, surname, createdAt }) => {
           <div className={styles.field}>
             <Button
               size="small"
+              onClick={handleOpenOptions}
             >
               Dodaj wizytę
             </Button>
           </div>
         </div>
       </div>
+      <Modal
+        isOpen={areOpenOptions}
+        onClose={handleCloseOptions}
+      >
+        <div className={styles.options}>
+          <div className={styles.option}>
+            <Button
+              fullWidth
+            >
+              Użyj kreatora
+            </Button>
+          </div>
+          <div className={styles.option}>
+            <Button
+              fullWidth
+              color="tertiary"
+              onClick={handleOpenFastAdd}
+            >
+              Dodaj szybko
+            </Button>
+          </div>
+        </div>
+      </Modal>
     </header>
   );
 }
 
 ClientDetails.propTypes = {
   createdAt: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  surname: PropTypes.string.isRequired,
+  onOpenAddingModal: PropTypes.func.isRequired,
 };
  
 export default ClientDetails;

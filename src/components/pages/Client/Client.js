@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useState, useRef, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -11,6 +11,7 @@ import TodayVisitAdd from '../../features/TodayVisitAdd';
 import ClientStats from './components/ClientsStats';
 import SuspenseErrorBundary from '../../common/SuspenseErrorBundary';
 import ClientVisits from './components/ClientVisits';
+import FastAddVisit from '../../features/FastAddVisit';
 
 import ACTION_CREATORS from '../../../redux/actionCreators';
 
@@ -28,10 +29,16 @@ const Client = ({ token, onResetQueries }) => {
   useEffect(() => () => onResetQueries()
   , [onResetQueries]);
 
+  const [isOpenAddingModal, setIsOpenAddingModal] = useState(false);
+
+  const handleOpenAddingModal = useCallback(() => setIsOpenAddingModal(true), [setIsOpenAddingModal]);
+  const handleCloseAddingModal = useCallback(() => setIsOpenAddingModal(false), [setIsOpenAddingModal]);
+
   return ( 
     <section className="m-top-x">
       <ClientDetails 
         {...data}
+        onOpenAddingModal={handleOpenAddingModal}
       />
       <TodayVisitAdd 
         token={token}
@@ -48,6 +55,16 @@ const Client = ({ token, onResetQueries }) => {
       <ClientVisits 
         token={token}
         clientId={id}
+      />
+      <FastAddVisit 
+        token={token}
+        isOpen={isOpenAddingModal}
+        onClose={handleCloseAddingModal}
+        chosenClient={{
+          _id: id,
+          name: data.name,
+          surname: data.surname,
+        }}
       />
     </section>
   );

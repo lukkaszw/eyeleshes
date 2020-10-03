@@ -22,6 +22,7 @@ const Button = (props) => {
     size,
     component,
     icon,
+    fullWidth,
     ...others
   } = props;
 
@@ -33,6 +34,7 @@ const Button = (props) => {
     styles[color],
     styles[size],
     variant && styles[variant],
+    fullWidth && styles.fullWidth,
     ...classes
   ];
 
@@ -82,6 +84,7 @@ Button.propTypes = {
   target: PropTypes.string,
   disabled: PropTypes.bool,
   isLoading: PropTypes.bool,
+  fullWIdth: PropTypes.bool,
   classes: PropTypes.array,
   color: PropTypes.oneOf(['primary', 'secondary', 'tertiary']),
   size: PropTypes.string,
