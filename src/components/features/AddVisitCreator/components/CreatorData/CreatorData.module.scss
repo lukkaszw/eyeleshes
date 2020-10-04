@@ -1,0 +1,22 @@
+.root {
+  text-align: center;
+
+  .date {
+    display: inline-block;
+    width: 20rem;
+  }
+
+  .option {
+    margin: 1rem;
+  }
+
+  .price {
+    margin: 0 auto;
+    max-width: 16rem;
+  }
+
+  .comment {
+    max-width: 40rem;
+    margin: 1rem auto;
+  }
+}

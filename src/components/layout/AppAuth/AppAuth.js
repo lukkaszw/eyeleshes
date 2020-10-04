@@ -5,6 +5,7 @@ import styles from './AppAuth.module.scss';
 import Account from '../../pages/Account';
 import Clients from '../../pages/Clients';
 import Client from '../../pages/Client';
+import AddVisit from '../../pages/AddVisit';
 import Logout from '../../pages/Logout';
 import Header from '../Header';
 import Footer from '../Footer';
@@ -22,6 +23,9 @@ const AppAuth = () => {
             <Switch>
               <Route exact path="/clients">
                 <Clients />
+              </Route>
+              <Route exact path="/clients/add_visit/:id">
+                <AddVisit />
               </Route>
               <Route exact path="/clients/:id">
                 <Client />

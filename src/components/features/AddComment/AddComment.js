@@ -10,8 +10,8 @@ const AddComment = ({ onChange, value, isOpen, error }) => {
   return ( 
     <div className={clsx([styles.root, isOpen && styles.open])}>
       <TextareaField 
-        placeholder="Komentarz"
-        label="Komentarz"
+        placeholder="Komentarz opcjonalnie"
+        label="Komentarz opcjonalnie"
         value={value}
         rows={3}
         onChange={onChange}

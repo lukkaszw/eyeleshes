@@ -1,0 +1,33 @@
+.root {
+  display: inline-block;
+  margin: 3px;
+  width: 3.4rem;
+  height: 3.2rem;
+  line-height: 3.2rem;
+  font-size: 2.8rem;
+  background-color: var(--square-btn-bg-cl);
+  color: var(--square-btn-font-cl);
+  border: 1px solid #777;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: .2s;
+  font-family: var(--font-decorative);
+
+  &:focus {
+    outline: none;
+    border: 1px solid var(--square-btn-hover-font-cl);
+  }
+
+
+  &:hover {
+    background-color: var(--square-btn-hover-bg-cl);
+    color: var(--square-btn-hover-font-cl);
+    border: 1px solid var(--square-btn-hover-font-cl);
+  }
+
+
+  &.active {
+    background-color: var(--square-btn-active-bg-cl);
+    color: var(--square-btn-active-font-cl);
+  }
+}

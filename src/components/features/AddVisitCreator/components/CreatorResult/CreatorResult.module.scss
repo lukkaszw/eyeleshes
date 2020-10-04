@@ -1,0 +1,18 @@
+.root {
+  .name {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+
+  .result {
+    padding: 1rem;
+    min-height: 8rem;
+    text-align: center;
+  }
+
+  .photo {
+    width: 40%;
+    max-width: 200px;
+  }
+}

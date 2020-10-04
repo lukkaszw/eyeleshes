@@ -87,6 +87,19 @@
 
   --icon-button-bg-cl-fill: var(--white);
 
+  --icon-button-disabled-cl: var(--grey-light);
+  --icon-button-disabled-icon-cl: var(--grey);
+
+  //Square buttons
+  --square-btn-bg-cl: var(--white);
+  --square-btn-font-cl: var(--black);
+
+  --square-btn-hover-bg-cl: var(--white);
+  --square-btn-hover-font-cl: var(--purple);
+
+  --square-btn-active-bg-cl: var(--purple);
+  --square-btn-active-font-cl: var(--white);
+
   //Checkbox colors 
   --checkbox-cl: var(--purple);
   --checkbox-cl-bg: var(--white);

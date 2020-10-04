@@ -1,4 +1,5 @@
 import React, { useState, useCallback } from 'react';
+import { Link } from 'react-router-dom';
 import styles from './ClientDetails.module.scss';
 import PropTypes from 'prop-types';
 import { faCog } from '@fortawesome/free-solid-svg-icons';
@@ -9,7 +10,7 @@ import Modal from '../../../../common/Modal';
 
 import { printDate } from '../../../../../utils/dateInternationalization';
 
-const ClientDetails = ({ name, surname, onOpenAddingModal, createdAt }) => {
+const ClientDetails = ({ _id, name, surname, onOpenAddingModal, createdAt }) => {
 
   const [areOpenOptions, setAreOpenOptions] = useState(false);
 
@@ -63,6 +64,8 @@ const ClientDetails = ({ name, surname, onOpenAddingModal, createdAt }) => {
           <div className={styles.option}>
             <Button
               fullWidth
+              component={Link}
+              to={`/clients/add_visit/${_id}`}
             >
               Użyj kreatora
             </Button>
@@ -83,6 +86,7 @@ const ClientDetails = ({ name, surname, onOpenAddingModal, createdAt }) => {
 }
 
 ClientDetails.propTypes = {
+  _id: PropTypes.string.isRequired,
   createdAt: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   surname: PropTypes.string.isRequired,
