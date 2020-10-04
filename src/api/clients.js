@@ -33,3 +33,13 @@ export const getOne = async (key, { token, clientId }) => {
   
   return resp.data;
 }
+
+export const deleteClient = async ({ token, clientId }) => {
+  const url = `${api.baseUrl}/${api.endpoints.clients}/${clientId}`;
+
+  const config = generateAuthConfig(token);
+
+  const resp = await axios.delete(url, config);
+
+  return resp.data;
+}

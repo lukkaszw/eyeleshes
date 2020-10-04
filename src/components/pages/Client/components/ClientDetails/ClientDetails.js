@@ -10,7 +10,10 @@ import Modal from '../../../../common/Modal';
 
 import { printDate } from '../../../../../utils/dateInternationalization';
 
-const ClientDetails = ({ _id, name, surname, onOpenAddingModal, createdAt }) => {
+const ClientDetails = ({ 
+  _id, name, surname, createdAt,
+  onOpenAddingModal, onOpenSettings,
+}) => {
 
   const [areOpenOptions, setAreOpenOptions] = useState(false);
 
@@ -43,6 +46,7 @@ const ClientDetails = ({ _id, name, surname, onOpenAddingModal, createdAt }) => 
             size="small"
             icon={faCog}
             variant="secondary"
+            onClick={onOpenSettings}
           />
         </div>
         <div className={styles.right}>
@@ -91,6 +95,7 @@ ClientDetails.propTypes = {
   name: PropTypes.string.isRequired,
   surname: PropTypes.string.isRequired,
   onOpenAddingModal: PropTypes.func.isRequired,
+  onOpenSettings: PropTypes.func.isRequired,
 };
  
 export default ClientDetails;

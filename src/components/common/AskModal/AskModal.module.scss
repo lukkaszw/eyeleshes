@@ -1,0 +1,19 @@
+.root {
+  font-size: 1.6rem;
+  width: 500px;
+  max-width: 100%;
+
+  .question {
+    margin: 2rem 0;
+    line-height: 1.7;
+    text-align: justify;
+  }
+
+  .btns {
+    text-align: center;
+
+    button {
+      margin: 0 1rem;
+    }
+  }
+}

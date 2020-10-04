@@ -11,6 +11,7 @@ import TodayVisitAdd from '../../features/TodayVisitAdd';
 import ClientStats from './components/ClientsStats';
 import SuspenseErrorBundary from '../../common/SuspenseErrorBundary';
 import ClientVisits from './components/ClientVisits';
+import ClientSettings from './components/ClientSettings';
 import FastAddVisit from '../../features/FastAddVisit';
 
 import ACTION_CREATORS from '../../../redux/actionCreators';
@@ -30,14 +31,18 @@ const Client = ({ token, onResetQueries }) => {
   , [onResetQueries]);
 
   const [isOpenAddingModal, setIsOpenAddingModal] = useState(false);
+  const [areSettingsOpen, setAreSettingsOpen] = useState(false);
 
   const handleOpenAddingModal = useCallback(() => setIsOpenAddingModal(true), [setIsOpenAddingModal]);
   const handleCloseAddingModal = useCallback(() => setIsOpenAddingModal(false), [setIsOpenAddingModal]);
+  const handleOpenSettings = useCallback(() => setAreSettingsOpen(true), [setAreSettingsOpen]);
+  const handleCloseSettings = useCallback(() => setAreSettingsOpen(false), [setAreSettingsOpen]);
 
   return ( 
     <section className="m-top-x">
       <ClientDetails 
         {...data}
+        onOpenSettings={handleOpenSettings}
         onOpenAddingModal={handleOpenAddingModal}
       />
       <TodayVisitAdd 
@@ -65,6 +70,14 @@ const Client = ({ token, onResetQueries }) => {
           name: data.name,
           surname: data.surname,
         }}
+      />
+      <ClientSettings 
+        isOpen={areSettingsOpen}
+        onClose={handleCloseSettings}
+        token={token}
+        clientId={data._id}
+        name={data.name}
+        surname={data.surname}
       />
     </section>
   );
