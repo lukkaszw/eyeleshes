@@ -61,3 +61,13 @@ export const getStats = async (key, { token, clientId }) => {
 
   return resp.data;
 }
+
+export const getOne = async (key, { token, visitId }) => {
+  const url = `${api.baseUrl}/${api.endpoints.visits}/${visitId}`;
+
+  const config = generateAuthConfig(token);
+
+  const resp = await axios.get(url, config);
+
+  return resp.data;
+}

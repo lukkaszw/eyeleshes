@@ -5,13 +5,13 @@ import styles from './AppAuth.module.scss';
 import Account from '../../pages/Account';
 import Clients from '../../pages/Clients';
 import Client from '../../pages/Client';
+import Visit from '../../pages/Visit';
 import AddVisit from '../../pages/AddVisit';
 import Logout from '../../pages/Logout';
 import Header from '../Header';
 import Footer from '../Footer';
 import MobileMenu from '../MobileMenu';
 import LoaderIndicator from '../../common/LoaderIndicator';
-
 
 const AppAuth = () => {
   return ( 
@@ -29,6 +29,9 @@ const AppAuth = () => {
               </Route>
               <Route exact path="/clients/:id">
                 <Client />
+              </Route>
+              <Route exact path="/visits/:id">
+                <Visit />
               </Route>
               <Route exact path="/account">
                 <Account />

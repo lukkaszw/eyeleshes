@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { faBookReader } from '@fortawesome/free-solid-svg-icons';
 import styles from './VisitItem.module.scss';
@@ -26,6 +27,8 @@ const VisitItem = ({ parameters, date, price, _id }) => {
           size="small"
           variant="fill"
           color="secondary"
+          component={Link}
+          to={`/visits/${_id}`}
         />
       </span>
     </li>
