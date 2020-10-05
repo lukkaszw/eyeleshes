@@ -22,7 +22,7 @@ const VisitsData = ({
       }
     ], 
     API.visits.getAll,  
-    { suspense: false, cacheTime: 0 }
+    { suspense: false }
   );
 
   return (

@@ -11,7 +11,7 @@ const ClientStats = ({ token, clientId, refMostUsed }) => {
 
   const { data } = useQuery(['stats', { token, clientId } ], 
   API.visits.getStats,  
-  { suspense: true, cacheTime: 0 }
+  { suspense: true }
 );
 
   const {

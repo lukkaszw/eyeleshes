@@ -43,7 +43,9 @@ const AddVisitCreator = ({ _id, name, surname, token }) => {
   //useMutation
   const [submitAction, { isLoading: isSending }] = useMutation(API.visits.addVisit, {
     onSuccess: data => {
-      queryCache.invalidateQueries('clients', 'stats');
+      queryCache.refetchQueries('stats');
+      queryCache.refetchQueries('visits');
+      queryCache.refetchQueries('clients');
       toast.success('Poprawnie dodano wizytę!', TOASTS.success);
       history.push(`/clients/${_id}`);
     },
