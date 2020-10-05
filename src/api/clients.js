@@ -43,3 +43,13 @@ export const deleteClient = async ({ token, clientId }) => {
 
   return resp.data;
 }
+
+export const editClient = async ({ token, clientId, name, surname }) => {
+  const url = `${api.baseUrl}/${api.endpoints.clients}/${clientId}`;
+
+  const config = generateAuthConfig(token);
+
+  const resp = await axios.put(url, { name, surname }, config);
+
+  return resp.data;
+}

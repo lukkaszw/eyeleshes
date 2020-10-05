@@ -7,7 +7,7 @@ import API from '../../../api';
 import { useQuery } from 'react-query';
 
 import DisplayClients from './components/DisplayClients';
-import AddClient from '../../features/AddClient';
+import AddEditClient from '../../features/AddEditClient';
 import FastAddVisit from '../../features/FastAddVisit';
 
 import useAddingClient from './useAddingClient';
@@ -43,7 +43,7 @@ const Clients = ({
         token={token}
         onStartAdding={handleOpenAddingClient}
       />
-      <AddClient 
+      <AddEditClient 
         token={token}
         existingClients={data}
         isOpen={isAddingClient}

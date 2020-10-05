@@ -1,15 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './AddClient.module.scss';
+import styles from './AddEditClient.module.scss';
 
 import Modal from '../../common/Modal';
 import InputField from '../../common/InputField';
 import Button from '../../common/Button';
 import Alert from '../../common/Alert';
 
-import useAddClientForm from './useAddClientForm';
-
-const AddClient = ({ token, existingClients, isOpen, onClose }) => {
+import useClientForm from '../../../hooks/useClientForm';
+const AddEditClient = ({ 
+  token, clientId, isForEdit,
+  existingClients, initialValues,
+  isOpen, onClose,  }) => {
 
   const {
     fields,
@@ -19,7 +21,7 @@ const AddClient = ({ token, existingClients, isOpen, onClose }) => {
     handleCloseAlert,
     handleSubmit,
     isSending,
-  } = useAddClientForm({ token, existingClients, onClose });
+  } = useClientForm({ token, existingClients, onClose, clientId, initialValues, isForEdit });
 
   return ( 
     <Modal 
@@ -54,7 +56,9 @@ const AddClient = ({ token, existingClients, isOpen, onClose }) => {
               disabled={isSending || isEmptyError || duplicateError}
               isLoading={isSending}
             >
-              Dodaj klienta
+              {
+                isForEdit ? 'Edytuj dane' : 'Dodaj klienta'
+              }
             </Button>
           </div>
         </form>
@@ -70,11 +74,14 @@ const AddClient = ({ token, existingClients, isOpen, onClose }) => {
   );
 }
 
-AddClient.propTypes = {
+AddEditClient.propTypes = {
+  isForEdit: PropTypes.bool,
+  clientId: PropTypes.string,
+  initialValues: PropTypes.object,
   token: PropTypes.string.isRequired,
   existingClients: PropTypes.array.isRequired,
   isOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
 };
  
-export default AddClient;
+export default AddEditClient;

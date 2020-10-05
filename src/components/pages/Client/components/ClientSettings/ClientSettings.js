@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { Suspense, useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import styles from './ClientSettings.module.scss';
 
 import Modal from '../../../../common/Modal';
 import Button from '../../../../common/Button';
 import AskModal from '../../../../common/AskModal';
+import EditClient from '../EditClient';
 
 import useDeleteClient from '../../useDeleteClient';
 
@@ -20,6 +21,11 @@ const ClientSettings = ({
     handleDelete,
     isSending,
   } = useDeleteClient({ token, clientId });
+
+  const [isEditOpen, setIsEditOpen] = useState(false);
+
+  const handleOpenEdit = useCallback(() => setIsEditOpen(true), [setIsEditOpen]);
+  const handleCloseEdit = useCallback(() => setIsEditOpen(false), [setIsEditOpen]);
 
   return (
     <div>
@@ -51,6 +57,7 @@ const ClientSettings = ({
             <Button
               color="tertiary"
               size="small"
+              onClick={handleOpenEdit}
             >
               Edytuj dane
             </Button>
@@ -69,6 +76,16 @@ const ClientSettings = ({
         noDisabled={isSending}
         yesLoading={isSending}
       />
+      <Suspense fallback="">
+        <EditClient 
+          token={token}
+          isOpen={isEditOpen}
+          onClose={handleCloseEdit}
+          name={name}
+          surname={surname}
+          clientId={clientId}
+        />
+      </Suspense>
     </div>
   );
 }

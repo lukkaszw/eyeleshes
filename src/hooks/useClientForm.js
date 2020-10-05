@@ -1,14 +1,21 @@
 import { useState, useCallback, useMemo } from 'react';
 import { useMutation, queryCache } from 'react-query'
-import API from '../../../api';
+import API from '../api';
 import { toast } from 'react-toastify';
-import TOASTS from '../../../utils/toasts.config';
-import checkDuplicateClient from '../../../utils/checkDuplicateClient';
+import TOASTS from '../utils/toasts.config';
+import checkDuplicateClient from '../utils/checkDuplicateClient';
 
-const useAddClientForm = ({ token, onClose, existingClients }) => {
+const useAddClientForm = ({ 
+  token, 
+  onClose, 
+  existingClients,
+  isForEdit,
+  clientId,
+  initialValues,
+}) => {
   //state
-  const [nameField, setName] = useState({ value: '', error: false });
-  const [surnameField, setSurname] = useState({ value: '', error: false });
+  const [nameField, setName] = useState({ value: initialValues ? initialValues.name : '', error: false });
+  const [surnameField, setSurname] = useState({ value: initialValues ? initialValues.surname : '', error: false });
   const [duplicateError, setDuplicateError] = useState(false);
 
   //handlers
@@ -41,19 +48,27 @@ const useAddClientForm = ({ token, onClose, existingClients }) => {
     return false;
   }, [nameField, surnameField]);
 
+  const apiAction = isForEdit ? API.clients.editClient : API.clients.addClient;
 
   //useMutation
-  const [submitAction, { isLoading: isSending }] = useMutation(API.clients.addClient, {
+  const [submitAction, { isLoading: isSending }] = useMutation(apiAction, {
     onSuccess: data => {
-      queryCache.invalidateQueries('clients');
-      toast.success('Poprawnie dodano klienta!', TOASTS.success);
+      if(isForEdit) {
+        queryCache.invalidateQueries('client');
+        queryCache.refetchQueries('clients');
+      } else {
+        queryCache.invalidateQueries('clients');
+        toast.success('Poprawnie dodano klienta!', TOASTS.success);
+        handleResetFields();
+      }
       onClose();
-      handleResetFields();
     },
     onError: data => {
-      toast.success(data.response.data.error, TOASTS.error);
+      toast.error(data.response.data.error, TOASTS.error);
       onClose();
-      handleResetFields();
+      if(!isForEdit) {
+        handleResetFields();
+      }
     }
   });
 
@@ -73,7 +88,7 @@ const useAddClientForm = ({ token, onClose, existingClients }) => {
       return;
     }
 
-    submitAction({ token, name, surname });
+    submitAction({ token, name, surname, clientId });
   };
 
 
