@@ -1,27 +1,18 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import styles from './CreatorResult.module.scss';
-import { faReply } from '@fortawesome/free-solid-svg-icons';
 
 import SquareBtn from '../../../../common/SquareBtn';
-import Button from '../../../../common/Button';
+import TopInfoLink from '../../../../common/TopInfoLink';
 
 const CreatorResult = ({ clientId, name, surname, result, chosenPart, onSetChosenPart }) => {
   return ( 
     <div className={styles.root}>
-      <div className={styles.name}>
-        <Button 
-          ariaLabel="Wróć do strony klienta"
-          icon={faReply}
-          component={Link}
-          to={`/clients/${clientId}`}
-          color="secondary"
-        />
-        <h3 className="m-left-l">
-          {name} {surname}
-        </h3>
-      </div>
+      <TopInfoLink 
+        ariaLabel="Wróć do strony klienta"
+        link={`/clients/${clientId}`}
+        text={`${name} ${surname}`}
+      />
       <div className="text-centered">
         <img className={styles.photo} src="/images/eye-map.png" alt="mapa oka" />
       </div>

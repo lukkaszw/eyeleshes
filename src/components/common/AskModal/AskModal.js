@@ -63,6 +63,8 @@ AskModal.propTypes = {
 AskModal.defaultProps = {
   onNoBtnColor: 'secondary',
   onYesBtnColor: 'tertiary',
+  noAnswear: 'Nie',
+  yesAnswear: 'Tak',
 }
  
 export default AskModal;

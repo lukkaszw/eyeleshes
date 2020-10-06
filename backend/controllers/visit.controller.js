@@ -105,6 +105,7 @@ const getOne = async (req, res) => {
 
   try {
     const visit = await Visit.findOne({ _id, userId })
+      .populate('clientId');
 
     if(!visit) {
       res.status(404).json({

@@ -71,3 +71,13 @@ export const getOne = async (key, { token, visitId }) => {
 
   return resp.data;
 }
+
+export const deleteVisit = async ({ token, visitId }) => {
+  const url = `${api.baseUrl}/${api.endpoints.visits}/${visitId}`;
+
+  const config = generateAuthConfig(token);
+
+  const resp = await axios.delete(url, config);
+
+  return resp.data;
+}
