@@ -2,10 +2,16 @@ import { useState, useCallback } from 'react';
 
 import { visitsValidator } from '../../../utils/validators';
 
-const useDataForm = () => {
-  const [date, setDate] = useState(new Date());
-  const [commentField, setComment] = useState({ value: '', error: false });
-  const [priceField, setPrice] = useState({ value: 0, error: false });
+const useDataForm = ({ initialValues }) => {
+  const [date, setDate] = useState(initialValues ? new Date(initialValues.date) : new Date());
+  const [commentField, setComment] = useState({ 
+    value: initialValues ? initialValues.comment : '', 
+    error: false, 
+  });
+  const [priceField, setPrice] = useState({ 
+    value: initialValues ? initialValues.price : 0, 
+    error: false,
+  });
 
   const [isOpenCalendar, setCalendar] = useState(false);
 

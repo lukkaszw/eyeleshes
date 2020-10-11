@@ -1,11 +1,36 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { useParams } from 'react-router-dom';
 
-const EditVisit = () => {
+import SELECTORS from '../../../redux/selectors';
+import { useQuery } from 'react-query';
+import API from '../../../api';
+
+const EditVisit = ({ token }) => {
+
+  const { id } = useParams();
+
+  const { data } = useQuery(['visit', { token, visitId: id } ], 
+    API.visits.getOne,  
+    { suspense: true }
+  );
+
   return ( 
     <div>
-      EditVisit
+      {
+        JSON.stringify(data)
+      }
     </div>
   );
 }
+
+EditVisit.propTypes = {
+  token: PropTypes.string.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  token: SELECTORS.user.getToken(state),
+});
  
-export default EditVisit;
+export default connect(mapStateToProps)(EditVisit);

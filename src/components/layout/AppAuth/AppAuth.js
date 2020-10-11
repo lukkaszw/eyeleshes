@@ -6,6 +6,7 @@ import Account from '../../pages/Account';
 import Clients from '../../pages/Clients';
 import Client from '../../pages/Client';
 import Visit from '../../pages/Visit';
+import EditVisit from '../../pages/EditVisit';
 import AddVisit from '../../pages/AddVisit';
 import Logout from '../../pages/Logout';
 import Header from '../Header';
@@ -29,6 +30,9 @@ const AppAuth = () => {
               </Route>
               <Route exact path="/clients/:id">
                 <Client />
+              </Route>
+              <Route exact path="/visits/edit_visit/:id">
+                <EditVisit />
               </Route>
               <Route exact path="/visits/:id">
                 <Visit />

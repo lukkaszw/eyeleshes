@@ -15,7 +15,11 @@ import { toast } from 'react-toastify';
 import TOASTS from '../../../utils/toasts.config';
 import checkFieldsErrors from '../../../utils/checkFieldsErrors';
 
-const AddVisitCreator = ({ _id, name, surname, token }) => {
+const VisitCreator = ({ 
+  token,
+  clientId, name, surname, 
+  initialValues, isForEdit, visitId, 
+}) => {
 
   const history = useHistory();
 
@@ -30,7 +34,9 @@ const AddVisitCreator = ({ _id, name, surname, token }) => {
     handleGoBack,
     handleRemoveChosen,
     handleSubmitCreator,
-  } = useParameters();
+  } = useParameters({ 
+    initialParameters: initialValues ? initialValues.parameters : null,
+  });
 
   const {
     fields,
@@ -38,16 +44,28 @@ const AddVisitCreator = ({ _id, name, surname, token }) => {
     handleOpenCalendar,
     handleCloseCalendar,
     isOpenCalendar,
-  } = useDataForm();
+  } = useDataForm({
+    initialValues,
+  });
+  
+  const apiAction = isForEdit ? API.visits.editVisit : API.visits.addVisit;
 
   //useMutation
-  const [submitAction, { isLoading: isSending }] = useMutation(API.visits.addVisit, {
+  const [submitAction, { isLoading: isSending }] = useMutation(apiAction, {
     onSuccess: data => {
       queryCache.refetchQueries('stats');
       queryCache.refetchQueries('visits');
       queryCache.refetchQueries('clients');
-      toast.success('Poprawnie dodano wizytę!', TOASTS.success);
-      history.push(`/clients/${_id}`);
+
+      toast.success(isForEdit ? 'Poprawnie edytowano wizytę!' : 'Poprawnie dodano wizytę!', TOASTS.success);
+
+      if(isForEdit) {
+        queryCache.refetchQueries('visit');
+        history.push(`/visits/${visitId}`);
+      } else {
+        history.push(`/clients/${clientId}`);
+      }
+      
     },
     onError: data => {
       toast.error(data.response.data.error, TOASTS.error);
@@ -65,14 +83,14 @@ const AddVisitCreator = ({ _id, name, surname, token }) => {
     const comment = fields.comment.value;
     const date = fields.date;
 
-    submitAction({ token, parameters, price, comment, clientId: _id, date });
-  }, [isError, fields.price, fields.comment, fields.date, _id, token, parameters, submitAction ]);
+    submitAction({ token, parameters, price, comment, clientId, date, visitId });
+  }, [isError, fields.price, fields.comment, fields.date, clientId, token, visitId, parameters, submitAction ]);
 
 
   return ( 
     <div className="m-top-xl">
       <CreatorResult 
-        clientId={_id}
+        clientId={clientId}
         name={name}
         surname={surname}
         result={parameters}
@@ -104,6 +122,7 @@ const AddVisitCreator = ({ _id, name, surname, token }) => {
             onSubmit={handleSubmit}
             isSending={isSending}
             isError={isError}
+            isForEdit={isForEdit}
           />
         </div>
       </CreatorPanel>
@@ -111,11 +130,14 @@ const AddVisitCreator = ({ _id, name, surname, token }) => {
   );
 }
 
-AddVisitCreator.propTypes = {
-  _id: PropTypes.string.isRequired,
+VisitCreator.propTypes = {
+  clientId: PropTypes.string,
   token: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   surname: PropTypes.string.isRequired,
+  initialvalues: PropTypes.object,
+  isForEdit: PropTypes.bool,
+  visitId: PropTypes.string,
 };
  
-export default AddVisitCreator;
+export default VisitCreator;

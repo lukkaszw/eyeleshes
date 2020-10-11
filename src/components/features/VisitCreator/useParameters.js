@@ -1,8 +1,8 @@
 import { useState, useCallback } from 'react';
 
-const useParameters = () => {
+const useParameters = ({ initialParameters }) => {
 
-  const [parameters, setResult] = useState([]);
+  const [parameters, setResult] = useState(initialParameters || []);
   const [currentLength, setCurrentLength] = useState('');
   const [currentTwist, setCurrentTwist] = useState('');
   const [chosenPart, setChosenPart] = useState(null);

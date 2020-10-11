@@ -7,7 +7,7 @@ import SELECTORS from '../../../redux/selectors';
 import { useQuery } from 'react-query';
 import API from '../../../api';
 
-import AddVisitCreator from '../../features/AddVisitCreator';
+import VisitCreator from '../../features/VisitCreator';
 
 const AddVisit = ({ token }) => {
 
@@ -20,8 +20,9 @@ const AddVisit = ({ token }) => {
   );
 
   return ( 
-    <AddVisitCreator 
+    <VisitCreator 
       token={token}
+      clientId={id}
       {...data}
     />
   );

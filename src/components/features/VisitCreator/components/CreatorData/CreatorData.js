@@ -14,7 +14,8 @@ const CreatorData = ({
   fields,
   onChangeFor,
   onOpenCalendar, onCloseCalendar, isOpenCalendar,
-  onSubmit, isSending, isError,
+  onSubmit, isSending, isError, 
+  isForEdit,
 }) => {
 
   const dateString = useMemo(() => {
@@ -72,7 +73,7 @@ const CreatorData = ({
           disabled={isSending || isError}
           isLoading={isSending}
         >
-          Dodaj wizytę
+          { isForEdit ? 'Edytuj wizytę' : 'Dodaj wizytę'}
         </Button>
       </div>
     </form>
@@ -88,6 +89,7 @@ CreatorData.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   isSending: PropTypes.bool.isRequired,
   isError: PropTypes.bool.isRequired,
+  isForEdit: PropTypes.bool,
 }
  
 export default CreatorData;
