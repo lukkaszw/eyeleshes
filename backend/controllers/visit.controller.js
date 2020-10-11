@@ -124,10 +124,8 @@ const getOne = async (req, res) => {
 const updateOne = async (req, res) => {
   const userId = req.user.id;
   const _id = req.params.id;
-  const clientId = req.body.clientId;
 
   const data = req.body;
-  delete data.clientId;
 
   const allowedUpdates = ['parameters', 'date', 'comment', 'price'];
   const updates = Object.keys(data);
@@ -141,7 +139,7 @@ const updateOne = async (req, res) => {
   }
 
   try {
-    const visit = await Visit.findOne({ _id, clientId, userId });
+    const visit = await Visit.findOne({ _id, userId });
 
     if(!visit) {
       res.status(404).json({

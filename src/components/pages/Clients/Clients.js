@@ -8,7 +8,7 @@ import { useQuery } from 'react-query';
 
 import DisplayClients from './components/DisplayClients';
 import AddEditClient from '../../features/AddEditClient';
-import FastAddVisit from '../../features/FastAddVisit';
+import FastAddEditVisit from '../../features/FastAddEditVisit';
 
 import useAddingClient from './useAddingClient';
 import useAddingVisit from './useAddingVisit';
@@ -49,7 +49,7 @@ const Clients = ({
         isOpen={isAddingClient}
         onClose={handleCloseAddingClient}
       />
-      <FastAddVisit 
+      <FastAddEditVisit 
         token={token}
         isOpen={!!clientForAddingVisit}
         chosenClient={clientForAddingVisit}

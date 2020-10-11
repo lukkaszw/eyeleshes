@@ -1,21 +1,23 @@
 import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { faPen, faCalendar } from '@fortawesome/free-solid-svg-icons';
-import styles from './FastAddVisit.module.scss';
 
 import Modal from '../../common/Modal';
 import InputField from '../../common/InputField';
-import AddComment from '../../features/AddComment';
+import AddComment from '../AddComment';
 import Button from '../../common/Button';
 import CalendarModal from '../../common/CalendarModal';
 
 import { printDate } from '../../../utils/dateInternationalization';
-import useAddVisitForm from '../../../hooks/useAddVisitForm';
+import useVisitForm from '../../../hooks/useVisitForm';
 
-const FastAddVisit = ({ 
+import styles from './FastAddEditVisit.module.scss';
+
+const FastAddEditVisit = ({ 
   token,
   isOpen, onClose,
-  chosenClient
+  chosenClient, initialValues,
+  isForEdit, visitId,
   }) => {
 
     const {
@@ -29,10 +31,13 @@ const FastAddVisit = ({
       isSending,
       handleSubmit,
       isEmpty,
-    } = useAddVisitForm({ 
+    } = useVisitForm({ 
       token,
       onClose, 
-      clientId: chosenClient ? chosenClient._id : null 
+      clientId: chosenClient ? chosenClient._id : null,
+      initialValues,
+      isForEdit,
+      visitId,
     });
 
 
@@ -132,7 +137,7 @@ const FastAddVisit = ({
               isLoading={isSending}
               size="small"
             >
-              Dodaj wizytę
+              { isForEdit ? 'Edytuj wizytę' : 'Dodaj wizytę' }
             </Button>
           </div>
         </form>
@@ -141,14 +146,17 @@ const FastAddVisit = ({
   );
 }
 
-FastAddVisit.propTypes = {
+FastAddEditVisit.propTypes = {
   token: PropTypes.string.isRequired,
   isOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
   chosenClient: PropTypes.object,
+  initialValues: PropTypes.object,
+  isForEdit: PropTypes.bool,
+  visitId: PropTypes.string,
 };
 
 
 
  
-export default FastAddVisit;
+export default FastAddEditVisit;

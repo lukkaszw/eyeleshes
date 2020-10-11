@@ -6,12 +6,24 @@ import TOASTS from '../utils/toasts.config';
 import checkFieldsErrors from '../utils/checkFieldsErrors';
 import { visitsValidator } from '../utils/validators';
 
-const useAddVisitForm = ({ token, onClose, clientId }) => {
+const useVisitForm = ({ token, onClose, clientId, visitId, initialValues, isForEdit }) => {
   //main state
-  const [parametersField, setParameters] = useState({ value: '', error: false, exact: true });
-  const [priceField, setPrice] = useState({ value: 0, error: false });
-  const [commentField, setComment] = useState({ value: '', error: false });
-  const [date, setDate] = useState(new Date());
+  const [parametersField, setParameters] = useState({ 
+    value: initialValues ? initialValues.parameters : '', 
+    error: false, 
+    exact: true, 
+  });
+  const [priceField, setPrice] = useState({ 
+    value: initialValues ? initialValues.price : 0, 
+    error: false 
+  });
+  const [commentField, setComment] = useState({ 
+    value: initialValues ? (initialValues.comment || '') : '', 
+    error: false 
+  });
+  const [date, setDate] = useState(
+    initialValues ? new Date(initialValues.date) : new Date()
+  );
 
   //utility state
   const [isAddingComment, setAddingComment] = useState(false);
@@ -65,20 +77,29 @@ const useAddVisitForm = ({ token, onClose, clientId }) => {
     setAddingComment(prevIsAdding => !prevIsAdding)
   }, [setAddingComment]);
 
+  const apiAction = isForEdit ? API.visits.editVisit : API.visits.addVisit;
+
   //useMutation
-  const [submitAction, { isLoading: isSending }] = useMutation(API.visits.addVisit, {
+  const [submitAction, { isLoading: isSending }] = useMutation(apiAction, {
     onSuccess: data => {
-      queryCache.invalidateQueries('clients');
       queryCache.invalidateQueries('visits');
-      queryCache.invalidateQueries('stats');
-      toast.success('Poprawnie dodano wizytę!', TOASTS.success);
+      queryCache.refetchQueries('stats');
+      queryCache.refetchQueries('clients');
+      if(isForEdit) {
+        queryCache.invalidateQueries('visit');
+      }
+      toast.success(isForEdit ? 'Poprawnie edytowano wizytę' : 'Poprawnie dodano wizytę!', TOASTS.success);
       onClose();
-      handleResetFields();
+      if(!isForEdit) {
+        handleResetFields();
+      }
     },
     onError: data => {
       toast.success(data.response.data.error, TOASTS.error);
       onClose();
-      handleResetFields();
+      if(!isForEdit) {
+        handleResetFields();
+      }
     }
   });
 
@@ -94,7 +115,7 @@ const useAddVisitForm = ({ token, onClose, clientId }) => {
     const price = parseFloat(priceField.value);
     const comment = commentField.value;
 
-    submitAction({ token, parameters, price, comment, clientId, date });
+    submitAction({ token, parameters, price, comment, date, clientId, visitId  });
   };
 
 
@@ -122,7 +143,6 @@ const useAddVisitForm = ({ token, onClose, clientId }) => {
     handleSubmit,
     isEmpty,
   }
-
 }
 
-export default useAddVisitForm;
+export default useVisitForm;

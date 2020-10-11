@@ -12,7 +12,7 @@ import ClientStats from './components/ClientsStats';
 import SuspenseErrorBundary from '../../common/SuspenseErrorBundary';
 import ClientVisits from './components/ClientVisits';
 import ClientSettings from './components/ClientSettings';
-import FastAddVisit from '../../features/FastAddVisit';
+import FastAddEditVisit from '../../features/FastAddEditVisit';
 
 import ACTION_CREATORS from '../../../redux/actionCreators';
 
@@ -61,7 +61,7 @@ const Client = ({ token, onResetQueries }) => {
         token={token}
         clientId={id}
       />
-      <FastAddVisit 
+      <FastAddEditVisit 
         token={token}
         isOpen={isOpenAddingModal}
         onClose={handleCloseAddingModal}

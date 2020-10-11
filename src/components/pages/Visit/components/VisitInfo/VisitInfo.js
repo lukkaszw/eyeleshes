@@ -14,8 +14,8 @@ import styles from './VisitInfo.module.scss';
 
 const VisitInfo = ({ 
   clientId, name, surname,
-  parameters, date, comment,
-  onStartDeleting,
+  parameters, date, comment, price,
+  onStartDeleting, onStartEditing,
 }) => {
   return ( 
     <div>
@@ -30,6 +30,7 @@ const VisitInfo = ({
         <Button 
           icon={faEdit}
           color="secondary"
+          onClick={onStartEditing}
         />
         <Button
           icon={faTrashAlt}
@@ -56,6 +57,13 @@ const VisitInfo = ({
         </p>
       </div>
       <DivideLine />
+      <div className="p-l">
+        <p className="text-centered">Cena:</p>
+        <p className="m-top-s m-bottom-s text-centered">
+          <strong>{price} zł</strong>
+        </p>
+      </div>
+      <DivideLine />
       <div className="m-top-s p-top-l p-bottom-l">
         <p className="text-centered">Uwagi:</p>
         <p className={clsx(['m-top-l', 'm-bottom-l', comment && comment.length > 200 ? null : 'text-centered'])}>
@@ -75,8 +83,10 @@ VisitInfo.propTypes = {
   surname: PropTypes.string.isRequired,
   parameters: PropTypes.arrayOf(PropTypes.string).isRequired,
   date: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
   comment: PropTypes.string,
   onStartDeleting: PropTypes.func.isRequired,
+  onStartEditing: PropTypes.func.isRequired,
 };
  
 export default VisitInfo;

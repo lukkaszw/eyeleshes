@@ -1,12 +1,11 @@
 import React, { useState, useCallback } from 'react';
-import { Link } from 'react-router-dom';
 import styles from './ClientDetails.module.scss';
 import PropTypes from 'prop-types';
 import { faCog } from '@fortawesome/free-solid-svg-icons';
 import clsx from 'clsx';
 
 import Button from '../../../../common/Button';
-import Modal from '../../../../common/Modal';
+import AddEditOptions from '../../../../features/AddEditOptions';
 
 import { printDate } from '../../../../../utils/dateInternationalization';
 
@@ -60,31 +59,12 @@ const ClientDetails = ({
           </div>
         </div>
       </div>
-      <Modal
+      <AddEditOptions 
         isOpen={areOpenOptions}
         onClose={handleCloseOptions}
-      >
-        <div className={styles.options}>
-          <div className={styles.option}>
-            <Button
-              fullWidth
-              component={Link}
-              to={`/clients/add_visit/${_id}`}
-            >
-              Użyj kreatora
-            </Button>
-          </div>
-          <div className={styles.option}>
-            <Button
-              fullWidth
-              color="tertiary"
-              onClick={handleOpenFastAdd}
-            >
-              Dodaj szybko
-            </Button>
-          </div>
-        </div>
-      </Modal>
+        onOpenFastModal={handleOpenFastAdd}
+        clientId={_id}
+      />
     </header>
   );
 }

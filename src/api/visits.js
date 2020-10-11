@@ -81,3 +81,13 @@ export const deleteVisit = async ({ token, visitId }) => {
 
   return resp.data;
 }
+
+export const editVisit = async ({ token, parameters, price, comment, date, visitId }) => {
+  const url = `${api.baseUrl}/${api.endpoints.visits}/${visitId}`;
+
+  const config = generateAuthConfig(token);
+
+  const resp = await axios.put(url, { parameters, price, comment, date }, config);
+
+  return resp.data;
+}

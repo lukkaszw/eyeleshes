@@ -7,7 +7,7 @@ import { faPen, faEyeSlash, faEye } from '@fortawesome/free-solid-svg-icons';
 import InputField from '../../common/InputField';
 import Button from '../../common/Button';
 
-import useAddVisitForm from '../../../hooks/useAddVisitForm';
+import useVisitForm from '../../../hooks/useVisitForm';
 
 const TodayVisitAdd = ({ token, clientId, refMostUsed }) => {
 
@@ -22,7 +22,7 @@ const TodayVisitAdd = ({ token, clientId, refMostUsed }) => {
     isSending,
     handleSubmit,
     isEmpty,
-  } = useAddVisitForm({ 
+  } = useVisitForm({ 
     token,
     clientId,
     onClose: handleCloseForm,
