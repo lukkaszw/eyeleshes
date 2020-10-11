@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
 
+import VisitCreator from '../../features/VisitCreator';
+
 import SELECTORS from '../../../redux/selectors';
 import { useQuery } from 'react-query';
 import API from '../../../api';
@@ -17,11 +19,15 @@ const EditVisit = ({ token }) => {
   );
 
   return ( 
-    <div>
-      {
-        JSON.stringify(data)
-      }
-    </div>
+    <VisitCreator 
+      token={token}
+      clientId={data.clientId._id}
+      name={data.clientId.name}
+      surname={data.clientId.surname}
+      initialValues={data}
+      visitId={id}
+      isForEdit
+    />
   );
 }
 

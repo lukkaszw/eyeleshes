@@ -38,7 +38,7 @@ CreatorResult.propTypes = {
   name: PropTypes.string.isRequired,
   surname: PropTypes.string.isRequired,
   result: PropTypes.arrayOf(PropTypes.string),
-  chosenPart: PropTypes.bool,
+  chosenPart: PropTypes.number,
   onSetChosenPart: PropTypes.func.isRequired,
 }
  
