@@ -1,3 +1,5 @@
+import { faReply, faUsers, faList, faChartLine, faUserCog  } from '@fortawesome/free-solid-svg-icons';
+
 export const NOT_AUTH_LINKS = [
   {
     id: 1,
@@ -31,5 +33,38 @@ export const AUTH_LINKS = [
     id: 3,
     title: 'Wyloguj się',
     to: '/logout',
+  },
+];
+
+export const ACCOUNT_NAV = [
+  {
+    id: 1,
+    ariaLabel: 'wróć',
+    icon: faReply,
+    callback: 'go back',
+  },
+  {
+    id: 2,
+    ariaLabel: 'klienci',
+    icon: faUsers,
+    to: '/clients',
+  },
+  {
+    id: 3,
+    ariaLabel: 'wizyty',
+    icon: faList,
+    to: '/account/visits',
+  },
+  {
+    id: 4,
+    ariaLabel: 'statystyki',
+    icon: faChartLine,
+    to: '/account',
+  },
+  {
+    id: 5,
+    ariaLabel: 'ustawienia konta',
+    icon: faUserCog,
+    to: '/account/settings',
   },
 ];

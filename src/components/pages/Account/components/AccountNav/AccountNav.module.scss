@@ -1,0 +1,12 @@
+.root {
+  text-align: center;
+
+  .list {
+    display: inline-block;
+    list-style: none;
+    border: 1px solid var(--purple);
+    border-radius: 15px;
+    background: var(--account-nav-bg-cl);
+    overflow: hidden;
+  }
+}

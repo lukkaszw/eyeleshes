@@ -37,7 +37,7 @@ const AppAuth = () => {
               <Route exact path="/visits/:id">
                 <Visit />
               </Route>
-              <Route exact path="/account">
+              <Route path="/account">
                 <Account />
               </Route>
               <Route exact path="/logout">

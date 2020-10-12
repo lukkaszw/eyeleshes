@@ -43,6 +43,14 @@
   --auth-nav-link-font-cl: var(--grey-light);
   --auth-nav-link-font-hover-cl: var(--white);
 
+  //account-navigation
+  --account-nav-bg-cl: linear-gradient(to top,  var(--purple-dark), var(--purple));
+  --link-account-nav-cl: var(--white);
+  --link-account-nav-font-cl: var(--purple-dark);
+  
+  --link-account-nav-cl-active: transparent;
+  --link-account-nav-font-cl-active: var(--white);
+
   //mobile-menu
   --mobile-menu-bg-cl: radial-gradient(var(--purple-dark), var(--purple));
   --mobile-menu-btn-cl: var(--orange);
