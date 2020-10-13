@@ -3,7 +3,7 @@ import React from 'react';
 const AccountStats = () => {
   return ( 
     <div>
-      AccountStats
+      Tu będą statystyki!
     </div>
   );
 }

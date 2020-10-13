@@ -41,6 +41,7 @@ export const ACCOUNT_NAV = [
     id: 1,
     ariaLabel: 'wróć',
     icon: faReply,
+    exact: true,
     callback: 'go back',
   },
   {
@@ -53,12 +54,14 @@ export const ACCOUNT_NAV = [
     id: 3,
     ariaLabel: 'wizyty',
     icon: faList,
+    exact: true,
     to: '/account/visits',
   },
   {
     id: 4,
     ariaLabel: 'statystyki',
     icon: faChartLine,
+    exact: true,
     to: '/account',
   },
   {

@@ -7,6 +7,8 @@ import AccountNav from './components/AccountNav';
 import AccountSettings from '../AccountSettings';
 import AccountStats from '../AccountStats';
 import AccountVisits from '../AccountVisits';
+import AccountUpdate from '../../features/AccountUpdate';
+import PasswordUpdate from '../../features/PasswordUpdate';
 
 import SELECTORS from '../../../redux/selectors';
 
@@ -23,6 +25,12 @@ const Account = ({ token,  }) => {
         </Route>
         <Route path="/account/settings" exact>
           <AccountSettings />
+        </Route>
+        <Route path="/account/settings/update" exact>
+          <AccountUpdate />
+        </Route>
+        <Route path="/account/settings/pswd" exact>
+          <PasswordUpdate />
         </Route>
       </Switch>
     </div>
