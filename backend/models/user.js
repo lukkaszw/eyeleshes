@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
+const Client = require('./client');
+const Visit = require('./visit');
 
 const userSchema = mongoose.Schema({
   login: {
@@ -105,6 +107,15 @@ userSchema.pre('save', async function (next) {
 
   next();
 });
+
+userSchema.pre('remove', async function (next) {
+  const user = this;
+
+  await Client.deleteMany({ userId: user._id });
+  await Visit.deleteMany({ userId: user._id });
+
+  next();
+})
 
 const User = mongoose.model('User', userSchema);
 module.exports = User;

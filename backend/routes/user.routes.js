@@ -12,5 +12,7 @@ router.get('/data', auth, userController.getUserData);
 
 router.put('/logout', auth, userController.logout);
 
+router.delete('/me', auth, userController.deleteUser);
+
 
 module.exports = router;

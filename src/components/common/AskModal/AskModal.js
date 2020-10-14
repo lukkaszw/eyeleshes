@@ -47,6 +47,8 @@ const AskModal = ({
 }
 
 AskModal.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
   question: PropTypes.string.isRequired,
   noAnswear: PropTypes.string.isRequired,
   yesAnswear: PropTypes.string.isRequired,

@@ -24,7 +24,9 @@ const Account = ({ token,  }) => {
           <AccountVisits />
         </Route>
         <Route path="/account/settings" exact>
-          <AccountSettings />
+          <AccountSettings 
+            token={token}
+          />
         </Route>
         <Route path="/account/settings/update" exact>
           <AccountUpdate />

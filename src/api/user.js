@@ -71,3 +71,20 @@ return dispatch => {
       });
   }
 }
+
+export const deleteUser = async ({ token, password }) => {
+  const url = `${api.baseUrl}/${api.endpoints.user.remove}`;
+
+  let config = generateAuthConfig(token);
+
+  const resp = await axios({
+    method: 'DELETE',
+    url,
+    data: {
+      password,
+    },
+    headers: config.headers,
+  });
+
+  return resp.data;
+}

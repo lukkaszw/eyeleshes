@@ -1,4 +1,5 @@
 const User = require('../models/user');
+const ERRORS = require('../errors/errors');
 
 const signUp = async (req, res) => {
   const { login, password, confirmPassword } = req.body;
@@ -63,9 +64,36 @@ const logout = async (req, res) => {
   }
 }
 
+const deleteUser = async (req, res) => {
+
+  const login = req.user.login;
+  const { password } = req.body;
+
+  try {
+    const user = await User.findByCredentials(login, password);
+
+    await user.remove();
+
+    res.json(user);
+  } catch (error) {
+
+    if(error.message === 'Nieprawidłowy login lub hasło!') {
+      res.status(400).json({
+        error: ERRORS.FORMS.user.removePassword,
+      });
+      return;
+    }
+
+    res.status(500).json({
+      error: ERRORS.BAD_SERVER,
+    });
+  }
+}
+
 module.exports = {
   signUp,
   signIn,
   getUserData,
   logout,
+  deleteUser,
 };

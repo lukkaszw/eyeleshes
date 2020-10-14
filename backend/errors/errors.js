@@ -10,8 +10,12 @@ const ERRORS = {
     visit: {
       post: 'Nieprawidłowe dane z formularza! Koniecznie podaj parametry, datę, cenę, opcjonalnie komentarz (maks. 500 znaków)',
       update: 'Nieprawidłowa próba edycji! Zezwolono edytować: parametry, data, komentarz, cena.',
+    },
+    user: {
+      removePassword: 'Nie udało się usunąć użytkownika! Nieprawidłowe hasło!',
     }
-  }
+  },
+
 }
 
 module.exports = ERRORS;
