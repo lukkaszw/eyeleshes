@@ -36,6 +36,7 @@ const RemoveUser = ({
             value={password}
             type="password"
             placeholder="Hasło"
+            autoComplete="off"
             label="Hasło"
             error={formError}
           />

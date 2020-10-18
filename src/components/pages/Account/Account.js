@@ -12,7 +12,7 @@ import PasswordUpdate from '../../features/PasswordUpdate';
 
 import SELECTORS from '../../../redux/selectors';
 
-const Account = ({ token,  }) => {
+const Account = ({ token, login  }) => {
   return ( 
     <div className="m-top-xxl">
       <AccountNav />
@@ -29,10 +29,15 @@ const Account = ({ token,  }) => {
           />
         </Route>
         <Route path="/account/settings/update" exact>
-          <AccountUpdate />
+          <AccountUpdate 
+            token={token}
+            login={login}
+          />
         </Route>
         <Route path="/account/settings/pswd" exact>
-          <PasswordUpdate />
+          <PasswordUpdate 
+            token={token}
+          />
         </Route>
       </Switch>
     </div>
@@ -41,11 +46,12 @@ const Account = ({ token,  }) => {
 
 Account.propTypes = {
   token: PropTypes.string.isRequired,
+  login: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state) => ({ 
   token: SELECTORS.user.getToken(state),
-  
+  login: SELECTORS.user.getLogin(state),
 });
  
 export default connect(mapStateToProps)(Account);
