@@ -13,6 +13,7 @@ const ERRORS = {
     },
     user: {
       removePassword: 'Nie udało się usunąć użytkownika! Nieprawidłowe hasło!',
+      updateUser: 'Nie udało się zmienić danych użytkownika. Nieprawidłowe hasło lub login!',
     }
   },
 

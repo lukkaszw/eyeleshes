@@ -90,10 +90,38 @@ const deleteUser = async (req, res) => {
   }
 }
 
+const updateLogin = async (req, res) => {
+  const login = req.user.login;
+  const { login: newLogin, password } = req.body;
+
+  try {
+    const user = await User.findByCredentials(login, password);
+
+    user.login = newLogin;
+
+    await user.save();
+
+    res.json(user);
+
+  } catch (error) {
+    if(error.message === 'Nieprawidłowy login lub hasło!') {
+      res.status(400).json({
+        error: ERRORS.FORMS.user.updateUser,
+      });
+      return;
+    }
+
+    res.status(500).json({
+      error: ERRORS.BAD_SERVER,
+    });
+  }
+}
+
 module.exports = {
   signUp,
   signIn,
   getUserData,
   logout,
   deleteUser,
+  updateLogin,
 };

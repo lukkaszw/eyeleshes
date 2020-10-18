@@ -11,8 +11,9 @@ import AccountUpdate from '../../features/AccountUpdate';
 import PasswordUpdate from '../../features/PasswordUpdate';
 
 import SELECTORS from '../../../redux/selectors';
+import ACTION_CREATORS from '../../../redux/actionCreators';
 
-const Account = ({ token, login  }) => {
+const Account = ({ token, login, onSetUserData  }) => {
   return ( 
     <div className="m-top-xxl">
       <AccountNav />
@@ -26,12 +27,14 @@ const Account = ({ token, login  }) => {
         <Route path="/account/settings" exact>
           <AccountSettings 
             token={token}
+            login={login}
           />
         </Route>
         <Route path="/account/settings/update" exact>
           <AccountUpdate 
             token={token}
             login={login}
+            onUpdateUserData={onSetUserData}
           />
         </Route>
         <Route path="/account/settings/pswd" exact>
@@ -47,11 +50,16 @@ const Account = ({ token, login  }) => {
 Account.propTypes = {
   token: PropTypes.string.isRequired,
   login: PropTypes.string.isRequired,
+  onSetUserData: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({ 
   token: SELECTORS.user.getToken(state),
   login: SELECTORS.user.getLogin(state),
 });
+
+const mapDispatchToProps = (dispatch) => ({
+  onSetUserData: (userData) => dispatch(ACTION_CREATORS.user.setUserData({ user: userData })),
+});
  
-export default connect(mapStateToProps)(Account);
+export default connect(mapStateToProps, mapDispatchToProps)(Account);

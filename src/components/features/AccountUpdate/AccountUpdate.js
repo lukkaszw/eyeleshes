@@ -8,7 +8,7 @@ import useUserDataUpdate from './useUserDataUpdate';
 
 import styles from './AccountUpdate.module.scss';
 
-const AccountUpdate = ({ token, login }) => {
+const AccountUpdate = ({ token, login, onUpdateUserData }) => {
 
   const {
     loginField,
@@ -16,11 +16,18 @@ const AccountUpdate = ({ token, login }) => {
     handleChangeLogin,
     handleChangePassword,
     isEmptyPassword,
-  } = useUserDataUpdate({ initialLogin: login });
+    handleUpdateLogin,
+    isSending,
+  } = useUserDataUpdate({ 
+    token,
+    initialLogin: login, 
+    onUpdateUserData,
+  });
 
   return ( 
     <form
       className={styles.root}
+      onSubmit={handleUpdateLogin}
     >
       <div>
         <InputField 
@@ -46,6 +53,8 @@ const AccountUpdate = ({ token, login }) => {
       <div className="m-top-xl">
         <Button 
           type="submit"
+          disabled={isSending || isEmptyPassword}
+          isLoading={isSending}
         >
           Zmień login
         </Button>
@@ -57,6 +66,7 @@ const AccountUpdate = ({ token, login }) => {
 AccountUpdate.propTypes = {
   token: PropTypes.string.isRequired,
   login: PropTypes.string.isRequired,
+  onUpdateUserData: PropTypes.func.isRequired,
 };
  
 export default AccountUpdate;

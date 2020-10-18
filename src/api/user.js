@@ -75,7 +75,7 @@ return dispatch => {
 export const deleteUser = async ({ token, password }) => {
   const url = `${api.baseUrl}/${api.endpoints.user.remove}`;
 
-  let config = generateAuthConfig(token);
+  const config = generateAuthConfig(token);
 
   const resp = await axios({
     method: 'DELETE',
@@ -85,6 +85,16 @@ export const deleteUser = async ({ token, password }) => {
     },
     headers: config.headers,
   });
+
+  return resp.data;
+}
+
+export const updateLogin = async ({ token, login, password }) => {
+  const url = `${api.baseUrl}/${api.endpoints.user.update}`;
+
+  const config = generateAuthConfig(token);
+
+  const resp = await axios.put(url, { login, password }, config);
 
   return resp.data;
 }

@@ -12,6 +12,8 @@ router.get('/data', auth, userController.getUserData);
 
 router.put('/logout', auth, userController.logout);
 
+router.put('/me', auth, userController.updateLogin);
+
 router.delete('/me', auth, userController.deleteUser);
 
 

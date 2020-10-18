@@ -7,6 +7,7 @@ const api = {
       logout: 'user/logout',
       getData: 'user/data',
       remove: 'user/me',
+      update: 'user/me',
     },
     clients: 'clients',
     visits: 'visits',

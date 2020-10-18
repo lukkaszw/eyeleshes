@@ -9,7 +9,7 @@ import RemoveUser from './components/RemoveUser';
 import useRemoveUser from './useRemoveUser';
 
 
-const AccountSettings = ({ token }) => {
+const AccountSettings = ({ token, login }) => {
 
 
   const {
@@ -28,6 +28,7 @@ const AccountSettings = ({ token }) => {
 
   return ( 
     <div className={styles.root}>
+      <h3 className="text-centered m-bottom-l">{login}</h3>
       <div className="m-top-l">
           <Button
             fullWidth
@@ -82,6 +83,7 @@ const AccountSettings = ({ token }) => {
 
 AccountSettings.propTypes = {
   token: PropTypes.string.isRequired,
+  login: PropTypes.string.isRequired,
 };
  
 export default AccountSettings;
