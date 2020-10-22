@@ -14,6 +14,8 @@ router.put('/logout', auth, userController.logout);
 
 router.put('/me', auth, userController.updateLogin);
 
+router.put('/pswd', auth, userController.updatePassword);
+
 router.delete('/me', auth, userController.deleteUser);
 
 

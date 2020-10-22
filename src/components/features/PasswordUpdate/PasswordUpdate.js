@@ -13,16 +13,20 @@ const PasswordUpdate = ({ token }) => {
   const {
     oldPassword,
     isOldEmpty,
+    isNewEmpty,
     handleChangeOldPassword,
+    newPasswordField,
     handleChangeNewPassword,
     handleChangeConfirmPassword,
-    newPasswordField,
     confirmPasswordField,
-  } = usePasswordUpdate();
+    isSending,
+    handleUpdatePassword,
+  } = usePasswordUpdate({ token });
 
   return ( 
     <form
       className={styles.root}
+      onSubmit={handleUpdatePassword}
     >
       <div>
         <InputField 
@@ -40,11 +44,11 @@ const PasswordUpdate = ({ token }) => {
           value={newPasswordField.value}
           onChange={handleChangeNewPassword}
           placeholder="Nowe hasło"
-          message="od 3 do 12 znaków"
+          message="min. 8 znaków"
           type="password"
           autoComplete="off"
           label="Nowe hasło"
-          error={newPasswordField.error}
+          error={newPasswordField.error || isNewEmpty}
         />
       </div>
       <div className='m-top-s'>
@@ -61,6 +65,8 @@ const PasswordUpdate = ({ token }) => {
       <div className="m-top-xl">
         <Button 
           type="submit"
+          disabled={isSending}
+          isLoading={isSending}
         >
           Zmień hasło
         </Button>

@@ -117,6 +117,44 @@ const updateLogin = async (req, res) => {
   }
 }
 
+const updatePassword = async (req, res) => {
+  const login = req.user.login;
+  const { oldPassword, newPassword, confirmPassword } = req.body;
+
+  const password = oldPassword;
+
+  try {
+    const user = await User.findByCredentials(login, password);
+
+    if (newPassword !== confirmPassword) {
+      res.status(400).json({
+        error: 'Hasła nie pasują do siebie! Wprowadź poprawne hasła!',
+      });
+      return;
+    }
+
+    user.password = newPassword;
+
+    await user.save();
+
+    res.json(user);
+
+  } catch (error) {
+    if(error.message === 'Nieprawidłowy login lub hasło!') {
+      res.status(400).json({
+        error: ERRORS.FORMS.user.updateUser,
+      });
+      return;
+    }
+
+    console.log(error);
+
+    res.status(500).json({
+      error: ERRORS.BAD_SERVER,
+    });
+  }
+}
+
 module.exports = {
   signUp,
   signIn,
@@ -124,4 +162,5 @@ module.exports = {
   logout,
   deleteUser,
   updateLogin,
+  updatePassword,
 };

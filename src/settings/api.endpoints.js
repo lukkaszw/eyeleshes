@@ -8,6 +8,7 @@ const api = {
       getData: 'user/data',
       remove: 'user/me',
       update: 'user/me',
+      updatePswd: 'user/pswd',
     },
     clients: 'clients',
     visits: 'visits',
