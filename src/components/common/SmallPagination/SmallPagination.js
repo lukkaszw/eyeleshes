@@ -16,7 +16,9 @@ const SmallPagination = ({ onClickPrev, onClickNext, page, pagesAmount }) => {
         onClick={onClickPrev}
       />
       <span className={styles.pages}>
-        {page}/{pagesAmount}
+        {
+          pagesAmount > 0 ? `${page}/${pagesAmount}` : '-'
+        }
       </span>
       <Button 
         icon={faAngleRight}
