@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styles from './ClientsList.module.scss';
 
 import ClientItem from './components/ClientItem';
+import NoResults from '../../common/NoResults';
 
 const ClientsList = ({ 
  clients, onAddVisit,
@@ -10,17 +11,22 @@ const ClientsList = ({
 
   return ( 
     <div className={styles.root}>
-      <ul className={styles.list}>
-        {
-          clients.map(client => (
-            <ClientItem 
-              onAddVisit={onAddVisit}
-              key={client._id}
-              {...client}
-            />
-          ))
-        }
-      </ul>
+      {
+        clients.length === 0 ? 
+          <NoResults />
+          :
+          <ul className={styles.list}>
+            {
+              clients.map(client => (
+                <ClientItem 
+                  onAddVisit={onAddVisit}
+                  key={client._id}
+                  {...client}
+                />
+              ))
+            }
+          </ul>
+      }
     </div>
   );
 }
