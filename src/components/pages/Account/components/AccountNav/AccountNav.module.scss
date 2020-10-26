@@ -9,4 +9,8 @@
     background: var(--account-nav-bg-cl);
     overflow: hidden;
   }
+
+  @media (max-width: 825px) {
+    display: none;
+  }
 }

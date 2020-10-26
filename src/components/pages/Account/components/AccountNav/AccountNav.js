@@ -21,7 +21,7 @@ const AccountNav = () => {
       <ul className={styles.list}>
         {
           ACCOUNT_NAV.map(link => {
-            if(link.callback === 'go back') {
+            if(link.callback === 'GO_BACK') {
               return (
                 <AccountNavLink 
                   key={link.id}

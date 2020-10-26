@@ -13,8 +13,11 @@ import SuspenseErrorBundary from '../../common/SuspenseErrorBundary';
 import ClientVisits from './components/ClientVisits';
 import ClientSettings from './components/ClientSettings';
 import FastAddEditVisit from '../../features/FastAddEditVisit';
+import MobileNav from '../../layout/MobileNav';
 
 import ACTION_CREATORS from '../../../redux/actionCreators';
+
+import { CLIENT_LINKS } from '../../../settings/navigationLinks';
 
 const Client = ({ token, onResetQueries }) => {
 
@@ -37,6 +40,11 @@ const Client = ({ token, onResetQueries }) => {
   const handleCloseAddingModal = useCallback(() => setIsOpenAddingModal(false), [setIsOpenAddingModal]);
   const handleOpenSettings = useCallback(() => setAreSettingsOpen(true), [setAreSettingsOpen]);
   const handleCloseSettings = useCallback(() => setAreSettingsOpen(false), [setAreSettingsOpen]);
+
+  const onMobileAddAction = useCallback(e => {
+    e.preventDefault();
+    handleOpenAddingModal();
+  }, [handleOpenAddingModal]);
 
   return ( 
     <section className="m-top-x">
@@ -78,6 +86,10 @@ const Client = ({ token, onResetQueries }) => {
         clientId={data._id}
         name={data.name}
         surname={data.surname}
+      />
+      <MobileNav 
+        navActions={CLIENT_LINKS}
+        onAddAction={onMobileAddAction}
       />
     </section>
   );

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import SELECTORS from '../../../redux/selectors';
@@ -9,9 +9,12 @@ import { useQuery } from 'react-query';
 import DisplayClients from './components/DisplayClients';
 import AddEditClient from '../../features/AddEditClient';
 import FastAddEditVisit from '../../features/FastAddEditVisit';
+import MobileNav from '../../layout/MobileNav';
 
 import useAddingClient from './useAddingClient';
 import useAddingVisit from './useAddingVisit';
+
+import { CLIENTS_LINKS } from '../../../settings/navigationLinks';
 
 
 const Clients = ({ 
@@ -34,7 +37,12 @@ const Clients = ({
     handleOpenAddingVisit,
     handleCancelAddingVisit,
   } = useAddingVisit();
-  
+
+  const onMobileAddAction = useCallback((e) => {
+    e.preventDefault();
+    handleOpenAddingClient();
+  }, [handleOpenAddingClient]);
+   
   return ( 
     <>
       <DisplayClients 
@@ -54,6 +62,10 @@ const Clients = ({
         isOpen={!!clientForAddingVisit}
         chosenClient={clientForAddingVisit}
         onClose={handleCancelAddingVisit}
+      />
+      <MobileNav 
+        navActions={CLIENTS_LINKS}
+        onAddAction={onMobileAddAction}
       />
     </>
   );

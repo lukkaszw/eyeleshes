@@ -8,6 +8,9 @@ import { useQuery } from 'react-query';
 import API from '../../../api';
 
 import VisitCreator from '../../features/VisitCreator';
+import MobileNav from '../../layout/MobileNav';
+
+import { ADD_VISIT_PAGE_LINKS } from '../../../settings/navigationLinks';
 
 const AddVisit = ({ token }) => {
 
@@ -20,11 +23,16 @@ const AddVisit = ({ token }) => {
   );
 
   return ( 
-    <VisitCreator 
-      token={token}
-      clientId={id}
-      {...data}
-    />
+    <>
+      <VisitCreator 
+        token={token}
+        clientId={id}
+        {...data}
+      />
+      <MobileNav 
+        navActions={ADD_VISIT_PAGE_LINKS}
+      />
+    </>
   );
 }
 

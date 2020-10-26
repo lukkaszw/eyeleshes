@@ -1,4 +1,4 @@
-import { faReply, faUsers, faList, faChartLine, faUserCog  } from '@fortawesome/free-solid-svg-icons';
+import { faReply, faUsers, faList, faChartLine, faUserCog, faPlus  } from '@fortawesome/free-solid-svg-icons';
 
 export const NOT_AUTH_LINKS = [
   {
@@ -36,20 +36,31 @@ export const AUTH_LINKS = [
   },
 ];
 
+const BACK_LINK =  {
+  id: 1,
+  ariaLabel: 'wróć',
+  icon: faReply,
+  exact: true,
+  callback: 'GO_BACK',
+};
+
+const CLIENTS_LINK =  {
+  id: 2,
+  ariaLabel: 'klienci',
+  icon: faUsers,
+  to: '/clients',
+};
+
+const ACCOUNT_LINK = {
+  id: 9,
+  ariaLabel: 'ustawienia konta',
+  icon: faUserCog,
+  to: '/account/settings',
+};
+
 export const ACCOUNT_NAV = [
-  {
-    id: 1,
-    ariaLabel: 'wróć',
-    icon: faReply,
-    exact: true,
-    callback: 'go back',
-  },
-  {
-    id: 2,
-    ariaLabel: 'klienci',
-    icon: faUsers,
-    to: '/clients',
-  },
+  BACK_LINK,
+  CLIENTS_LINK,
   {
     id: 3,
     ariaLabel: 'wizyty',
@@ -64,10 +75,45 @@ export const ACCOUNT_NAV = [
     exact: true,
     to: '/account',
   },
-  {
-    id: 5,
-    ariaLabel: 'ustawienia konta',
-    icon: faUserCog,
-    to: '/account/settings',
-  },
+  ACCOUNT_LINK,
 ];
+
+export const CLIENTS_LINKS = [
+  BACK_LINK,
+  CLIENTS_LINK,
+  {
+    id: 3,
+    ariaLabel: 'Dodaj klienta',
+    callback: 'ADD',
+    to: "/#",
+    exact: true,
+    icon: faPlus,
+  },
+  ACCOUNT_LINK,
+];
+
+export const CLIENT_LINKS = [
+  BACK_LINK,
+  {
+    ...CLIENTS_LINK,
+    exact: true,
+  },
+  {
+    id: 3,
+    ariaLabel: 'Dodaj wizytę',
+    callback: 'ADD',
+    to: "/#",
+    exact: true,
+    icon: faPlus,
+  },
+  ACCOUNT_LINK,
+];
+
+export const ADD_VISIT_PAGE_LINKS = [
+  BACK_LINK,
+  {
+    ...CLIENTS_LINK,
+    exact: true,
+  },
+  ACCOUNT_LINK,
+]

@@ -10,7 +10,7 @@ import ClientsList from '../../../../features/ClientsList';
 
 import useClientsFilters from '../../useClientsFilter';
 
-const Clients = ({ 
+const DisplayClients = ({ 
   token, data,
   sortBy, page, searchBy,
   onChangeSortBy, onChangePage, onChangeSearchBy,
@@ -49,7 +49,7 @@ const Clients = ({
    );
 }
 
-Clients.propTypes = {
+DisplayClients.propTypes = {
   data: PropTypes.array.isRequired,
   token: PropTypes.string.isRequired,
   sortBy: PropTypes.string.isRequired, 
@@ -74,4 +74,4 @@ const mapDispatchToProps = (dispatch) => ({
   onChangeSearchBy: (searchBy) => dispatch(ACTION_CREATORS.clients.setSearchBy(searchBy)),
 });
  
-export default connect(mapStateToProps, mapDispatchToProps)(Clients);
+export default connect(mapStateToProps, mapDispatchToProps)(DisplayClients);

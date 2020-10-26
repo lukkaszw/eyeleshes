@@ -9,9 +9,12 @@ import AccountStats from '../AccountStats';
 import AccountVisits from '../AccountVisits';
 import AccountUpdate from '../../features/AccountUpdate';
 import PasswordUpdate from '../../features/PasswordUpdate';
+import MobileNav from '../../layout/MobileNav';
 
 import SELECTORS from '../../../redux/selectors';
 import ACTION_CREATORS from '../../../redux/actionCreators';
+
+import { ACCOUNT_NAV } from '../../../settings/navigationLinks';
 
 const Account = ({ token, login, onSetUserData  }) => {
   return ( 
@@ -43,6 +46,9 @@ const Account = ({ token, login, onSetUserData  }) => {
           />
         </Route>
       </Switch>
+      <MobileNav 
+        navActions={ACCOUNT_NAV}
+      />
     </div>
   );
 }
