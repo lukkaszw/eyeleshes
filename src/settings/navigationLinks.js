@@ -62,13 +62,6 @@ export const ACCOUNT_NAV = [
   BACK_LINK,
   CLIENTS_LINK,
   {
-    id: 3,
-    ariaLabel: 'wizyty',
-    icon: faList,
-    exact: true,
-    to: '/account/visits',
-  },
-  {
     id: 4,
     ariaLabel: 'statystyki',
     icon: faChartLine,

@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 import AccountNav from './components/AccountNav';
 import AccountSettings from '../AccountSettings';
 import AccountStats from '../AccountStats';
-import AccountVisits from '../AccountVisits';
 import AccountUpdate from '../../features/AccountUpdate';
 import PasswordUpdate from '../../features/PasswordUpdate';
 import MobileNav from '../../layout/MobileNav';
@@ -23,9 +22,6 @@ const Account = ({ token, login, onSetUserData  }) => {
       <Switch>
         <Route path="/account" exact>
           <AccountStats />
-        </Route>
-        <Route path="/account/visits" exact>
-          <AccountVisits />
         </Route>
         <Route path="/account/settings" exact>
           <AccountSettings 
