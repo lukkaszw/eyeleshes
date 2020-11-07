@@ -1,10 +1,11 @@
-import { faReply, faUsers, faList, faChartLine, faUserCog, faPlus  } from '@fortawesome/free-solid-svg-icons';
+import { faReply, faUsers, faChartLine, faUserCog, faPlus  } from '@fortawesome/free-solid-svg-icons';
 
 export const NOT_AUTH_LINKS = [
   {
     id: 1,
     title: 'Strona główna',
     to: '/',
+    exact: true,
   },
   {
     id: 2,
