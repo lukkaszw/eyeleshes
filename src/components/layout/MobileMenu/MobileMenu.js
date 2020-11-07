@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useEffect } from 'react';
+import { isSafari, isMobileSafari } from 'react-device-detect';
 import { connect } from 'react-redux';
 import styles from './MobileMenu.module.scss';
 import clsx from 'clsx';
@@ -26,13 +27,18 @@ const MobileMenu = ({ isAuth }) => {
         setIsOpen(false);
       }
     }
-    if(mediaQuery) {
+
+    if(!isSafari && !isMobileSafari) {
       mediaQuery.addEventListener('change', check);
-    }
-    
-    return () => {
-      if(mediaQuery) {
-        mediaQuery.removeEventListener('change', check);
+      
+      return () => {
+          mediaQuery.removeEventListener('change', check);
+      }
+    } else {
+      mediaQuery.addListener(check);
+
+      return () => {
+        mediaQuery.removeListener(check);
       }
     }
   }, [isOpen, setIsOpen]);
