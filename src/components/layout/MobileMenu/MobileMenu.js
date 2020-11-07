@@ -19,15 +19,22 @@ const MobileMenu = ({ isAuth }) => {
   const closeMenuByLink = useCallback(() => setClosedByLink(true), [setClosedByLink]);
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia("(min-width: 825px)");
+    const mediaQuery = window.matchMedia('(min-width:825px)');
 
     const check = function (x) {
       if(x.matches && isOpen) {
         setIsOpen(false);
       }
     }
-    mediaQuery.addEventListener('change', check);
-    return () => mediaQuery.removeEventListener('change', check);
+    if(mediaQuery) {
+      mediaQuery.addEventListener('change', check);
+    }
+    
+    return () => {
+      if(mediaQuery) {
+        mediaQuery.removeEventListener('change', check);
+      }
+    }
   }, [isOpen, setIsOpen]);
 
   useEffect(() => {
