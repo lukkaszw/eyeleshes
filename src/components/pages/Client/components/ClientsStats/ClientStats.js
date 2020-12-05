@@ -33,7 +33,7 @@ const ClientStats = ({ token, clientId, refMostUsed }) => {
           <span>
             {
               lastVisit ?
-              printParameters(lastVisit.parameters)
+              `${printParameters(lastVisit.parameters)} / ${lastVisit.method}`
               :
               '-'
             }
