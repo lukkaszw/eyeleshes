@@ -83,6 +83,17 @@ const TodayVisitAdd = ({ token, clientId, refMostUsed }) => {
             error={fields.parameters.error}
           />
         </div>
+        <div className={styles.methodField}>
+          <InputField 
+            placeholder="Metoda"
+            label="Metoda"
+            fullWidth
+            variant="small"
+            onChange={onChangeFor.method}
+            value={fields.method.value}
+            error={fields.method.error}
+          />
+        </div>
         <div className={styles.priceField}>
           <InputField
             label="Cena"
