@@ -7,7 +7,7 @@ import API from '../../../../../api';
 import { printParameters } from '../../../../../utils/printParameters';
 import { printDate } from '../../../../../utils/dateInternationalization';
 
-const ClientStats = ({ token, clientId, refMostUsed }) => {
+const ClientStats = ({ token, clientId, refMostUsed, refLastUsed }) => {
 
   const { data } = useQuery(['stats', { token, clientId } ], 
   API.visits.getStats,  
@@ -30,7 +30,7 @@ const ClientStats = ({ token, clientId, refMostUsed }) => {
           <span className={styles.option}>
             Ostatnio:
           </span>
-          <span>
+          <span ref={refLastUsed}>
             {
               lastVisit ?
               `${printParameters(lastVisit.parameters)} / ${lastVisit.method}`

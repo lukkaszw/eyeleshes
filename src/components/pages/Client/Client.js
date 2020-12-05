@@ -22,6 +22,7 @@ import { CLIENT_LINKS } from '../../../settings/navigationLinks';
 const Client = ({ token, onResetQueries }) => {
 
   const mostUsed = useRef();
+  const lastUsed = useRef();
 
   const { id } = useParams();
 
@@ -57,12 +58,14 @@ const Client = ({ token, onResetQueries }) => {
         token={token}
         clientId={id}
         refMostUsed={mostUsed}
+        refLastUsed={lastUsed}
       />
       <SuspenseErrorBundary>
         <ClientStats 
           token={token}
           clientId={id}
           refMostUsed={mostUsed}
+          refLastUsed={lastUsed}
         />
       </SuspenseErrorBundary>
       <ClientVisits 

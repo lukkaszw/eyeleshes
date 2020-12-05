@@ -2,14 +2,14 @@ import React, { useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
 import styles from './TodayVisitAdd.module.scss';
 import clsx from 'clsx';
-import { faPen, faEyeSlash, faEye } from '@fortawesome/free-solid-svg-icons';
+import { faPen, faEyeSlash, faEye, faCalendar } from '@fortawesome/free-solid-svg-icons';
 
 import InputField from '../../common/InputField';
 import Button from '../../common/Button';
 
 import useVisitForm from '../../../hooks/useVisitForm';
 
-const TodayVisitAdd = ({ token, clientId, refMostUsed }) => {
+const TodayVisitAdd = ({ token, clientId, refMostUsed, refLastUsed }) => {
 
   const [showForm, setShowForm] = useState(false);
 
@@ -31,15 +31,25 @@ const TodayVisitAdd = ({ token, clientId, refMostUsed }) => {
   const handleFillByMostUsed = useCallback((e) => {
     e.preventDefault();
     onChangeFor.parameters({ target: { value: refMostUsed.current.textContent }});
+    onChangeFor.method({ target: { value: '' }});
   }, [refMostUsed, onChangeFor]);
 
-  const handleSelectMostUsed = useCallback((e) => {
-    refMostUsed.current.style.boxShadow = '0 0 8px 4px var(--purple)';
-  }, [refMostUsed]);
+  const handleFillByLastUsed = useCallback((e) => {
+    e.preventDefault();
+    if(refLastUsed.current.textContent.includes(' / ')) {
+      const parts = refLastUsed.current.textContent.split(' / ');
+      onChangeFor.parameters({ target: { value: parts[0]}});
+      onChangeFor.method({ target: { value: parts[1]}});
+    }
+  }, [refLastUsed, onChangeFor]);
 
-  const handleUnselectMostUsed = useCallback(() => {
-    refMostUsed.current.style.boxShadow = 'none';
-  }, [refMostUsed]);
+  const handleSelectFill = (ref) => {
+    ref.current.style.boxShadow = '0 0 8px 4px var(--purple)';
+  };
+
+  const handleUnselectFill = (ref) => {
+    ref.current.style.boxShadow = 'none';
+  };
 
   return ( 
     <div className="m-top-s m-bottom-l text-centered">
@@ -63,13 +73,26 @@ const TodayVisitAdd = ({ token, clientId, refMostUsed }) => {
           <Button
             icon={faPen}
             size="small"
-            ariaLabel="Uzupełnij"
+            ariaLabel="Uzupełnij najczęstszymi"
             onClick={handleFillByMostUsed}
-            onMouseOver={handleSelectMostUsed}
-            onMouseOut={handleUnselectMostUsed}
+            onMouseOver={() => handleSelectFill(refMostUsed)}
+            onMouseOut={() => handleUnselectFill(refMostUsed)}
           />
           <span className={styles.fillinDescription}>
             Uzupełnia najczęstszymi parametrami!
+          </span>
+        </div>
+        <div className={styles.fillin}>
+          <Button
+            icon={faCalendar}
+            size="small"
+            ariaLabel="Uzupełnij ostatnimi"
+            onClick={handleFillByLastUsed}
+            onMouseOver={() => handleSelectFill(refLastUsed)}
+            onMouseOut={() => handleUnselectFill(refLastUsed)}
+          />
+          <span className={styles.fillinDescription}>
+            Uzupełnia ostatnimi: parametrami i metodą!
           </span>
         </div>
         <div className={styles.parametersField}>
