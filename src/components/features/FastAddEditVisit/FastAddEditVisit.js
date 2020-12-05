@@ -74,6 +74,17 @@ const FastAddEditVisit = ({
           </div>
           <div>
             <InputField 
+              placeholder="Metoda"
+              label="Metoda"
+              messagePosition="right"
+              message="Np.: 1:1, 2-3D, 3-4D...."
+              value={fields.method.value}
+              onChange={onChangeFor.method}
+              error={fields.method.error}
+            />
+          </div>
+          <div>
+            <InputField 
               label="Cena"
               placeholder="Cena"
               type="number"

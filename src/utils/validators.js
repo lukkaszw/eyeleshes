@@ -7,6 +7,7 @@ export const authValidators = {
 export const visitsValidator = {
   //later
   parameters: v => false,
+  method: v => false,
   //
   price: v => !/^\d+(.\d{1,2})?$/.test(v),
   comment: v => v.length > 500,

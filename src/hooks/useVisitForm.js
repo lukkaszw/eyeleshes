@@ -13,6 +13,11 @@ const useVisitForm = ({ token, onClose, clientId, visitId, initialValues, isForE
     error: false, 
     exact: true, 
   });
+  const [methodField, setMethod] = useState({
+    value: initialValues ? initialValues.method : '',
+    error: false,
+    exact: true,
+  });
   const [priceField, setPrice] = useState({ 
     value: initialValues ? initialValues.price : 0, 
     error: false 
@@ -34,8 +39,17 @@ const useVisitForm = ({ token, onClose, clientId, visitId, initialValues, isForE
     setParameters({
       value: e.target.value,
       error: visitsValidator.parameters(e.target.value),
+      exact: true,
     });
   }, [setParameters]);
+
+  const handleChangeMethod = useCallback((e) => {
+    setMethod({
+      value: e.target.value,
+      error: visitsValidator.method(e.target.value),
+      exact: true,
+    })
+  }, [setMethod]);
 
   const handleChangePrice = useCallback((e) => {
     setPrice({
@@ -57,7 +71,8 @@ const useVisitForm = ({ token, onClose, clientId, visitId, initialValues, isForE
   }, [setDate]);
 
   const handleResetFields = useCallback(() => {
-    setParameters({ value: '', error: false });
+    setParameters({ value: '', error: false, exact: true, });
+    setMethod({value: '', error: false, exact: true, });
     setComment({ value: '', error: false });
     setDate(new Date());
     setPrice({ value: 0, error: false });
@@ -107,29 +122,32 @@ const useVisitForm = ({ token, onClose, clientId, visitId, initialValues, isForE
   const handleSubmit = (e) => { 
     e.preventDefault();
 
-    const isError = checkFieldsErrors([parametersField, priceField, commentField]);
+    const isError = checkFieldsErrors([parametersField, methodField, priceField, commentField]);
 
     if(isError) return;
 
     const parameters = parametersField.value.split('-');
+    const method = methodField.value;
     const price = parseFloat(priceField.value);
     const comment = commentField.value;
 
-    submitAction({ token, parameters, price, comment, date, clientId, visitId  });
+    submitAction({ token, parameters, method, price, comment, date, clientId, visitId  });
   };
 
 
-  const isEmpty = parametersField.value.length === 0;
+  const isEmpty = parametersField.value.length === 0 || methodField.value.length === 0;
 
   return {
     fields: {
       parameters: parametersField,
       price: priceField,
       comment: commentField,
+      method: methodField,
       date,
     },
     onChangeFor: {
       parameters: handleChangeParameters,
+      method: handleChangeMethod,
       price: handleChangePrice,
       comment: handleChangeComment,
       date: handleChangeDate
