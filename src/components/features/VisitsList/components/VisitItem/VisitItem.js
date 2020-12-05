@@ -9,7 +9,7 @@ import { printParameters } from '../../../../../utils/printParameters';
 import { printDate } from '../../../../../utils/dateInternationalization';
 
 
-const VisitItem = ({ parameters, date, price, _id }) => {
+const VisitItem = ({ parameters, method, date, price, _id }) => {
   return ( 
     <li className={styles.root}>
       <span className={styles.date}>
@@ -17,6 +17,9 @@ const VisitItem = ({ parameters, date, price, _id }) => {
       </span>
       <span className={styles.parameters}>
         {printParameters(parameters)}
+      </span>
+      <span className={styles.method}>
+        {method}
       </span>
       <span className={styles.price}>
         {price} zł
@@ -38,7 +41,7 @@ const VisitItem = ({ parameters, date, price, _id }) => {
 VisitItem.propType = {
   _id: PropTypes.string.isRequired,
   parameters: PropTypes.string.isRequired,
-  
+  method: PropTypes.string.isRequired,
 };
  
 export default VisitItem;

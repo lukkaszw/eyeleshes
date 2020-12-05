@@ -43,7 +43,6 @@ const VisitsData = ({
             visits={data ? data.visits : []}
           />
       }
- 
     </>
   );
 }
