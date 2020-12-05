@@ -14,7 +14,7 @@ import styles from './VisitInfo.module.scss';
 
 const VisitInfo = ({ 
   clientId, name, surname,
-  parameters, date, comment, price,
+  parameters, method, date, comment, price,
   onStartDeleting, onStartEditing,
 }) => {
   return ( 
@@ -58,6 +58,13 @@ const VisitInfo = ({
       </div>
       <DivideLine />
       <div className="p-l">
+        <p className="text-centered">Metoda:</p>
+        <p className="m-top-s m-bottom-s text-centered">
+          <strong>{method}</strong>
+        </p>
+      </div>
+      <DivideLine />
+      <div className="p-l">
         <p className="text-centered">Cena:</p>
         <p className="m-top-s m-bottom-s text-centered">
           <strong>{price} zł</strong>
@@ -82,6 +89,7 @@ VisitInfo.propTypes = {
   name: PropTypes.string.isRequired,
   surname: PropTypes.string.isRequired,
   parameters: PropTypes.arrayOf(PropTypes.string).isRequired,
+  method: PropTypes.string.isRequired,
   date: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
   comment: PropTypes.string,

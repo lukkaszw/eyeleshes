@@ -58,6 +58,7 @@ const Visit = ({ token }) => {
         name={data.clientId.name}
         surname={data.clientId.surname}
         parameters={data.parameters}
+        method={data.method}
         date={data.date}
         price={data.price}
         comment={data.comment || null}
