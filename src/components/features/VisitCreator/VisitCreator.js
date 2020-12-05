@@ -6,8 +6,10 @@ import CreatorResult from './components/CreatorResult';
 import Creator from './components/Creator';
 import CreatorData from './components/CreatorData';
 import CreatorPanel from './components/CreatorPanel';
+import Method from './components/Method';
 
 import useParameters from './useParameters';
+import useMethod from './useMethod';
 import useDataForm from './useDataForm';
 import { useMutation, queryCache } from 'react-query';
 import API from '../../../api';
@@ -37,6 +39,15 @@ const VisitCreator = ({
   } = useParameters({ 
     initialParameters: initialValues ? initialValues.parameters : null,
   });
+
+  const {
+    method,
+    handleChangeMethod,
+    handleSetMethod,
+    isMethodValid,
+  } = useMethod({
+    initialMethod: initialValues ? initialValues.method : null,
+  })
 
   const {
     fields,
@@ -83,9 +94,8 @@ const VisitCreator = ({
     const comment = fields.comment.value;
     const date = fields.date;
 
-    submitAction({ token, parameters, price, comment, clientId, date, visitId });
-  }, [isError, fields.price, fields.comment, fields.date, clientId, token, visitId, parameters, submitAction ]);
-
+    submitAction({ token, parameters, method, price, comment, clientId, date, visitId });
+  }, [isError, fields.price, fields.comment, fields.date, clientId, token, visitId, parameters, method, submitAction ]);
 
   return ( 
     <div className="m-top-xl">
@@ -98,7 +108,7 @@ const VisitCreator = ({
         onSetChosenPart={setChosenPart}
       />
       <CreatorPanel 
-        allowedToNext={parameters.length > 0}
+        stepFilled={[parameters.length > 0, isMethodValid]}
       >
         <div>
           <Creator 
@@ -110,6 +120,13 @@ const VisitCreator = ({
             onCreatorBack={handleGoBack} 
             onCreatorSubmit={handleSubmitCreator} 
             onRemoveChosenPart={handleRemoveChosen}
+          />
+        </div>
+        <div>
+          <Method 
+            currentMethod={method}
+            onChangeMethod={handleChangeMethod}
+            onSetMethod={handleSetMethod}
           />
         </div>
         <div>

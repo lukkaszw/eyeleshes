@@ -1,0 +1,27 @@
+.root {
+  text-align: center;
+  padding:  0 1rem;
+
+  .btns {
+    text-align: center;
+    margin-top: 3rem;
+
+    button {
+      margin: 0 1rem;
+    }
+  }
+
+  .inputWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    & > p {
+      margin-right: 10px;
+    }
+
+    & > div {
+      flex: 0 0 120px;
+    }
+  }
+}

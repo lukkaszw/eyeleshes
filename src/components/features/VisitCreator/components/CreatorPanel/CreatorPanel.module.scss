@@ -13,7 +13,7 @@
 
 
     .barPart {
-      flex: 0 0 50%;
+      flex: 0 0 33.33333%;
       text-align: center;
       padding-bottom: 8px;
       border-bottom: 4px solid #ccc;
@@ -30,17 +30,21 @@
     top: 3rem;
     left: 0;
     transform: translateX(0);
-    width: 200%;
+    width: 300%;
     display: flex;
     height: 100%;
     transition: .3s;
 
     &.second {
-      transform: translateX(-50%);
+      transform: translateX(-33.3333%);
+    }
+
+    &.third {
+      transform: translateX(-66.6666%);
     }
 
     & > *:not(.btns) {
-      flex: 0 0 50%;
+      flex: 0 0 33.3333%;
       padding-top: 4rem;
     }
   }

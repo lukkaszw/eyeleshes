@@ -13,6 +13,11 @@
   transition: .2s;
   font-family: var(--font-decorative);
 
+  &.stretched {
+    width: auto;
+    padding: 0 5px;
+  }
+
   &:focus {
     outline: none;
     border: 1px solid var(--square-btn-hover-font-cl);
