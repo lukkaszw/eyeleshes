@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import styles from './CreatorResult.module.scss';
 
 import SquareBtn from '../../../../common/SquareBtn';
 import TopInfoLink from '../../../../common/TopInfoLink';
 
-const CreatorResult = ({ clientId, name, surname, result, chosenPart, onSetChosenPart }) => {
+const CreatorResult = memo(function CreatorResult({ clientId, name, surname, result, chosenPart, onSetChosenPart }) {
   return ( 
     <div className={styles.root}>
       <TopInfoLink 
@@ -31,7 +31,7 @@ const CreatorResult = ({ clientId, name, surname, result, chosenPart, onSetChose
       </div>
     </div>
   );
-}
+});
 
 CreatorResult.propTypes = {
   clientId: PropTypes.string.isRequired,

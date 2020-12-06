@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import styles from './Creator.module.scss';
 
@@ -7,11 +7,11 @@ import Button from '../../../../common/Button';
 
 import { LENGTHS, TWISTS } from '../../../../../settings/parameters';
 
-const Creator = ({
+const Creator = memo(function Creator({
   currentLength, currentTwist, chosenPart,
   onSetCurrentLength, onSetCurrentTwist,
   onCreatorBack, onCreatorSubmit, onRemoveChosenPart,
-}) => {
+}) {
   return ( 
     <div className={styles.root}>
       <div>
@@ -79,7 +79,7 @@ const Creator = ({
       </div>
     </div>
   );
-}
+});
 
 Creator.propTypes = {
   currentLength: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
