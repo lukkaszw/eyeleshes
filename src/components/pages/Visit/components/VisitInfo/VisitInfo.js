@@ -14,7 +14,7 @@ import styles from './VisitInfo.module.scss';
 
 const VisitInfo = ({ 
   clientId, name, surname,
-  parameters, method, date, comment, price,
+  parameters, method, thickness, date, comment, price,
   onStartDeleting, onStartEditing,
 }) => {
   return ( 
@@ -50,14 +50,15 @@ const VisitInfo = ({
         </p>
       </div>
       <DivideLine />
-      <div className="p-l">
+      <div className="p-top-l p-bottom-l">
         <p className="text-centered">Użyto parametrów:</p>
         <p className="m-top-s m-bottom-s text-centered">
           <strong>{printParameters(parameters)}</strong>
         </p>
-      </div>
-      <DivideLine />
-      <div className="p-l">
+        <p className="text-centered">Grubość:</p>
+        <p className="m-top-s m-bottom-s text-centered">
+          <strong>{thickness}</strong>
+        </p>
         <p className="text-centered">Metoda:</p>
         <p className="m-top-s m-bottom-s text-centered">
           <strong>{method}</strong>
@@ -90,6 +91,7 @@ VisitInfo.propTypes = {
   surname: PropTypes.string.isRequired,
   parameters: PropTypes.arrayOf(PropTypes.string).isRequired,
   method: PropTypes.string.isRequired,
+  thickness: PropTypes.string.isRequired,
   date: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
   comment: PropTypes.string,

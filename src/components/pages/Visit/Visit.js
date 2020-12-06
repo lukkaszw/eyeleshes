@@ -63,6 +63,7 @@ const Visit = ({ token }) => {
         name={data.clientId.name}
         surname={data.clientId.surname}
         parameters={data.parameters}
+        thickness={data.thickness}
         method={data.method}
         date={data.date}
         price={data.price}
