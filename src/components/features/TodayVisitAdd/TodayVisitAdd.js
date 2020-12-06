@@ -32,14 +32,19 @@ const TodayVisitAdd = memo(function TodayVisitAdd({ token, clientId, refMostUsed
     e.preventDefault();
     onChangeFor.parameters({ target: { value: refMostUsed.current.textContent }});
     onChangeFor.method({ target: { value: '' }});
+    onChangeFor.thickness({ target: { value: '' }});
   }, [refMostUsed, onChangeFor]);
 
   const handleFillByLastUsed = useCallback((e) => {
     e.preventDefault();
     if(refLastUsed.current.textContent.includes(' / ')) {
       const parts = refLastUsed.current.textContent.split(' / ');
+      if(parts.length !== 3) {
+        return;
+      }
       onChangeFor.parameters({ target: { value: parts[0]}});
-      onChangeFor.method({ target: { value: parts[1]}});
+      onChangeFor.thickness({ target: { value: parts[1]}});
+      onChangeFor.method({ target: { value: parts[2]}});
     }
   }, [refLastUsed, onChangeFor]);
 
@@ -92,7 +97,7 @@ const TodayVisitAdd = memo(function TodayVisitAdd({ token, clientId, refMostUsed
             onMouseOut={() => handleUnselectFill(refLastUsed)}
           />
           <span className={styles.fillinDescription}>
-            Uzupełnia ostatnimi: parametrami i metodą!
+            Uzupełnia ostatnimi: parametrami, metodą i grubością!
           </span>
         </div>
         <div className={styles.parametersField}>
@@ -106,17 +111,6 @@ const TodayVisitAdd = memo(function TodayVisitAdd({ token, clientId, refMostUsed
             error={fields.parameters.error}
           />
         </div>
-        <div className={styles.methodField}>
-          <InputField 
-            placeholder="Metoda"
-            label="Metoda"
-            fullWidth
-            variant="small"
-            onChange={onChangeFor.method}
-            value={fields.method.value}
-            error={fields.method.error}
-          />
-        </div>
         <div className={styles.thicknessField}>
           <InputField 
             placeholder="Grubość"
@@ -126,6 +120,17 @@ const TodayVisitAdd = memo(function TodayVisitAdd({ token, clientId, refMostUsed
             onChange={onChangeFor.thickness}
             value={fields.thickness.value}
             error={fields.thickness.error}
+          />
+        </div>
+        <div className={styles.methodField}>
+          <InputField 
+            placeholder="Metoda"
+            label="Metoda"
+            fullWidth
+            variant="small"
+            onChange={onChangeFor.method}
+            value={fields.method.value}
+            error={fields.method.error}
           />
         </div>
         <div className={styles.priceField}>

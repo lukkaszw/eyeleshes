@@ -226,6 +226,7 @@ const getStats = async (req, res) => {
       lastVisit: lastVisit ? ({ 
         parameters: lastVisit.parameters,
         method: lastVisit.method,
+        thickness: lastVisit.thickness,
         date: lastVisit.date,
       }) : null,
       totalAmount,

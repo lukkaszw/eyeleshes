@@ -33,7 +33,7 @@ const ClientStats = memo(function ClientStats({ token, clientId, refMostUsed, re
           <span ref={refLastUsed}>
             {
               lastVisit ?
-              `${printParameters(lastVisit.parameters)} / ${lastVisit.method}`
+              `${printParameters(lastVisit.parameters)} / ${lastVisit.thickness} / ${lastVisit.method}`
               :
               '-'
             }
