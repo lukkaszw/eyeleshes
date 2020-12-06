@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, memo } from 'react';
 import PropTypes from 'prop-types';
 import { faPen, faCalendar } from '@fortawesome/free-solid-svg-icons';
 
@@ -13,12 +13,12 @@ import useVisitForm from '../../../hooks/useVisitForm';
 
 import styles from './FastAddEditVisit.module.scss';
 
-const FastAddEditVisit = ({ 
+const FastAddEditVisit = memo(function FastAddEditVisit({ 
   token,
   isOpen, onClose,
   chosenClient, initialValues,
   isForEdit, visitId,
-  }) => {
+  }) {
 
     const {
       fields,
@@ -155,7 +155,7 @@ const FastAddEditVisit = ({
       </div>
     </Modal>
   );
-}
+});
 
 FastAddEditVisit.propTypes = {
   token: PropTypes.string.isRequired,

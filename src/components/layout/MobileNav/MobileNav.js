@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
@@ -6,7 +6,7 @@ import styles from './MobileNav.module.scss';
 import MobileNavBtn from './components/MobileNavBtn';
 import Portal from '../Portal';
 
-const MobileNav = ({ navActions, onAddAction }) => {
+const MobileNav = memo(function MobileNav({ navActions, onAddAction }) {
 
   const history = useHistory();
 
@@ -47,7 +47,7 @@ const MobileNav = ({ navActions, onAddAction }) => {
       </nav>
     </Portal>
   );
-}
+});
 
 MobileNav.propTypes = {
   navActions: PropTypes.arrayOf(PropTypes.object).isRequired,

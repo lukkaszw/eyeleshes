@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import styles from './CalendarModal.module.scss';
@@ -8,12 +8,12 @@ import 'react-calendar/dist/Calendar.css';
 import Calendar from 'react-calendar';
 import Modal from '../Modal';
 
-const CalendarModal = ({
+const CalendarModal = memo(function CalendarModal({
   isOpen, 
   onChange,
   onClose,
   value
-}) => {
+}) {
   return ( 
     <Modal 
       transparent
@@ -29,7 +29,7 @@ const CalendarModal = ({
       </div>
     </Modal>
   );
-}
+});
 
 CalendarModal.propTypes = {
   onChange: PropTypes.func.isRequired,

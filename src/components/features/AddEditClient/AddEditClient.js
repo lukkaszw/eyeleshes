@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import styles from './AddEditClient.module.scss';
 
@@ -8,10 +8,10 @@ import Button from '../../common/Button';
 import Alert from '../../common/Alert';
 
 import useClientForm from '../../../hooks/useClientForm';
-const AddEditClient = ({ 
+const AddEditClient = memo(function AddEditClient({ 
   token, clientId, isForEdit,
   existingClients, initialValues,
-  isOpen, onClose,  }) => {
+  isOpen, onClose,  }) {
 
   const {
     fields,
@@ -72,7 +72,7 @@ const AddEditClient = ({
       </>
     </Modal>
   );
-}
+});
 
 AddEditClient.propTypes = {
   isForEdit: PropTypes.bool,
