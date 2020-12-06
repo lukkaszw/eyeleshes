@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
@@ -23,6 +23,11 @@ const Visit = ({ token }) => {
     API.visits.getOne,  
     { suspense: true }
   );
+
+  const initialValues = useMemo(() => ({
+    ...data,
+    parameters: data.parameters.join('-'),
+  }), [data]);
 
   const {
     isDeleting,
@@ -90,10 +95,7 @@ const Visit = ({ token }) => {
         visitId={id}
         isForEdit
         chosenClient={data.clientId}
-        initialValues={{
-          ...data,
-          parameters: data.parameters.join('-'),
-        }}
+        initialValues={initialValues}
       />
     </div>
   );

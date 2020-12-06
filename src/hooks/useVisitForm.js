@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useMutation, queryCache } from 'react-query'
 import API from '../api';
 import { toast } from 'react-toastify';
@@ -29,6 +29,16 @@ const useVisitForm = ({ token, onClose, clientId, visitId, initialValues, isForE
   const [date, setDate] = useState(
     initialValues ? new Date(initialValues.date) : new Date()
   );
+
+  useEffect(() => {
+    if(isForEdit) {
+      setParameters({ value: initialValues.parameters, error: false, exact: true });
+      setMethod({ value: initialValues.method, error: false, exact: true });
+      setPrice({ value: initialValues.price, error: false });
+      setComment({ value: initialValues.comment, error: false });
+      setDate(new Date(initialValues.date));
+    }
+  }, [initialValues, isForEdit]);
 
   //utility state
   const [isAddingComment, setAddingComment] = useState(false);
