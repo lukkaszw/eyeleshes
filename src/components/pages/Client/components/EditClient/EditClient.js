@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 
 import AddEditClient from '../../../../features/AddEditClient';
@@ -6,7 +6,7 @@ import AddEditClient from '../../../../features/AddEditClient';
 import { useQuery } from 'react-query';
 import API from '../../../../../api';
 
-const EditClient = ({ token, clientId, name, surname, isOpen, onClose }) => {
+const EditClient = memo(function EditClient({ token, clientId, name, surname, isOpen, onClose }) {
 
   const { data } = useQuery(['clients', { token } ], 
     API.clients.getAll,  
@@ -27,7 +27,7 @@ const EditClient = ({ token, clientId, name, surname, isOpen, onClose }) => {
       onClose={onClose}
     />
   );
-}
+});
 
 EditClient.propTypes = {
   token: PropTypes.string.isRequired,

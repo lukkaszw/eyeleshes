@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, memo } from 'react';
 import styles from './ClientDetails.module.scss';
 import PropTypes from 'prop-types';
 import { faCog } from '@fortawesome/free-solid-svg-icons';
@@ -9,10 +9,10 @@ import AddEditOptions from '../../../../features/AddEditOptions';
 
 import { printDate } from '../../../../../utils/dateInternationalization';
 
-const ClientDetails = ({ 
+const ClientDetails = memo(function ClientDetails({ 
   _id, name, surname, createdAt,
   onOpenAddingModal, onOpenSettings,
-}) => {
+}) {
 
   const [areOpenOptions, setAreOpenOptions] = useState(false);
 
@@ -67,7 +67,7 @@ const ClientDetails = ({
       />
     </header>
   );
-}
+});
 
 ClientDetails.propTypes = {
   _id: PropTypes.string.isRequired,

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef, useCallback } from 'react';
+import React, { useEffect, useState, useRef, useCallback, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -47,6 +47,12 @@ const Client = ({ token, onResetQueries }) => {
     handleOpenAddingModal();
   }, [handleOpenAddingModal]);
 
+  const chosenClient = useMemo(() => ({ 
+    _id: id,
+    name: data.name,
+    surname: data.surname,
+  }), [id, data.name, data.surname]);
+
   return ( 
     <section className="m-top-x">
       <ClientDetails 
@@ -76,11 +82,7 @@ const Client = ({ token, onResetQueries }) => {
         token={token}
         isOpen={isOpenAddingModal}
         onClose={handleCloseAddingModal}
-        chosenClient={{
-          _id: id,
-          name: data.name,
-          surname: data.surname,
-        }}
+        chosenClient={chosenClient}
       />
       <ClientSettings 
         isOpen={areSettingsOpen}

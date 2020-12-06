@@ -1,4 +1,4 @@
-import React, { Suspense, useState, useCallback } from 'react';
+import React, { Suspense, useState, useCallback, memo } from 'react';
 import PropTypes from 'prop-types';
 import styles from './ClientSettings.module.scss';
 
@@ -9,10 +9,10 @@ import EditClient from '../EditClient';
 
 import useDeleteClient from '../../useDeleteClient';
 
-const ClientSettings = ({ 
+const ClientSettings = memo(function ClientSettings({ 
   token, clientId,  name, surname,
   isOpen, onClose,
-}) => {
+}) {
 
   const {
     isDeleting,
@@ -88,7 +88,7 @@ const ClientSettings = ({
       </Suspense>
     </div>
   );
-}
+});
 
 ClientSettings.propTypes = {
   isOpen: PropTypes.bool.isRequired,

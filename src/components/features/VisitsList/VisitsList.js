@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import styles from './VisitsList.module.scss';
 
 import NoResults from '../../common/NoResults';
 import VisitItem from './components/VisitItem';
 
-const VisitsList = ({ visits }) => {
+const VisitsList = memo(function VisitsList({ visits }) {
   return ( 
     <ul className={styles.root}>
       {
@@ -21,7 +21,7 @@ const VisitsList = ({ visits }) => {
       }
     </ul>
   );
-}
+});
 
 VisitsList.propTypes = {
   visits: PropTypes.array.isRequired,

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import styles from './ClientStats.module.scss';
 
@@ -7,12 +7,12 @@ import API from '../../../../../api';
 import { printParameters } from '../../../../../utils/printParameters';
 import { printDate } from '../../../../../utils/dateInternationalization';
 
-const ClientStats = ({ token, clientId, refMostUsed, refLastUsed }) => {
+const ClientStats = memo(function ClientStats({ token, clientId, refMostUsed, refLastUsed }) {
 
   const { data } = useQuery(['stats', { token, clientId } ], 
-  API.visits.getStats,  
-  { suspense: true }
-);
+    API.visits.getStats,  
+    { suspense: true }
+  );
 
   const {
     lastVisit,
@@ -115,7 +115,7 @@ const ClientStats = ({ token, clientId, refMostUsed, refLastUsed }) => {
       </div>
     </div>
   );
-}
+});
 
 ClientStats.propTypes = {
   token: PropTypes.string.isRequired,

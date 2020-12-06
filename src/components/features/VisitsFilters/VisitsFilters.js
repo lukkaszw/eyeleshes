@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, memo } from 'react';
 import PropTypes from 'prop-types';
 import styles from './VisitsFilters.module.scss';
 
@@ -8,7 +8,7 @@ import InputField from '../../common/InputField';
 
 import useFilters from './useFilters';
 
-const VisitsFilters = ({ yearTo, yearFrom, onChangeYears }) => {
+const VisitsFilters = memo(function VisitsFilters({ yearTo, yearFrom, onChangeYears }) {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -106,7 +106,7 @@ const VisitsFilters = ({ yearTo, yearFrom, onChangeYears }) => {
       </Modal>
     </div>
   );
-}
+});
 
 VisitsFilters.propTypes = {
   onChangeYears: PropTypes.func.isRequired,

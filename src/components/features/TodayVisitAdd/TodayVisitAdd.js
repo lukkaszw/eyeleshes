@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, memo } from 'react';
 import PropTypes from 'prop-types';
 import styles from './TodayVisitAdd.module.scss';
 import clsx from 'clsx';
@@ -9,7 +9,7 @@ import Button from '../../common/Button';
 
 import useVisitForm from '../../../hooks/useVisitForm';
 
-const TodayVisitAdd = ({ token, clientId, refMostUsed, refLastUsed }) => {
+const TodayVisitAdd = memo(function TodayVisitAdd({ token, clientId, refMostUsed, refLastUsed }) {
 
   const [showForm, setShowForm] = useState(false);
 
@@ -141,7 +141,7 @@ const TodayVisitAdd = ({ token, clientId, refMostUsed, refLastUsed }) => {
       </form>
     </div>
   );
-}
+});
 
 TodayVisitAdd.propTypes = {
   token: PropTypes.string.isRequired,

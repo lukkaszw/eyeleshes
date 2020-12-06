@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, memo } from 'react';
 import PropTypes from 'prop-types';
 import styles from './VisitsSorts.module.scss';
 import { 
@@ -13,11 +13,11 @@ import {
 import Button from '../../common/Button';
 import SmallPagination from '../../common/SmallPagination';
 
-const VisitsSorts = ({ 
+const VisitsSorts = memo(function VisitsSorts({ 
   pagesAmount, page,
   sortCat, sortBy,
   onChangePage, onChangeSort, 
-}) => {
+}) {
 
   const handlePrevPage = useCallback(() => onChangePage(page === 1 ? 1 : page - 1), [page, onChangePage]);
   const handleNextPage =  useCallback(() => onChangePage(page === pagesAmount ? pagesAmount : page + 1), [page, onChangePage, pagesAmount]);
@@ -65,7 +65,7 @@ const VisitsSorts = ({
       />
     </div>
   );
-}
+});
 
 VisitsSorts.propTypes = {
   pagesAmount: PropTypes.number,
