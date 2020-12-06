@@ -6,7 +6,7 @@
 
 .form {
   margin: 0 auto;
-  width: 600px;
+  width: 700px;
   padding: 0 10px;
   max-width: 100%;
   display: flex;
@@ -31,6 +31,10 @@
   }
 
   .methodField {
+    flex: 1;
+  }
+
+  .thicknessField {
     flex: 1;
   }
 
@@ -60,20 +64,24 @@
     }
   }
 
-  @media (max-width: 600px) {
+  @media (max-width: 650px) {
 
     &.active {
       height: 120px
     }
 
     .parametersField {
-      flex: 0 0 70%;
-      margin-right: 0;
+      flex: 0 0 50%;
+      margin-right: auto;
     }
 
     .methodField {
-      flex: 0 0 28%;
-      margin-left: auto;
+      flex: 0 0 24%;
+      margin-right: auto;
+    }
+
+    .thicknessField {
+      flex: 0 0 24%;
     }
 
     .priceField {
@@ -99,9 +107,9 @@
     }
   }
 
-  @media (max-width: 350px) {
+  @media (max-width: 400px) {
     &.active {
-      height: 160px
+      height: 220px
     }
     
     .parametersField {
@@ -110,18 +118,28 @@
 
     .methodField {
       flex: 0 0 35%;
-      margin-left: 0;
-      order: 2;
+      margin-left: auto;
+      order: 2,
+    }
+
+    .thicknessField {
+      flex: 0 0 35%;
+      order: 2,
+    }
+
+    .fillin {
+      order: 1,
     }
 
     .priceField {
-      flex: 0 0 35%;
+      flex: 0 0 40%;
       order: 3;
-      margin-left: auto;
+      margin: 0 auto;
     }
 
     .btn {
       margin-top: 10px;
+      flex: 0 0 100%;
       order: 4;
     }
   }

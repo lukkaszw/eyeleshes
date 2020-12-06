@@ -117,6 +117,17 @@ const TodayVisitAdd = memo(function TodayVisitAdd({ token, clientId, refMostUsed
             error={fields.method.error}
           />
         </div>
+        <div className={styles.thicknessField}>
+          <InputField 
+            placeholder="Grubość"
+            label="Grubość"
+            fullWidth
+            variant="small"
+            onChange={onChangeFor.thickness}
+            value={fields.thickness.value}
+            error={fields.thickness.error}
+          />
+        </div>
         <div className={styles.priceField}>
           <InputField
             label="Cena"
