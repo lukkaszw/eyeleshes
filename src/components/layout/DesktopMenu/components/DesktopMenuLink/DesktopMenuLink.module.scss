@@ -38,6 +38,8 @@
       height: 40px;
       line-height: 40px;
       padding: 0 1.4rem;
+      transform: scale(1);
+      transition: .2s;
 
       &:hover:not(.active),
       &.active {
@@ -45,7 +47,7 @@
         text-decoration: none;
         background-color: var(--auth-nav-link-hover-cl);
         color: var(--auth-nav-link-font-hover-cl);
-        box-shadow: 0 7px 20px #555;
+        transform: scale(1.1);
       }
     }
   }

@@ -10,7 +10,7 @@ const Logo = ({ isAuth }) => {
       to={isAuth ? '/' : '/clients'}
       className={styles.root} 
     >
-      Logo
+      <img className={styles.image} src="/images/logo/small-logo.png" alt="logo"/>
     </Link>
   );
 }

@@ -1,6 +1,9 @@
 .root {
-  font-family: var(--font-decorative);
-  font-size: 4rem;
-  color: var(--font-cl-primary);
-  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .image {
+    height: 30px;
+  }
 }

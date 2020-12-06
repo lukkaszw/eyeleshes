@@ -16,10 +16,12 @@
     padding: 0 5rem;
   }
 
+  @media (max-width: 1024px) {
+    padding: 0 10px;
+  }
+
   @media (max-width: 825px) {
     height: 0;
-    top: 30px;
-    padding: 0 2rem;
 
     .container {
       height: 0;
@@ -45,11 +47,14 @@
       padding: 0;
     }
 
+    @media (max-width: 1024px) {
+      padding-left: 10px;
+    }
+
     @media (max-width: 825px) {
       position: absolute;
       top: 20px;
       height: 0;
-      padding-left: 10px;
 
       .container {
         height: 0;
