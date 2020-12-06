@@ -18,6 +18,11 @@ const useVisitForm = ({ token, onClose, clientId, visitId, initialValues, isForE
     error: false,
     exact: true,
   });
+  const [thicknessField, setThickness] = useState({
+    value: initialValues ? initialValues.thickness : '',
+    error: false,
+    exact: true,
+  });
   const [priceField, setPrice] = useState({ 
     value: initialValues ? initialValues.price : 0, 
     error: false 
@@ -34,6 +39,7 @@ const useVisitForm = ({ token, onClose, clientId, visitId, initialValues, isForE
     if(isForEdit) {
       setParameters({ value: initialValues.parameters, error: false, exact: true });
       setMethod({ value: initialValues.method, error: false, exact: true });
+      setThickness({ value: initialValues.thickness, error: false, exact: true })
       setPrice({ value: initialValues.price, error: false });
       setComment({ value: initialValues.comment, error: false });
       setDate(new Date(initialValues.date));
@@ -52,6 +58,14 @@ const useVisitForm = ({ token, onClose, clientId, visitId, initialValues, isForE
       exact: true,
     });
   }, [setParameters]);
+
+  const handleChangeThickness = useCallback((e) => {
+    setThickness({
+      value: e.target.value,
+      error: visitsValidator.thickness(e.target.value),
+      exact: true,
+    })
+  }, [setThickness]);
 
   const handleChangeMethod = useCallback((e) => {
     setMethod({
@@ -83,10 +97,11 @@ const useVisitForm = ({ token, onClose, clientId, visitId, initialValues, isForE
   const handleResetFields = useCallback(() => {
     setParameters({ value: '', error: false, exact: true, });
     setMethod({value: '', error: false, exact: true, });
+    setThickness({value: '', error: false, exact: true, });
     setComment({ value: '', error: false });
     setDate(new Date());
     setPrice({ value: 0, error: false });
-  }, [setParameters, setComment, setDate, setPrice]);
+  }, [setParameters, setComment, setMethod, setThickness, setDate, setPrice]);
 
   //utility handlers
   const handleOpenCalendar = useCallback((e) => {
@@ -132,7 +147,7 @@ const useVisitForm = ({ token, onClose, clientId, visitId, initialValues, isForE
   const handleSubmit = (e) => { 
     e.preventDefault();
 
-    const isError = checkFieldsErrors([parametersField, methodField, priceField, commentField]);
+    const isError = checkFieldsErrors([parametersField, methodField, thicknessField, priceField, commentField]);
 
     if(isError) return;
 
@@ -140,12 +155,13 @@ const useVisitForm = ({ token, onClose, clientId, visitId, initialValues, isForE
     const method = methodField.value;
     const price = parseFloat(priceField.value);
     const comment = commentField.value;
+    const thickness = thicknessField.value;
 
-    submitAction({ token, parameters, method, price, comment, date, clientId, visitId  });
+    submitAction({ token, parameters, method, thickness, price, comment, date, clientId, visitId  });
   };
 
 
-  const isEmpty = parametersField.value.length === 0 || methodField.value.length === 0;
+  const isEmpty = parametersField.value.length === 0 || methodField.value.length === 0 || thicknessField.value.length === 0;
 
   return {
     fields: {
@@ -153,11 +169,13 @@ const useVisitForm = ({ token, onClose, clientId, visitId, initialValues, isForE
       price: priceField,
       comment: commentField,
       method: methodField,
+      thickness: thicknessField,
       date,
     },
     onChangeFor: {
       parameters: handleChangeParameters,
       method: handleChangeMethod,
+      thickness: handleChangeThickness,
       price: handleChangePrice,
       comment: handleChangeComment,
       date: handleChangeDate

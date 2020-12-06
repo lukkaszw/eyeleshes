@@ -7,10 +7,10 @@ const sendErrors = require('../errors/sendErrors');
 const createOne = async (req, res) => {
   const userId = req.user._id;
 
-  const { clientId, parameters, method, date, comment, price } = req.body;
+  const { clientId, parameters, method, thickness, date, comment, price } = req.body;
 
   try {
-    const visit = new Visit({ userId, clientId, parameters, method, date, comment, price });
+    const visit = new Visit({ userId, clientId, parameters, method, thickness, date, comment, price });
 
     await visit.save();
 
@@ -127,7 +127,7 @@ const updateOne = async (req, res) => {
 
   const data = req.body;
 
-  const allowedUpdates = ['parameters', 'method', 'date', 'comment', 'price'];
+  const allowedUpdates = ['parameters', 'method', 'thickness', 'date', 'comment', 'price'];
   const updates = Object.keys(data);
   const match = updates.every(update => allowedUpdates.includes(update));
 

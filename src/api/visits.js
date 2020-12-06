@@ -3,12 +3,12 @@ import api from '../settings/api.endpoints';
 import generateAuthConfig from '../utils/generateAuthConfig';
 import PAGES from '../settings/pages';
 
-export const addVisit = async ({ token, clientId, parameters, method, price, comment, date }) => {
+export const addVisit = async ({ token, clientId, parameters, method, thickness, price, comment, date }) => {
   const url = `${api.baseUrl}/${api.endpoints.visits}`;
 
   const config = generateAuthConfig(token);
 
-  const resp = await axios.post(url, { clientId, parameters, method, price, comment, date }, config);
+  const resp = await axios.post(url, { clientId, parameters, method, thickness, price, comment, date }, config);
 
   return resp.data;
 }
@@ -82,12 +82,12 @@ export const deleteVisit = async ({ token, visitId }) => {
   return resp.data;
 }
 
-export const editVisit = async ({ token, parameters, method, price, comment, date, visitId }) => {
+export const editVisit = async ({ token, parameters, method, thickness, price, comment, date, visitId }) => {
   const url = `${api.baseUrl}/${api.endpoints.visits}/${visitId}`;
 
   const config = generateAuthConfig(token);
 
-  const resp = await axios.put(url, { parameters, method, price, comment, date }, config);
+  const resp = await axios.put(url, { parameters, method, thickness, price, comment, date }, config);
 
   return resp.data;
 }

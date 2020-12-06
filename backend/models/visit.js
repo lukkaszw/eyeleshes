@@ -19,6 +19,10 @@ const visitSchema = mongoose.Schema({
     type: String,
     required: true,
   },
+  thickness: {
+    type: String,
+    required: true,
+  },
   price: {
     type: Number,
     validate: {

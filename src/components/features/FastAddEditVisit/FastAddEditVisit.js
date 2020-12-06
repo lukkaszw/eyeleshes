@@ -20,8 +20,6 @@ const FastAddEditVisit = memo(function FastAddEditVisit({
   isForEdit, visitId,
   }) {
 
-
-
     const {
       fields,
       onChangeFor,
@@ -74,16 +72,29 @@ const FastAddEditVisit = memo(function FastAddEditVisit({
               error={fields.parameters.error}
             />
           </div>
-          <div>
-            <InputField 
-              placeholder="Metoda"
-              label="Metoda"
-              messagePosition="right"
-              message="Np.: 1:1, 2-3D, 3-4D...."
-              value={fields.method.value}
-              onChange={onChangeFor.method}
-              error={fields.method.error}
-            />
+          <div className={styles.rowFields}>
+            <div className={styles.halfField}>
+              <InputField 
+                placeholder="Grubość"
+                label="Grubość"
+                fullWidth={true}
+                messagePosition="left"
+                value={fields.thickness.value}
+                onChange={onChangeFor.thickness}
+                error={fields.thickness.error}
+              />
+            </div>
+            <div className={styles.halfField}> 
+              <InputField 
+                placeholder="Metoda"
+                label="Metoda"
+                fullWidth={true}
+                messagePosition="right"
+                value={fields.method.value}
+                onChange={onChangeFor.method}
+                error={fields.method.error}
+              />
+            </div>
           </div>
           <div>
             <InputField 
