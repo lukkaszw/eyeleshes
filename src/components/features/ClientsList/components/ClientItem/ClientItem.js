@@ -11,8 +11,8 @@ import { printParameters } from '../../../../../utils/printParameters';
 
 const ClientItem = ({ _id, name, surname, lastVisit, onAddVisit }) => {
 
-  const handleAddVisit = useCallback(() => onAddVisit({ _id, name, surname }),
-    [onAddVisit, _id, name, surname]
+  const handleAddVisit = useCallback(() => onAddVisit({ _id, lastVisit, name, surname }),
+    [onAddVisit, lastVisit, _id, name, surname]
   );
 
   return ( 

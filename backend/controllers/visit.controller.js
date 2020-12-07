@@ -223,12 +223,7 @@ const getStats = async (req, res) => {
     const thisYearAmount = visits.filter(visit => (new Date(visit.date).getFullYear() === thisYear)).length;
 
     res.json({
-      lastVisit: lastVisit ? ({ 
-        parameters: lastVisit.parameters,
-        method: lastVisit.method,
-        thickness: lastVisit.thickness,
-        date: lastVisit.date,
-      }) : null,
+      lastVisit: lastVisit || null,
       totalAmount,
       totalCost,
       averageCost,

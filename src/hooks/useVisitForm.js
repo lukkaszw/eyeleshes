@@ -160,6 +160,14 @@ const useVisitForm = ({ token, onClose, clientId, visitId, initialValues, isForE
     submitAction({ token, parameters, method, thickness, price, comment, date, clientId, visitId  });
   };
 
+  const handleFillFields = useCallback((visitData) => {
+    setParameters({ value: visitData.parameters.join('-'), error: false, exact: true });
+    setMethod({ value: visitData.method, error: false, exact: true });
+    setThickness({value: visitData.thickness, error: false, exact: true });
+    setComment({ value: visitData.comment, error: false });
+    setPrice({ value: visitData.price, error: false });
+  }, [setParameters, setMethod, setThickness, setComment, setPrice]);
+
 
   const isEmpty = parametersField.value.length === 0 || methodField.value.length === 0 || thicknessField.value.length === 0;
 
@@ -180,9 +188,11 @@ const useVisitForm = ({ token, onClose, clientId, visitId, initialValues, isForE
       comment: handleChangeComment,
       date: handleChangeDate
     },
+    handleFillFields,
     handleToggleComment,
     handleCloseCalendar,
     handleOpenCalendar,
+    handleResetFields,
     isOpenCalendar,
     isAddingComment,
     isSending,

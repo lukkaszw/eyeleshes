@@ -7,6 +7,7 @@ import InputField from '../../common/InputField';
 import AddComment from '../AddComment';
 import Button from '../../common/Button';
 import CalendarModal from '../../common/CalendarModal';
+import FillByLastVisit from '../FillByLastVisit';
 
 import { printDate } from '../../../utils/dateInternationalization';
 import useVisitForm from '../../../hooks/useVisitForm';
@@ -20,6 +21,8 @@ const FastAddEditVisit = memo(function FastAddEditVisit({
   isForEdit, visitId,
   }) {
 
+    const clientId = chosenClient ? chosenClient._id : null;
+
     const {
       fields,
       onChangeFor,
@@ -30,17 +33,17 @@ const FastAddEditVisit = memo(function FastAddEditVisit({
       isAddingComment,
       isSending,
       handleSubmit,
+      handleResetFields,
+      handleFillFields,
       isEmpty,
     } = useVisitForm({ 
       token,
       onClose, 
-      clientId: chosenClient ? chosenClient._id : null,
+      clientId,
       initialValues,
       isForEdit,
       visitId,
     });
-
-
 
     const dateString = useMemo(() => {
       const todayDate = new Date();
@@ -50,6 +53,7 @@ const FastAddEditVisit = memo(function FastAddEditVisit({
       return printDate(fields.date, 'pl-PL');
     }, [fields.date]);
 
+    const shouldRenderFilLastVisit = !isForEdit && chosenClient && chosenClient.lastVisit;
 
   return ( 
     <Modal 
@@ -60,6 +64,14 @@ const FastAddEditVisit = memo(function FastAddEditVisit({
         <p className='m-bottom-m text-centered'>
           {chosenClient && chosenClient.name} {chosenClient && chosenClient.surname}
         </p>
+        {
+          shouldRenderFilLastVisit &&
+            <FillByLastVisit 
+              lastVisitData={chosenClient.lastVisit}
+              onFillFields={handleFillFields}
+              onResetFields={handleResetFields}
+            />
+        }
         <form onSubmit={handleSubmit}>
           <div>
             <InputField 

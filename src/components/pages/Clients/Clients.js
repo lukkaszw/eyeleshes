@@ -34,6 +34,7 @@ const Clients = ({
 
   const {
     clientForAddingVisit,
+    lastVisitData,
     handleOpenAddingVisit,
     handleCancelAddingVisit,
   } = useAddingVisit();
@@ -59,6 +60,7 @@ const Clients = ({
       />
       <FastAddEditVisit 
         token={token}
+        lastVisitData={lastVisitData}
         isOpen={!!clientForAddingVisit}
         chosenClient={clientForAddingVisit}
         onClose={handleCancelAddingVisit}
