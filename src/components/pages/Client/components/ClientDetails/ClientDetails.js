@@ -54,7 +54,7 @@ const ClientDetails = memo(function ClientDetails({
               size="small"
               onClick={handleOpenOptions}
             >
-              Dodaj wizytę
+              Dodaj stylizację
             </Button>
           </div>
         </div>
