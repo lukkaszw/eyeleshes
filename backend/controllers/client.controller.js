@@ -1,4 +1,5 @@
 const Client = require('../models/client');
+const Visit = require('../models/visit');
 const ERRORS = require('../errors/errors');
 const sendErrors = require('../errors/sendErrors');
 const { getClientsWithLastVisits } = require('../utils/findLastVisit');
@@ -50,7 +51,9 @@ const getOne = async (req, res) => {
       return;
     }
 
-    res.json(client);
+    const lastVisit = await Visit.findOne({ clientId: client._id }).sort({ date: -1 });
+
+    res.json({...client.toObject(), lastVisit });
 
   } catch (error) {
     sendErrors.sendGetErrors(error, res);
