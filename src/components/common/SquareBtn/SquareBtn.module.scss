@@ -4,7 +4,7 @@
   width: 3.4rem;
   height: 3.2rem;
   line-height: 3.2rem;
-  font-size: 2.8rem;
+  font-size: 2.6rem;
   background-color: var(--square-btn-bg-cl);
   color: var(--square-btn-font-cl);
   border: 1px solid #777;
@@ -15,7 +15,7 @@
 
   &.stretched {
     width: auto;
-    padding: 0 5px;
+    padding: 0 4px;
   }
 
   &:focus {

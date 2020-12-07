@@ -42,12 +42,16 @@ const VisitCreator = ({
 
   const {
     method,
+    thickness,
     handleChangeMethod,
     handleSetMethod,
+    handleChangeThickness,
+    handleSetThickness,
     isMethodValid,
   } = useMethod({
     initialMethod: initialValues ? initialValues.method : null,
-  })
+    initialThickness: initialValues ? initialValues.thickness : null,
+  });
 
   const {
     fields,
@@ -94,8 +98,8 @@ const VisitCreator = ({
     const comment = fields.comment.value;
     const date = fields.date;
 
-    submitAction({ token, parameters, method, price, comment, clientId, date, visitId });
-  }, [isError, fields.price, fields.comment, fields.date, clientId, token, visitId, parameters, method, submitAction ]);
+    submitAction({ token, parameters, method, thickness, price, comment, clientId, date, visitId });
+  }, [isError, fields.price, fields.comment, fields.date, clientId, token, visitId, parameters, method, thickness, submitAction ]);
 
   return ( 
     <div className="m-top-xl">
@@ -125,8 +129,11 @@ const VisitCreator = ({
         <div>
           <Method 
             currentMethod={method}
+            currentThickness={thickness}
             onChangeMethod={handleChangeMethod}
             onSetMethod={handleSetMethod}
+            onChangeThickness={handleChangeThickness}
+            onSetThickness={handleSetThickness}
           />
         </div>
         <div>
@@ -152,7 +159,7 @@ VisitCreator.propTypes = {
   token: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   surname: PropTypes.string.isRequired,
-  initialvalues: PropTypes.object,
+  initialValues: PropTypes.object,
   isForEdit: PropTypes.bool,
   visitId: PropTypes.string,
 };
