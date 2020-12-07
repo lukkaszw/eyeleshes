@@ -109,6 +109,8 @@ const VisitCreator = ({
         surname={surname}
         result={parameters}
         chosenPart={chosenPart}
+        currentThickness={thickness}
+        currentMethod={method}
         onSetChosenPart={setChosenPart}
       />
       <CreatorPanel 

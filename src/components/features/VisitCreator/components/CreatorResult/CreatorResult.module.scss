@@ -2,12 +2,37 @@
 
   .result {
     padding: 1rem;
-    min-height: 8rem;
+    min-height: 6rem;
     text-align: center;
   }
 
-  .photo {
-    width: 40%;
-    max-width: 200px;
+  .photoWrapper {
+    position: relative;
+    text-align: center;
+    min-height: 9rem;
+
+    .photo {
+      width: 40%;
+      max-width: 200px;
+    }
+  }
+
+  .currentThickness,
+  .currentMethod {
+    position: absolute;
+    padding: 6px;
+    background-color: var(--white);
+    box-shadow: 2px 2px 6px var(--black-light);
+    border-radius: 6px;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+    .currentThickness {
+    left: 15%;
+  }
+
+  .currentMethod {
+    left: 85%;
   }
 }
