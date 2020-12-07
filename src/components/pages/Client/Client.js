@@ -51,7 +51,8 @@ const Client = ({ token, onResetQueries }) => {
     _id: id,
     name: data.name,
     surname: data.surname,
-  }), [id, data.name, data.surname]);
+    lastVisit: data.lastVisit || null,
+  }), [id, data.name, data.lastVisit, data.surname]);
 
   return ( 
     <section className="m-top-x">
