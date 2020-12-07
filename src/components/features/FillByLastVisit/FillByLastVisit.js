@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { faCalendarCheck } from '@fortawesome/free-solid-svg-icons';
+import { faCalendarCheck, faMinusCircle } from '@fortawesome/free-solid-svg-icons';
 import styles from './FillByLastVisit.module.scss';
 
 import Button from '../../common/Button';
@@ -11,12 +11,19 @@ const FillByLastVisit = ({ lastVisitData, onFillFields, onResetFields }) => {
     onFillFields(lastVisitData);
   };
 
-  useEffect(() => () => onResetFields(), [onResetFields]);
+  useEffect(() => () => onFillFields({ method: '', parameters: [], thickness: '' }), [onFillFields]);
 
   return ( 
     <div className={styles.root}>
+      <span className='m-right-s'>
+        <Button 
+          ariaLabel="Resetuj dane"
+          icon={faMinusCircle}
+          onClick={onResetFields}
+          color="secondary"
+        />
+      </span>
       <Button 
-        size="small"
         ariaLabel="Uzupełnij danymi z ostatniej wizyty"
         icon={faCalendarCheck}
         onClick={handleFillFields}
