@@ -14,7 +14,12 @@
   }
 
   .parameters {
-    flex: 2;
+    flex: 3;
+    text-align: center;
+  }
+
+  .thickness {
+    flex: 0 0 50px;
     text-align: center;
   }
 
@@ -38,27 +43,37 @@
     color: var(--visit-item-font-cl-hover);
   }
 
-  @media (max-width: 460px) {
+  @media (max-width: 560px) {
     .parameters {
       padding: 4px 5px;
       font-weight: bold;
     }
 
-
     .price {
       position: absolute;
+      color: goldenrod;
       top: 2px;
       right: 40px;
       font-size: 1.2rem;
     }
   } 
 
-  @media (max-width: 350px) {
+  @media (max-width: 460px) {
+
+    .thickness,
     .method {
       position: absolute;
       bottom: 2px;
-      right: 40px;
       font-size: 1.2rem;
+    }
+
+    .thickness {
+      right: 80px;
+      color: olive;
+    }
+
+    .method {
+      right: 40px;
       color: red;
     }
   }

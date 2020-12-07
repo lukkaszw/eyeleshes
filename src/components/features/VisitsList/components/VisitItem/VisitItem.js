@@ -9,7 +9,7 @@ import { printParameters } from '../../../../../utils/printParameters';
 import { printDate } from '../../../../../utils/dateInternationalization';
 
 
-const VisitItem = ({ parameters, method, date, price, _id }) => {
+const VisitItem = ({ parameters, method, thickness, date, price, _id }) => {
   return ( 
     <li className={styles.root}>
       <span className={styles.date}>
@@ -17,6 +17,9 @@ const VisitItem = ({ parameters, method, date, price, _id }) => {
       </span>
       <span className={styles.parameters}>
         {printParameters(parameters)}
+      </span>
+      <span className={styles.thickness}>
+        {thickness}
       </span>
       <span className={styles.method}>
         {method}
@@ -42,6 +45,7 @@ VisitItem.propType = {
   _id: PropTypes.string.isRequired,
   parameters: PropTypes.string.isRequired,
   method: PropTypes.string.isRequired,
+  thickness: PropTypes.string.isRequired,
 };
  
 export default VisitItem;
