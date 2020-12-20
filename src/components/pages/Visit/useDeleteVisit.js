@@ -20,6 +20,7 @@ const useDelete = ({ token, clientId, visitId }) => {
       queryCache.refetchQueries('visits');
       queryCache.refetchQueries('stats');
       queryCache.refetchQueries('clients');
+      queryCache.refetchQueries('client');
       toast.success(`Poprawnie usunięto wizytę!`, TOASTS.success);
       history.push(`/clients/${clientId}`);
     },
