@@ -122,12 +122,12 @@ const useVisitForm = ({ token, onClose, clientId, visitId, initialValues, isForE
   //useMutation
   const [submitAction, { isLoading: isSending }] = useMutation(apiAction, {
     onSuccess: data => {
-      queryCache.invalidateQueries('visits');
-      queryCache.refetchQueries('stats');
+      queryCache.invalidateQueries(['visits', { token, clientId }]);
+      queryCache.refetchQueries(['stats', { token, clientId }]);
       queryCache.refetchQueries('clients');
-      queryCache.refetchQueries('client');
+      queryCache.refetchQueries(['client', { token, clientId }]);
       if(isForEdit) {
-        queryCache.invalidateQueries('visit');
+        queryCache.invalidateQueries(['visit', { token, visitId}]);
       }
       toast.success(isForEdit ? 'Poprawnie edytowano wizytę' : 'Poprawnie dodano wizytę!', TOASTS.success);
       onClose();

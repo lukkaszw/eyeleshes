@@ -17,10 +17,10 @@ const useDelete = ({ token, clientId, visitId }) => {
   //useMutation
   const [deleteVisit, { isLoading: isSending }] = useMutation(API.visits.deleteVisit, {
     onSuccess: data => {
-      queryCache.refetchQueries('visits');
-      queryCache.refetchQueries('stats');
+      queryCache.refetchQueries(['visits', { token, clientId }]);
+      queryCache.refetchQueries(['stats', { token, clientId }]);
       queryCache.refetchQueries('clients');
-      queryCache.refetchQueries('client');
+      queryCache.refetchQueries(['client', { token, clientId }]);
       toast.success(`Poprawnie usunięto wizytę!`, TOASTS.success);
       history.push(`/clients/${clientId}`);
     },

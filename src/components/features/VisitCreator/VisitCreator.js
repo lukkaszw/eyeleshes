@@ -68,14 +68,14 @@ const VisitCreator = ({
   //useMutation
   const [submitAction, { isLoading: isSending }] = useMutation(apiAction, {
     onSuccess: data => {
-      queryCache.refetchQueries('stats');
-      queryCache.refetchQueries('visits');
+      queryCache.refetchQueries(['stats', { token, clientId }]);
+      queryCache.refetchQueries(['visits', { token, clientId}]);
       queryCache.refetchQueries('clients');
-      queryCache.refetchQueries('client');
+      queryCache.refetchQueries(['client', { token, clientId }]);
       toast.success(isForEdit ? 'Poprawnie edytowano wizytę!' : 'Poprawnie dodano wizytę!', TOASTS.success);
 
       if(isForEdit) {
-        queryCache.refetchQueries('visit');
+        queryCache.refetchQueries(['visit', { token, visitId }]);
         history.push(`/visits/${visitId}`);
       } else {
         history.push(`/clients/${clientId}`);
