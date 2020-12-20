@@ -71,7 +71,7 @@ const VisitCreator = ({
       queryCache.refetchQueries('stats');
       queryCache.refetchQueries('visits');
       queryCache.refetchQueries('clients');
-
+      queryCache.refetchQueries('client');
       toast.success(isForEdit ? 'Poprawnie edytowano wizytę!' : 'Poprawnie dodano wizytę!', TOASTS.success);
 
       if(isForEdit) {
