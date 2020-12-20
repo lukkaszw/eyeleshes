@@ -125,6 +125,7 @@ const useVisitForm = ({ token, onClose, clientId, visitId, initialValues, isForE
       queryCache.invalidateQueries('visits');
       queryCache.refetchQueries('stats');
       queryCache.refetchQueries('clients');
+      queryCache.refetchQueries('client');
       if(isForEdit) {
         queryCache.invalidateQueries('visit');
       }
